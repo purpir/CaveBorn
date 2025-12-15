@@ -9,10 +9,9 @@ import net.minecraft.structure.rule.BlockMatchRuleTest;
 import net.minecraft.structure.rule.RuleTest;
 import net.minecraft.structure.rule.TagMatchRuleTest;
 import net.minecraft.util.Identifier;
-import net.minecraft.world.gen.feature.ConfiguredFeature;
-import net.minecraft.world.gen.feature.Feature;
-import net.minecraft.world.gen.feature.FeatureConfig;
-import net.minecraft.world.gen.feature.OreFeatureConfig;
+import net.minecraft.util.math.intprovider.ConstantIntProvider;
+import net.minecraft.world.gen.feature.*;
+import net.minecraft.world.gen.stateprovider.BlockStateProvider;
 import ru.purpir.Caveborn;
 import ru.purpir.block.ModBlocks;
 
@@ -22,6 +21,7 @@ public class ModConfiguredFeatures {
     public static final RegistryKey<ConfiguredFeature<?, ?>> BRONZE_ORE_KEY = registerKey("bronze_ore");
     public static final RegistryKey<ConfiguredFeature<?, ?>> TITANIUM_ORE_KEY = registerKey("titanium_ore");
     public static final RegistryKey<ConfiguredFeature<?, ?>> DEEPSLATE_TITANIUM_ORE_KEY = registerKey("deepslate_titanium_ore");
+    public static final RegistryKey<ConfiguredFeature<?, ?>> WEED_PATCH_KEY = registerKey("weed_patch");
 
     public static void bootstrap(Registerable<ConfiguredFeature<?, ?>> context) {
         RuleTest endStoneReplaceable = new BlockMatchRuleTest(Blocks.END_STONE);
@@ -42,6 +42,15 @@ public class ModConfiguredFeatures {
         register(context, DEEPSLATE_TITANIUM_ORE_KEY, Feature.ORE, new OreFeatureConfig(
             List.of(OreFeatureConfig.createTarget(deepslateReplaceable, ModBlocks.DEEPSLATE_TITANIUM_ORE.getDefaultState())),
             3));
+
+        // Weed patch - random flower-like patch on grass
+        register(context, WEED_PATCH_KEY, Feature.FLOWER, new RandomPatchFeatureConfig(
+            50, // tries (20-50 сорняков)
+            6,  // xz spread
+            2,  // y spread
+            PlacedFeatures.createEntry(Feature.SIMPLE_BLOCK,
+                new SimpleBlockFeatureConfig(BlockStateProvider.of(ModBlocks.WEED)))
+        ));
     }
 
     public static RegistryKey<ConfiguredFeature<?, ?>> registerKey(String name) {

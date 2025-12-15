@@ -44,3 +44,5 @@
 /gamerule randomTickSpeed 1000
 /gamerule randomTickSpeed 3000
 /gamerule randomTickSpeed 3
+/locate biome minecraft:plains
+/tp @s 68 98 1931

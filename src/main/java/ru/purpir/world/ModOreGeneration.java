@@ -2,6 +2,7 @@ package ru.purpir.world;
 
 import net.fabricmc.fabric.api.biome.v1.BiomeModifications;
 import net.fabricmc.fabric.api.biome.v1.BiomeSelectors;
+import net.minecraft.world.biome.BiomeKeys;
 import net.minecraft.world.gen.GenerationStep;
 
 public class ModOreGeneration {
@@ -25,6 +26,13 @@ public class ModOreGeneration {
             BiomeSelectors.foundInOverworld(),
             GenerationStep.Feature.UNDERGROUND_ORES,
             ModPlacedFeatures.DEEPSLATE_TITANIUM_ORE_PLACED_KEY
+        );
+
+        // Weed patches - only in plains biome
+        BiomeModifications.addFeature(
+            BiomeSelectors.includeByKey(BiomeKeys.PLAINS, BiomeKeys.SUNFLOWER_PLAINS),
+            GenerationStep.Feature.VEGETAL_DECORATION,
+            ModPlacedFeatures.WEED_PATCH_PLACED_KEY
         );
     }
 }

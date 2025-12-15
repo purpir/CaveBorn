@@ -8,6 +8,7 @@ import net.minecraft.util.Identifier;
 import net.minecraft.world.gen.YOffset;
 import net.minecraft.world.gen.feature.ConfiguredFeature;
 import net.minecraft.world.gen.feature.PlacedFeature;
+import net.minecraft.world.gen.feature.PlacedFeatures;
 import net.minecraft.world.gen.placementmodifier.*;
 import ru.purpir.Caveborn;
 
@@ -17,6 +18,7 @@ public class ModPlacedFeatures {
     public static final RegistryKey<PlacedFeature> BRONZE_ORE_PLACED_KEY = registerKey("bronze_ore");
     public static final RegistryKey<PlacedFeature> TITANIUM_ORE_PLACED_KEY = registerKey("titanium_ore");
     public static final RegistryKey<PlacedFeature> DEEPSLATE_TITANIUM_ORE_PLACED_KEY = registerKey("deepslate_titanium_ore");
+    public static final RegistryKey<PlacedFeature> WEED_PATCH_PLACED_KEY = registerKey("weed_patch");
 
     public static void bootstrap(Registerable<PlacedFeature> context) {
         var configuredFeatures = context.getRegistryLookup(RegistryKeys.CONFIGURED_FEATURE);
@@ -35,6 +37,16 @@ public class ModPlacedFeatures {
         register(context, DEEPSLATE_TITANIUM_ORE_PLACED_KEY, 
             configuredFeatures.getOrThrow(ModConfiguredFeatures.DEEPSLATE_TITANIUM_ORE_KEY),
             modifiersWithCount(1, HeightRangePlacementModifier.uniform(YOffset.fixed(-64), YOffset.fixed(-32))));
+
+        // Weed patch - rare in plains (1 per 32 chunks roughly)
+        register(context, WEED_PATCH_PLACED_KEY,
+            configuredFeatures.getOrThrow(ModConfiguredFeatures.WEED_PATCH_KEY),
+            List.of(
+                RarityFilterPlacementModifier.of(32), // 1 в 32 чанках - редко
+                SquarePlacementModifier.of(),
+                PlacedFeatures.MOTION_BLOCKING_HEIGHTMAP,
+                BiomePlacementModifier.of()
+            ));
     }
 
     public static RegistryKey<PlacedFeature> registerKey(String name) {
