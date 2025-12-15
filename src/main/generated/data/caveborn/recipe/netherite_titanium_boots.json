@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "N": "caveborn:netherite_titanium_ingot"
+  },
+  "pattern": [
+    "N N",
+    "N N"
+  ],
+  "result": {
+    "count": 1,
+    "id": "caveborn:netherite_titanium_boots"
+  }
+}

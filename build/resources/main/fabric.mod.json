@@ -1,0 +1,44 @@
+{
+  "schemaVersion": 1,
+  "id": "caveborn",
+  "version": "1.0-1.21.10",
+  "name": "CaveBorn",
+  "description": "Adds Bronze ore in the End, rare Titanium ore in the Overworld, and powerful Netherite Titanium gear - twice as strong as Netherite!",
+  "authors": [
+    "PurPir"
+  ],
+  "contact": {
+    "homepage": "https://modrinth.com/mod/caveborn",
+    "sources": "https://github.com/PurPir/CaveBorn"
+  },
+  "license": "MIT",
+  "icon": "assets/caveborn/icon.png",
+  "environment": "*",
+  "entrypoints": {
+    "fabric-datagen": [
+      "ru.purpir.client.CavebornDataGenerator"
+    ],
+    "client": [
+      "ru.purpir.client.CavebornClient"
+    ],
+    "main": [
+      "ru.purpir.Caveborn"
+    ]
+  },
+  "mixins": [
+    "caveborn.mixins.json",
+    {
+      "config": "caveborn.client.mixins.json",
+      "environment": "client"
+    }
+  ],
+  "depends": {
+    "fabricloader": ">=0.18.2",
+    "fabric-api": "*",
+    "minecraft": "1.21.10",
+    "java": ">=21"
+  },
+  "suggests": {
+    "modmenu": "*"
+  }
+}

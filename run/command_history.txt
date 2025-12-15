@@ -1,0 +1,7 @@
+/time set day
+/effect give Player620 minecraft:night_vision infinite 255
+/enchant Player588 minecraft:efficiency 5
+/enchant Player588 minecraft:efficiency 2
+/enchant Player588 minecraft:efficiency 4
+/enchant Player588 minecraft:efficiency 5
+/enchant Player588 minecraft:depth_strider 1

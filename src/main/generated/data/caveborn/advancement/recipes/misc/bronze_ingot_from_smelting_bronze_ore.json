@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_bronze_ore": {
+      "conditions": {
+        "items": [
+          {
+            "items": "caveborn:bronze_ore"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "caveborn:bronze_ingot_from_smelting_bronze_ore"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_bronze_ore"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "caveborn:bronze_ingot_from_smelting_bronze_ore"
+    ]
+  }
+}

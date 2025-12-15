@@ -1,0 +1,10 @@
+{
+  "values": [
+    "caveborn:bronze_ore",
+    "caveborn:bronze_block",
+    "caveborn:titanium_ore",
+    "caveborn:deepslate_titanium_ore",
+    "caveborn:titanium_block",
+    "caveborn:netherite_titanium_block"
+  ]
+}

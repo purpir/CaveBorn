@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "building",
+  "ingredients": [
+    "caveborn:bronze_block"
+  ],
+  "result": {
+    "count": 9,
+    "id": "caveborn:bronze_ingot"
+  }
+}

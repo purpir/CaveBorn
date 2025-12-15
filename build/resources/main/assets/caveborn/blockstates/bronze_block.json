@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "": {
+      "model": "caveborn:block/bronze_block"
+    }
+  }
+}

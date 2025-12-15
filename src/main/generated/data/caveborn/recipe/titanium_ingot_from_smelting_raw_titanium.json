@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:smelting",
+  "category": "misc",
+  "cookingtime": 200,
+  "experience": 1.0,
+  "group": "titanium",
+  "ingredient": "caveborn:raw_titanium",
+  "result": {
+    "id": "caveborn:titanium_ingot"
+  }
+}

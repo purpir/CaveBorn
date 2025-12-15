@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "N": "minecraft:netherite_scrap",
+    "T": "caveborn:titanium_ingot"
+  },
+  "pattern": [
+    "NTN",
+    "TNT",
+    "NTN"
+  ],
+  "result": {
+    "count": 1,
+    "id": "caveborn:netherite_titanium_ingot"
+  }
+}

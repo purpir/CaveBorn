@@ -1,0 +1,36 @@
+{
+  "itemGroup.caveborn.caveborn_group": "Caveborn",
+  
+  "item.caveborn.bronze_ingot": "Bronze Ingot",
+  "item.caveborn.raw_bronze": "Raw Bronze",
+  "item.caveborn.bronze_sword": "Bronze Sword",
+  "item.caveborn.bronze_pickaxe": "Bronze Pickaxe",
+  "item.caveborn.bronze_axe": "Bronze Axe",
+  "item.caveborn.bronze_shovel": "Bronze Shovel",
+  "item.caveborn.bronze_hoe": "Bronze Hoe",
+  "item.caveborn.bronze_helmet": "Bronze Helmet",
+  "item.caveborn.bronze_chestplate": "Bronze Chestplate",
+  "item.caveborn.bronze_leggings": "Bronze Leggings",
+  "item.caveborn.bronze_boots": "Bronze Boots",
+  
+  "item.caveborn.titanium_ingot": "Titanium Ingot",
+  "item.caveborn.raw_titanium": "Raw Titanium",
+  
+  "item.caveborn.netherite_titanium_ingot": "Netherite Titanium Ingot",
+  "item.caveborn.netherite_titanium_sword": "Netherite Titanium Sword",
+  "item.caveborn.netherite_titanium_pickaxe": "Netherite Titanium Pickaxe",
+  "item.caveborn.netherite_titanium_axe": "Netherite Titanium Axe",
+  "item.caveborn.netherite_titanium_shovel": "Netherite Titanium Shovel",
+  "item.caveborn.netherite_titanium_hoe": "Netherite Titanium Hoe",
+  "item.caveborn.netherite_titanium_helmet": "Netherite Titanium Helmet",
+  "item.caveborn.netherite_titanium_chestplate": "Netherite Titanium Chestplate",
+  "item.caveborn.netherite_titanium_leggings": "Netherite Titanium Leggings",
+  "item.caveborn.netherite_titanium_boots": "Netherite Titanium Boots",
+  
+  "block.caveborn.bronze_ore": "Bronze Ore",
+  "block.caveborn.bronze_block": "Block of Bronze",
+  "block.caveborn.titanium_ore": "Titanium Ore",
+  "block.caveborn.deepslate_titanium_ore": "Deepslate Titanium Ore",
+  "block.caveborn.titanium_block": "Block of Titanium",
+  "block.caveborn.netherite_titanium_block": "Block of Netherite Titanium"
+}
