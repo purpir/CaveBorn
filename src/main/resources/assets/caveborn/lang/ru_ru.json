@@ -32,5 +32,7 @@
   "block.caveborn.titanium_ore": "Титановая руда",
   "block.caveborn.deepslate_titanium_ore": "Глубинносланцевая титановая руда",
   "block.caveborn.titanium_block": "Блок титана",
-  "block.caveborn.netherite_titanium_block": "Блок незеритового титана"
+  "block.caveborn.netherite_titanium_block": "Блок незеритового титана",
+  "block.caveborn.weed": "Сорняк",
+  "block.caveborn.weed_top": "Сорняк"
 }

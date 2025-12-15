@@ -62,12 +62,34 @@ public class ModBlocks {
             .requiresTool()
             .sounds(BlockSoundGroup.NETHERITE));
 
+    // Weed blocks
+    public static final Block WEED = registerBlockNoItem("weed",
+        WeedBlock::new,
+        AbstractBlock.Settings.create()
+            .noCollision()
+            .breakInstantly()
+            .sounds(BlockSoundGroup.GRASS)
+            .ticksRandomly());
+    
+    public static final Block WEED_TOP = registerBlockNoItem("weed_top",
+        WeedTopBlock::new,
+        AbstractBlock.Settings.create()
+            .noCollision()
+            .breakInstantly()
+            .sounds(BlockSoundGroup.GRASS));
+
     private static Block registerBlock(String name, Function<AbstractBlock.Settings, Block> factory, 
                                         AbstractBlock.Settings settings) {
         RegistryKey<Block> blockKey = RegistryKey.of(RegistryKeys.BLOCK, Identifier.of(Caveborn.MOD_ID, name));
         Block block = Registry.register(Registries.BLOCK, blockKey, factory.apply(settings.registryKey(blockKey)));
         registerBlockItem(name, block);
         return block;
+    }
+
+    private static Block registerBlockNoItem(String name, Function<AbstractBlock.Settings, Block> factory, 
+                                              AbstractBlock.Settings settings) {
+        RegistryKey<Block> blockKey = RegistryKey.of(RegistryKeys.BLOCK, Identifier.of(Caveborn.MOD_ID, name));
+        return Registry.register(Registries.BLOCK, blockKey, factory.apply(settings.registryKey(blockKey)));
     }
 
     private static void registerBlockItem(String name, Block block) {

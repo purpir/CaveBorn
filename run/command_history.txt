@@ -6,3 +6,41 @@
 /enchant Player588 minecraft:efficiency 5
 /enchant Player588 minecraft:depth_strider 1
 /effect give Player133 minecraft:night_vision infinite 255
+/tick sprint
+/tick sprint 60s
+/tick sprint 600s
+/tick rate 100
+/tick rate 20
+/tick step 1s
+/tick sprint 600s
+/gamerule randomTickSpeed 1000
+/gamerule randomTickSpeed 10000
+/gamerule randomTickSpeed 1000
+/gamerule randomTickSpeed 20
+/gamerule randomTickSpeed 320
+/gamerule randomTickSpeed
+/gamerule randomTickSpeed 324
+/gamerule randomTickSpeed
+/gamerule randomTickSpeed 320
+/gamerule randomTickSpeed reset
+/gamerule randomTickSpeed 320 reset
+/tick sprint 10d
+/tick sprint 500s
+/tick freeze
+/tick unfreeze
+/tick sprint 500s
+/time set day
+/tick sprint 60s
+/random roll
+/random roll 1 minecraft:blocks/allium
+/random roll 2 minecraft:blocks/allium
+/random roll 4 minecraft:blocks/allium
+/random roll 4 minecraft:blocks/allium 3
+/random roll 4 minecraft:blocks/allium
+/random roll 4 minecraft:blocks/fire
+/gamerule randomTickSpeed
+/gamerule randomTickSpeed 20
+/gamerule randomTickSpeed 100
+/gamerule randomTickSpeed 1000
+/gamerule randomTickSpeed 3000
+/gamerule randomTickSpeed 3

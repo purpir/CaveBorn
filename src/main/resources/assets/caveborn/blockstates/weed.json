@@ -1,0 +1,6 @@
+{
+  "variants": {
+    "age=0": { "model": "caveborn:block/weed_small" },
+    "age=1": { "model": "caveborn:block/weed_tall" }
+  }
+}

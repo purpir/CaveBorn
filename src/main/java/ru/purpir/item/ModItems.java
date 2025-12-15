@@ -1,6 +1,7 @@
 package ru.purpir.item;
 
 import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroup;
+import net.minecraft.item.HoeItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
@@ -29,8 +30,9 @@ public class ModItems {
         new Item.Settings().axe(ModToolMaterials.BRONZE, 5, -3.0f));
     public static final Item BRONZE_SHOVEL = registerItem("bronze_shovel", Item::new, 
         new Item.Settings().shovel(ModToolMaterials.BRONZE, 1.5f, -3.0f));
-    public static final Item BRONZE_HOE = registerItem("bronze_hoe", Item::new, 
-        new Item.Settings().hoe(ModToolMaterials.BRONZE, -3, 0.0f));
+    public static final Item BRONZE_HOE = registerItem("bronze_hoe", 
+        settings -> new HoeItem(ModToolMaterials.BRONZE, -3, 0.0f, settings), 
+        new Item.Settings());
     
     public static final Item BRONZE_HELMET = registerItem("bronze_helmet", Item::new,
         new Item.Settings().armor(ModArmorMaterials.BRONZE, EquipmentType.HELMET));
@@ -57,8 +59,9 @@ public class ModItems {
         new Item.Settings().fireproof().axe(ModToolMaterials.NETHERITE_TITANIUM, 5, -3.0f));
     public static final Item NETHERITE_TITANIUM_SHOVEL = registerItem("netherite_titanium_shovel", Item::new, 
         new Item.Settings().fireproof().shovel(ModToolMaterials.NETHERITE_TITANIUM, 1.5f, -3.0f));
-    public static final Item NETHERITE_TITANIUM_HOE = registerItem("netherite_titanium_hoe", Item::new, 
-        new Item.Settings().fireproof().hoe(ModToolMaterials.NETHERITE_TITANIUM, -4, 0.0f));
+    public static final Item NETHERITE_TITANIUM_HOE = registerItem("netherite_titanium_hoe", 
+        settings -> new HoeItem(ModToolMaterials.NETHERITE_TITANIUM, -4, 0.0f, settings), 
+        new Item.Settings().fireproof());
     
     public static final Item NETHERITE_TITANIUM_HELMET = registerItem("netherite_titanium_helmet", Item::new,
         new Item.Settings().fireproof().armor(ModArmorMaterials.NETHERITE_TITANIUM, EquipmentType.HELMET));

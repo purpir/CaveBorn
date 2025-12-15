@@ -1,5 +1,5 @@
-[01:25:56] [main/INFO] (FabricLoader/GameProvider) Loading Minecraft 1.21.10 with Fabric Loader 0.18.2
-[01:25:56] [main/INFO] (FabricLoader) Loading 51 mods:
+[19:47:25] [main/INFO] (FabricLoader/GameProvider) Loading Minecraft 1.21.10 with Fabric Loader 0.18.2
+[19:47:25] [main/INFO] (FabricLoader) Loading 51 mods:
 	- caveborn 1.0-1.21.10
 	- fabric-api 0.138.3+1.21.10
 	- fabric-api-base 1.0.0+14b92d896f
@@ -51,18 +51,18 @@
 	- java 21
 	- minecraft 1.21.10
 	- mixinextras 0.5.0
-[01:25:56] [main/INFO] (FabricLoader/Mixin) SpongePowered MIXIN Subsystem Version=0.8.7 Source=file:/D:/gradle/caches/modules-2/files-2.1/net.fabricmc/sponge-mixin/0.16.5+mixin.0.8.7/80fc3a9f592673cea87f4cd702f87991c6c9fe4d/sponge-mixin-0.16.5+mixin.0.8.7.jar Service=Knot/Fabric Env=CLIENT
-[01:25:57] [main/INFO] (FabricLoader/Mixin) Loaded Fabric development mappings for mixin remapper!
-[01:25:57] [main/INFO] (FabricLoader/Mixin) Compatibility level set to JAVA_21
-[01:25:58] [main/INFO] (FabricLoader/MixinExtras|Service) Initializing MixinExtras via com.llamalad7.mixinextras.service.MixinExtrasServiceImpl(version=0.5.0).
-[01:25:58] [Datafixer Bootstrap/INFO] (Minecraft) 278 Datafixer optimizations took 367 milliseconds
-[01:26:03] [Render thread/INFO] (Minecraft) Environment: Environment[sessionHost=https://sessionserver.mojang.com, servicesHost=https://api.minecraftservices.com, profilesHost=https://api.mojang.com, name=PROD]
-[01:26:03] [Render thread/INFO] (Minecraft) Setting user: Player663
-[01:26:03] [Render thread/INFO] (caveborn) Registering Mod Blocks for caveborn
-[01:26:03] [Render thread/INFO] (caveborn) Registering Mod Items for caveborn
-[01:26:03] [Render thread/INFO] (caveborn) Caveborn mod initialized!
-[01:26:03] [Render thread/INFO] (Indigo) [Indigo] Registering Indigo renderer!
-[01:26:03] [Download-2/ERROR] (Minecraft) Failed to fetch user properties
+[19:47:26] [main/INFO] (FabricLoader/Mixin) SpongePowered MIXIN Subsystem Version=0.8.7 Source=file:/D:/gradle/caches/modules-2/files-2.1/net.fabricmc/sponge-mixin/0.16.5+mixin.0.8.7/80fc3a9f592673cea87f4cd702f87991c6c9fe4d/sponge-mixin-0.16.5+mixin.0.8.7.jar Service=Knot/Fabric Env=CLIENT
+[19:47:26] [main/INFO] (FabricLoader/Mixin) Loaded Fabric development mappings for mixin remapper!
+[19:47:26] [main/INFO] (FabricLoader/Mixin) Compatibility level set to JAVA_21
+[19:47:27] [main/INFO] (FabricLoader/MixinExtras|Service) Initializing MixinExtras via com.llamalad7.mixinextras.service.MixinExtrasServiceImpl(version=0.5.0).
+[19:47:28] [Datafixer Bootstrap/INFO] (Minecraft) 278 Datafixer optimizations took 418 milliseconds
+[19:47:32] [Render thread/INFO] (Minecraft) Environment: Environment[sessionHost=https://sessionserver.mojang.com, servicesHost=https://api.minecraftservices.com, profilesHost=https://api.mojang.com, name=PROD]
+[19:47:32] [Render thread/INFO] (Minecraft) Setting user: Player889
+[19:47:33] [Render thread/INFO] (caveborn) Registering Mod Blocks for caveborn
+[19:47:33] [Render thread/INFO] (caveborn) Registering Mod Items for caveborn
+[19:47:33] [Render thread/INFO] (caveborn) Caveborn mod initialized!
+[19:47:33] [Render thread/INFO] (Indigo) [Indigo] Registering Indigo renderer!
+[19:47:33] [Download-2/ERROR] (Minecraft) Failed to fetch user properties
 com.mojang.authlib.exceptions.InvalidCredentialsException: Status: 401
 	at knot/com.mojang.authlib.exceptions.MinecraftClientHttpException.toAuthenticationException(MinecraftClientHttpException.java:59) ~[authlib-7.0.61.jar:?]
 	at knot/com.mojang.authlib.yggdrasil.YggdrasilUserApiService.fetchProperties(YggdrasilUserApiService.java:150) ~[authlib-7.0.61.jar:?]
@@ -76,18 +76,18 @@ Caused by: com.mojang.authlib.exceptions.MinecraftClientHttpException: Status: 4
 	at knot/com.mojang.authlib.minecraft.client.MinecraftClient.get(MinecraftClient.java:56) ~[authlib-7.0.61.jar:?]
 	at knot/com.mojang.authlib.yggdrasil.YggdrasilUserApiService.fetchProperties(YggdrasilUserApiService.java:121) ~[authlib-7.0.61.jar:?]
 	... 5 more
-[01:26:03] [Render thread/INFO] (FabricDataGenHelper) Running data generator for caveborn
-[01:26:04] [Render thread/INFO] (Minecraft) Starting provider: CaveBorn/Tags for minecraft:block
-[01:26:04] [Render thread/INFO] (Minecraft) CaveBorn/Tags for minecraft:block finished after 10 ms
-[01:26:04] [Render thread/INFO] (Minecraft) Starting provider: CaveBorn/Tags for minecraft:item
-[01:26:04] [Render thread/INFO] (Minecraft) CaveBorn/Tags for minecraft:item finished after 0 ms
-[01:26:04] [Render thread/INFO] (Minecraft) Starting provider: CaveBorn/Caveborn Recipes
-[01:26:04] [Render thread/INFO] (Minecraft) CaveBorn/Caveborn Recipes finished after 35 ms
-[01:26:04] [Render thread/INFO] (Minecraft) Starting provider: CaveBorn/Model Definitions
-[01:26:04] [Render thread/INFO] (Minecraft) CaveBorn/Model Definitions finished after 48 ms
-[01:26:04] [Render thread/INFO] (Minecraft) Starting provider: CaveBorn/Block Loot Tables
-[01:26:04] [Render thread/INFO] (Minecraft) CaveBorn/Block Loot Tables finished after 10 ms
-[01:26:04] [Render thread/INFO] (Minecraft) Starting provider: CaveBorn/World Gen
-[01:26:04] [Render thread/INFO] (Minecraft) CaveBorn/World Gen finished after 4 ms
-[01:26:04] [Render thread/INFO] (Minecraft) All providers took: 110 ms
-[01:26:04] [Render thread/INFO] (Minecraft) Caching: total files: 149, old count: 149, new count: 150, removed stale: 0, written: 0
+[19:47:33] [Render thread/INFO] (FabricDataGenHelper) Running data generator for caveborn
+[19:47:33] [Render thread/INFO] (Minecraft) Starting provider: CaveBorn/Tags for minecraft:block
+[19:47:33] [Render thread/INFO] (Minecraft) CaveBorn/Tags for minecraft:block finished after 10 ms
+[19:47:33] [Render thread/INFO] (Minecraft) Starting provider: CaveBorn/Tags for minecraft:item
+[19:47:33] [Render thread/INFO] (Minecraft) CaveBorn/Tags for minecraft:item finished after 1 ms
+[19:47:33] [Render thread/INFO] (Minecraft) Starting provider: CaveBorn/Caveborn Recipes
+[19:47:33] [Render thread/INFO] (Minecraft) CaveBorn/Caveborn Recipes finished after 36 ms
+[19:47:33] [Render thread/INFO] (Minecraft) Starting provider: CaveBorn/Model Definitions
+[19:47:34] [Render thread/INFO] (Minecraft) CaveBorn/Model Definitions finished after 70 ms
+[19:47:34] [Render thread/INFO] (Minecraft) Starting provider: CaveBorn/Block Loot Tables
+[19:47:34] [Render thread/INFO] (Minecraft) CaveBorn/Block Loot Tables finished after 11 ms
+[19:47:34] [Render thread/INFO] (Minecraft) Starting provider: CaveBorn/World Gen
+[19:47:34] [Render thread/INFO] (Minecraft) CaveBorn/World Gen finished after 4 ms
+[19:47:34] [Render thread/INFO] (Minecraft) All providers took: 135 ms
+[19:47:34] [Render thread/INFO] (Minecraft) Caching: total files: 150, old count: 149, new count: 151, removed stale: 0, written: 1

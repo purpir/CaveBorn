@@ -38,5 +38,10 @@ public class ModItemTagProvider extends FabricTagProvider.ItemTagProvider {
             .add(ModItems.NETHERITE_TITANIUM_CHESTPLATE)
             .add(ModItems.NETHERITE_TITANIUM_LEGGINGS)
             .add(ModItems.NETHERITE_TITANIUM_BOOTS);
+
+        // Hoes - чтобы работало вспахивание
+        valueLookupBuilder(ItemTags.HOES)
+            .add(ModItems.BRONZE_HOE)
+            .add(ModItems.NETHERITE_TITANIUM_HOE);
     }
 }
