@@ -5,3 +5,4 @@
 /enchant Player588 minecraft:efficiency 4
 /enchant Player588 minecraft:efficiency 5
 /enchant Player588 minecraft:depth_strider 1
+/effect give Player133 minecraft:night_vision infinite 255

@@ -5,11 +5,9 @@
   "name": "CaveBorn",
   "description": "Adds Bronze ore in the End, rare Titanium ore in the Overworld, and powerful Netherite Titanium gear - twice as strong as Netherite!",
   "authors": [
-    "PurPir"
+    "_purpir_"
   ],
   "contact": {
-    "homepage": "https://modrinth.com/mod/caveborn",
-    "sources": "https://github.com/PurPir/CaveBorn"
   },
   "license": "MIT",
   "icon": "assets/caveborn/icon.png",

@@ -1,0 +1,239 @@
+{
+  "minecraft:recipes/decorations/ladder": {
+    "criteria": {
+      "has_stick": "2025-12-15 17:13:55 +0300"
+    },
+    "done": true
+  },
+  "caveborn:recipes/decorations/titanium_block": {
+    "criteria": {
+      "has_titanium_ingot": "2025-12-15 17:13:55 +0300"
+    },
+    "done": true
+  },
+  "caveborn:recipes/tools/netherite_titanium_axe": {
+    "criteria": {
+      "has_netherite_titanium_ingot": "2025-12-15 17:13:55 +0300"
+    },
+    "done": true
+  },
+  "caveborn:recipes/tools/netherite_titanium_sword": {
+    "criteria": {
+      "has_netherite_titanium_ingot": "2025-12-15 17:13:55 +0300"
+    },
+    "done": true
+  },
+  "caveborn:recipes/misc/netherite_titanium_ingot_from_crafting": {
+    "criteria": {
+      "has_titanium_ingot": "2025-12-15 17:13:55 +0300"
+    },
+    "done": true
+  },
+  "minecraft:recipes/building_blocks/raw_iron_block": {
+    "criteria": {
+      "has_raw_iron": "2025-12-15 17:13:55 +0300"
+    },
+    "done": true
+  },
+  "minecraft:recipes/redstone/redstone_torch": {
+    "criteria": {
+      "has_redstone": "2025-12-15 17:13:55 +0300"
+    },
+    "done": true
+  },
+  "minecraft:recipes/tools/clock": {
+    "criteria": {
+      "has_redstone": "2025-12-15 17:13:55 +0300"
+    },
+    "done": true
+  },
+  "minecraft:recipes/tools/wooden_axe": {
+    "criteria": {
+      "has_stick": "2025-12-15 17:13:55 +0300"
+    },
+    "done": true
+  },
+  "minecraft:recipes/decorations/crafting_table": {
+    "criteria": {
+      "unlock_right_away": "2025-12-15 17:13:55 +0300"
+    },
+    "done": true
+  },
+  "minecraft:recipes/decorations/chest": {
+    "criteria": {
+      "has_lots_of_items": "2025-12-15 17:13:55 +0300"
+    },
+    "done": true
+  },
+  "minecraft:story/shiny_gear": {
+    "criteria": {
+      "diamond_chestplate": "2025-12-15 17:13:55 +0300"
+    },
+    "done": true
+  },
+  "minecraft:recipes/misc/netherite_ingot": {
+    "criteria": {
+      "has_netherite_scrap": "2025-12-15 17:13:55 +0300"
+    },
+    "done": true
+  },
+  "caveborn:recipes/combat/netherite_titanium_chestplate": {
+    "criteria": {
+      "has_netherite_titanium_ingot": "2025-12-15 17:13:55 +0300"
+    },
+    "done": true
+  },
+  "caveborn:recipes/tools/netherite_titanium_shovel": {
+    "criteria": {
+      "has_netherite_titanium_ingot": "2025-12-15 17:13:55 +0300"
+    },
+    "done": true
+  },
+  "caveborn:recipes/tools/netherite_titanium_pickaxe": {
+    "criteria": {
+      "has_netherite_titanium_ingot": "2025-12-15 17:13:55 +0300"
+    },
+    "done": true
+  },
+  "caveborn:recipes/combat/netherite_titanium_leggings": {
+    "criteria": {
+      "has_netherite_titanium_ingot": "2025-12-15 17:13:55 +0300"
+    },
+    "done": true
+  },
+  "minecraft:recipes/redstone/note_block": {
+    "criteria": {
+      "has_redstone": "2025-12-15 17:13:55 +0300"
+    },
+    "done": true
+  },
+  "minecraft:recipes/redstone/target": {
+    "criteria": {
+      "has_redstone": "2025-12-15 17:13:55 +0300"
+    },
+    "done": true
+  },
+  "minecraft:recipes/tools/compass": {
+    "criteria": {
+      "has_redstone": "2025-12-15 17:13:55 +0300"
+    },
+    "done": true
+  },
+  "caveborn:recipes/tools/netherite_titanium_hoe": {
+    "criteria": {
+      "has_netherite_titanium_ingot": "2025-12-15 17:13:55 +0300"
+    },
+    "done": true
+  },
+  "minecraft:recipes/misc/iron_ingot_from_smelting_raw_iron": {
+    "criteria": {
+      "has_raw_iron": "2025-12-15 17:13:55 +0300"
+    },
+    "done": true
+  },
+  "minecraft:recipes/decorations/campfire": {
+    "criteria": {
+      "has_stick": "2025-12-15 17:13:55 +0300"
+    },
+    "done": true
+  },
+  "minecraft:recipes/tools/wooden_hoe": {
+    "criteria": {
+      "has_stick": "2025-12-15 17:13:55 +0300"
+    },
+    "done": true
+  },
+  "minecraft:recipes/tools/wooden_pickaxe": {
+    "criteria": {
+      "has_stick": "2025-12-15 17:13:55 +0300"
+    },
+    "done": true
+  },
+  "caveborn:recipes/decorations/netherite_titanium_block": {
+    "criteria": {
+      "has_netherite_titanium_ingot": "2025-12-15 17:13:55 +0300"
+    },
+    "done": true
+  },
+  "minecraft:recipes/misc/raiser_armor_trim_smithing_template": {
+    "criteria": {
+      "has_raiser_armor_trim_smithing_template": "2025-12-15 17:13:55 +0300"
+    },
+    "done": true
+  },
+  "minecraft:recipes/redstone/dropper": {
+    "criteria": {
+      "has_redstone": "2025-12-15 17:13:55 +0300"
+    },
+    "done": true
+  },
+  "minecraft:recipes/tools/wooden_shovel": {
+    "criteria": {
+      "has_stick": "2025-12-15 17:13:55 +0300"
+    },
+    "done": true
+  },
+  "minecraft:recipes/building_blocks/dripstone_block": {
+    "criteria": {
+      "has_pointed_dripstone": "2025-12-15 17:13:55 +0300"
+    },
+    "done": true
+  },
+  "minecraft:recipes/redstone/redstone_block": {
+    "criteria": {
+      "has_redstone": "2025-12-15 17:13:55 +0300"
+    },
+    "done": true
+  },
+  "minecraft:recipes/misc/iron_ingot_from_blasting_raw_iron": {
+    "criteria": {
+      "has_raw_iron": "2025-12-15 17:13:55 +0300"
+    },
+    "done": true
+  },
+  "minecraft:recipes/combat/wooden_sword": {
+    "criteria": {
+      "has_stick": "2025-12-15 17:13:55 +0300"
+    },
+    "done": true
+  },
+  "caveborn:recipes/combat/netherite_titanium_boots": {
+    "criteria": {
+      "has_netherite_titanium_ingot": "2025-12-15 17:13:55 +0300"
+    },
+    "done": true
+  },
+  "minecraft:adventure/adventuring_time": {
+    "criteria": {
+      "minecraft:forest": "2025-12-15 17:14:12 +0300",
+      "minecraft:river": "2025-12-15 17:14:29 +0300",
+      "minecraft:meadow": "2025-12-15 17:13:56 +0300"
+    },
+    "done": false
+  },
+  "caveborn:recipes/combat/netherite_titanium_helmet": {
+    "criteria": {
+      "has_netherite_titanium_ingot": "2025-12-15 17:13:55 +0300"
+    },
+    "done": true
+  },
+  "minecraft:story/root": {
+    "criteria": {
+      "crafting_table": "2025-12-15 17:13:55 +0300"
+    },
+    "done": true
+  },
+  "minecraft:recipes/misc/raiser_armor_trim_smithing_template_smithing_trim": {
+    "criteria": {
+      "has_smithing_trim_template": "2025-12-15 17:13:55 +0300"
+    },
+    "done": true
+  },
+  "minecraft:recipes/redstone/piston": {
+    "criteria": {
+      "has_redstone": "2025-12-15 17:13:55 +0300"
+    },
+    "done": true
+  },
+  "DataVersion": 4556
+}
