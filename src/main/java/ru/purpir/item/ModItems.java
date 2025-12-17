@@ -106,6 +106,12 @@ public class ModItems {
                     entries.add(ModBlocks.TITANIUM_ORE);
                     entries.add(ModBlocks.DEEPSLATE_TITANIUM_ORE);
                     entries.add(ModBlocks.TITANIUM_BLOCK);
+                    entries.add(ModBlocks.TITANIUM_GRATE);
+                    entries.add(ModBlocks.TITANIUM_STAIRS);
+                    entries.add(ModBlocks.TITANIUM_SLAB);
+                    entries.add(ModBlocks.TITANIUM_BARS);
+                    entries.add(ModBlocks.TITANIUM_DOOR);
+                    entries.add(ModBlocks.TITANIUM_TRAPDOOR);
                     entries.add(TITANIUM_INGOT);
                     entries.add(RAW_TITANIUM);
                     // Netherite Titanium

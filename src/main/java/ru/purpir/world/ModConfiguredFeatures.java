@@ -22,6 +22,7 @@ public class ModConfiguredFeatures {
     public static final RegistryKey<ConfiguredFeature<?, ?>> TITANIUM_ORE_KEY = registerKey("titanium_ore");
     public static final RegistryKey<ConfiguredFeature<?, ?>> DEEPSLATE_TITANIUM_ORE_KEY = registerKey("deepslate_titanium_ore");
     public static final RegistryKey<ConfiguredFeature<?, ?>> WEED_PATCH_KEY = registerKey("weed_patch");
+    public static final RegistryKey<ConfiguredFeature<?, ?>> HOGWEED_PATCH_KEY = registerKey("hogweed_patch");
 
     public static void bootstrap(Registerable<ConfiguredFeature<?, ?>> context) {
         RuleTest endStoneReplaceable = new BlockMatchRuleTest(Blocks.END_STONE);
@@ -51,6 +52,9 @@ public class ModConfiguredFeatures {
             PlacedFeatures.createEntry(Feature.SIMPLE_BLOCK,
                 new SimpleBlockFeatureConfig(BlockStateProvider.of(ModBlocks.WEED)))
         ));
+
+        // Hogweed (Борщевик) patch - использует нашу кастомную Feature
+        register(context, HOGWEED_PATCH_KEY, ModFeatures.HOGWEED, DefaultFeatureConfig.INSTANCE);
     }
 
     public static RegistryKey<ConfiguredFeature<?, ?>> registerKey(String name) {

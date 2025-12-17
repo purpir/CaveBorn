@@ -21,7 +21,13 @@ public class ModBlockTagProvider extends FabricTagProvider.BlockTagProvider {
             .add(ModBlocks.TITANIUM_ORE)
             .add(ModBlocks.DEEPSLATE_TITANIUM_ORE)
             .add(ModBlocks.TITANIUM_BLOCK)
-            .add(ModBlocks.NETHERITE_TITANIUM_BLOCK);
+            .add(ModBlocks.NETHERITE_TITANIUM_BLOCK)
+            .add(ModBlocks.TITANIUM_GRATE)
+            .add(ModBlocks.TITANIUM_STAIRS)
+            .add(ModBlocks.TITANIUM_SLAB)
+            .add(ModBlocks.TITANIUM_BARS)
+            .add(ModBlocks.TITANIUM_DOOR)
+            .add(ModBlocks.TITANIUM_TRAPDOOR);
 
         valueLookupBuilder(BlockTags.INCORRECT_FOR_WOODEN_TOOL)
             .add(ModBlocks.BRONZE_ORE)
@@ -29,7 +35,13 @@ public class ModBlockTagProvider extends FabricTagProvider.BlockTagProvider {
             .add(ModBlocks.TITANIUM_ORE)
             .add(ModBlocks.DEEPSLATE_TITANIUM_ORE)
             .add(ModBlocks.TITANIUM_BLOCK)
-            .add(ModBlocks.NETHERITE_TITANIUM_BLOCK);
+            .add(ModBlocks.NETHERITE_TITANIUM_BLOCK)
+            .add(ModBlocks.TITANIUM_GRATE)
+            .add(ModBlocks.TITANIUM_STAIRS)
+            .add(ModBlocks.TITANIUM_SLAB)
+            .add(ModBlocks.TITANIUM_BARS)
+            .add(ModBlocks.TITANIUM_DOOR)
+            .add(ModBlocks.TITANIUM_TRAPDOOR);
 
         valueLookupBuilder(BlockTags.INCORRECT_FOR_STONE_TOOL)
             .add(ModBlocks.BRONZE_ORE)
@@ -37,7 +49,13 @@ public class ModBlockTagProvider extends FabricTagProvider.BlockTagProvider {
             .add(ModBlocks.TITANIUM_ORE)
             .add(ModBlocks.DEEPSLATE_TITANIUM_ORE)
             .add(ModBlocks.TITANIUM_BLOCK)
-            .add(ModBlocks.NETHERITE_TITANIUM_BLOCK);
+            .add(ModBlocks.NETHERITE_TITANIUM_BLOCK)
+            .add(ModBlocks.TITANIUM_GRATE)
+            .add(ModBlocks.TITANIUM_STAIRS)
+            .add(ModBlocks.TITANIUM_SLAB)
+            .add(ModBlocks.TITANIUM_BARS)
+            .add(ModBlocks.TITANIUM_DOOR)
+            .add(ModBlocks.TITANIUM_TRAPDOOR);
 
         valueLookupBuilder(BlockTags.INCORRECT_FOR_GOLD_TOOL)
             .add(ModBlocks.BRONZE_ORE)
@@ -45,18 +63,49 @@ public class ModBlockTagProvider extends FabricTagProvider.BlockTagProvider {
             .add(ModBlocks.TITANIUM_ORE)
             .add(ModBlocks.DEEPSLATE_TITANIUM_ORE)
             .add(ModBlocks.TITANIUM_BLOCK)
-            .add(ModBlocks.NETHERITE_TITANIUM_BLOCK);
+            .add(ModBlocks.NETHERITE_TITANIUM_BLOCK)
+            .add(ModBlocks.TITANIUM_GRATE)
+            .add(ModBlocks.TITANIUM_STAIRS)
+            .add(ModBlocks.TITANIUM_SLAB)
+            .add(ModBlocks.TITANIUM_BARS)
+            .add(ModBlocks.TITANIUM_DOOR)
+            .add(ModBlocks.TITANIUM_TRAPDOOR);
 
         valueLookupBuilder(BlockTags.INCORRECT_FOR_IRON_TOOL)
             .add(ModBlocks.TITANIUM_ORE)
             .add(ModBlocks.DEEPSLATE_TITANIUM_ORE)
             .add(ModBlocks.TITANIUM_BLOCK)
-            .add(ModBlocks.NETHERITE_TITANIUM_BLOCK);
+            .add(ModBlocks.NETHERITE_TITANIUM_BLOCK)
+            .add(ModBlocks.TITANIUM_GRATE)
+            .add(ModBlocks.TITANIUM_STAIRS)
+            .add(ModBlocks.TITANIUM_SLAB)
+            .add(ModBlocks.TITANIUM_BARS)
+            .add(ModBlocks.TITANIUM_DOOR)
+            .add(ModBlocks.TITANIUM_TRAPDOOR);
 
         valueLookupBuilder(BlockTags.INCORRECT_FOR_DIAMOND_TOOL)
             .add(ModBlocks.TITANIUM_ORE)
             .add(ModBlocks.DEEPSLATE_TITANIUM_ORE)
             .add(ModBlocks.TITANIUM_BLOCK)
-            .add(ModBlocks.NETHERITE_TITANIUM_BLOCK);
+            .add(ModBlocks.NETHERITE_TITANIUM_BLOCK)
+            .add(ModBlocks.TITANIUM_GRATE)
+            .add(ModBlocks.TITANIUM_STAIRS)
+            .add(ModBlocks.TITANIUM_SLAB)
+            .add(ModBlocks.TITANIUM_BARS)
+            .add(ModBlocks.TITANIUM_DOOR)
+            .add(ModBlocks.TITANIUM_TRAPDOOR);
+
+        // Door and trapdoor tags
+        valueLookupBuilder(BlockTags.DOORS)
+            .add(ModBlocks.TITANIUM_DOOR);
+        
+        valueLookupBuilder(BlockTags.TRAPDOORS)
+            .add(ModBlocks.TITANIUM_TRAPDOOR);
+
+        valueLookupBuilder(BlockTags.SLABS)
+            .add(ModBlocks.TITANIUM_SLAB);
+
+        valueLookupBuilder(BlockTags.STAIRS)
+            .add(ModBlocks.TITANIUM_STAIRS);
     }
 }

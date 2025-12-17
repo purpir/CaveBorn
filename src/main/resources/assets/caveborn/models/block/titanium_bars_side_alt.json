@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/iron_bars_side_alt",
+  "textures": {
+    "edge": "caveborn:block/titanium_bars",
+    "bars": "caveborn:block/titanium_bars"
+  }
+}

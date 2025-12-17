@@ -1,8 +1,7 @@
 package ru.purpir.block;
 
-import net.minecraft.block.AbstractBlock;
-import net.minecraft.block.Block;
-import net.minecraft.block.ExperienceDroppingBlock;
+import net.minecraft.block.*;
+import net.minecraft.block.piston.PistonBehavior;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
 import net.minecraft.registry.Registries;
@@ -10,6 +9,7 @@ import net.minecraft.registry.Registry;
 import net.minecraft.registry.RegistryKey;
 import net.minecraft.registry.RegistryKeys;
 import net.minecraft.sound.BlockSoundGroup;
+import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.intprovider.UniformIntProvider;
 import ru.purpir.Caveborn;
@@ -77,6 +77,84 @@ public class ModBlocks {
             .noCollision()
             .breakInstantly()
             .sounds(BlockSoundGroup.GRASS));
+
+    // Hogweed (Борщевик) - высокое растение 2-8 блоков, НЕ растёт
+    public static final Block HOGWEED = registerBlockNoItem("hogweed",
+        HogweedBlock::new,
+        AbstractBlock.Settings.create()
+            .noCollision()
+            .breakInstantly()
+            .sounds(BlockSoundGroup.GRASS));
+
+    // Titanium building blocks
+    public static final Block TITANIUM_GRATE = registerBlock("titanium_grate",
+        GrateBlock::new,
+        AbstractBlock.Settings.create()
+            .strength(50.0f, 1200.0f)
+            .requiresTool()
+            .sounds(BlockSoundGroup.COPPER_GRATE)
+            .nonOpaque()
+            .allowsSpawning(Blocks::never)
+            .solidBlock(Blocks::never)
+            .suffocates(Blocks::never)
+            .blockVision(Blocks::never));
+
+    public static final Block TITANIUM_STAIRS = registerBlock("titanium_stairs",
+        settings -> new StairsBlock(TITANIUM_BLOCK.getDefaultState(), settings),
+        AbstractBlock.Settings.create()
+            .strength(50.0f, 1200.0f)
+            .requiresTool()
+            .sounds(BlockSoundGroup.METAL));
+
+    public static final Block TITANIUM_SLAB = registerBlock("titanium_slab",
+        SlabBlock::new,
+        AbstractBlock.Settings.create()
+            .strength(50.0f, 1200.0f)
+            .requiresTool()
+            .sounds(BlockSoundGroup.METAL));
+
+    public static final Block TITANIUM_BARS = registerBlock("titanium_bars",
+        PaneBlock::new,
+        AbstractBlock.Settings.create()
+            .strength(50.0f, 1200.0f)
+            .requiresTool()
+            .sounds(BlockSoundGroup.METAL)
+            .nonOpaque());
+
+    public static final BlockSetType TITANIUM_BLOCK_SET_TYPE = new BlockSetType(
+        "titanium",
+        false, // canOpenByHand - false для редстоун-only (как железная дверь)
+        false, // canOpenByWindCharge
+        false, // canButtonBeActivatedByArrows
+        BlockSetType.ActivationRule.MOBS, // pressurePlateSensitivity
+        BlockSoundGroup.METAL,
+        SoundEvents.BLOCK_IRON_DOOR_CLOSE,
+        SoundEvents.BLOCK_IRON_DOOR_OPEN,
+        SoundEvents.BLOCK_IRON_TRAPDOOR_CLOSE,
+        SoundEvents.BLOCK_IRON_TRAPDOOR_OPEN,
+        SoundEvents.BLOCK_METAL_PRESSURE_PLATE_CLICK_OFF,
+        SoundEvents.BLOCK_METAL_PRESSURE_PLATE_CLICK_ON,
+        SoundEvents.BLOCK_STONE_BUTTON_CLICK_OFF,
+        SoundEvents.BLOCK_STONE_BUTTON_CLICK_ON
+    );
+
+    public static final Block TITANIUM_DOOR = registerBlock("titanium_door",
+        settings -> new DoorBlock(TITANIUM_BLOCK_SET_TYPE, settings),
+        AbstractBlock.Settings.create()
+            .mapColor(MapColor.LIGHT_GRAY)
+            .strength(50.0f, 1200.0f)
+            .requiresTool()
+            .nonOpaque()
+            .pistonBehavior(PistonBehavior.DESTROY));
+
+    public static final Block TITANIUM_TRAPDOOR = registerBlock("titanium_trapdoor",
+        settings -> new TrapdoorBlock(TITANIUM_BLOCK_SET_TYPE, settings),
+        AbstractBlock.Settings.create()
+            .mapColor(MapColor.LIGHT_GRAY)
+            .strength(50.0f, 1200.0f)
+            .requiresTool()
+            .nonOpaque()
+            .allowsSpawning(Blocks::never));
 
     private static Block registerBlock(String name, Function<AbstractBlock.Settings, Block> factory, 
                                         AbstractBlock.Settings settings) {

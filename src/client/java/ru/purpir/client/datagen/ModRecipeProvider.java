@@ -172,6 +172,51 @@ public class ModRecipeProvider extends FabricRecipeProvider {
                     .input('N', ModItems.NETHERITE_TITANIUM_INGOT)
                     .criterion(hasItem(ModItems.NETHERITE_TITANIUM_INGOT), conditionsFromItem(ModItems.NETHERITE_TITANIUM_INGOT))
                     .offerTo(exporter);
+
+                // Titanium building blocks
+                createShaped(RecipeCategory.BUILDING_BLOCKS, ModBlocks.TITANIUM_GRATE, 4)
+                    .pattern(" T ")
+                    .pattern("T T")
+                    .pattern(" T ")
+                    .input('T', ModItems.TITANIUM_INGOT)
+                    .criterion(hasItem(ModItems.TITANIUM_INGOT), conditionsFromItem(ModItems.TITANIUM_INGOT))
+                    .offerTo(exporter);
+
+                createShaped(RecipeCategory.BUILDING_BLOCKS, ModBlocks.TITANIUM_STAIRS, 4)
+                    .pattern("T  ")
+                    .pattern("TT ")
+                    .pattern("TTT")
+                    .input('T', ModBlocks.TITANIUM_BLOCK)
+                    .criterion(hasItem(ModBlocks.TITANIUM_BLOCK), conditionsFromItem(ModBlocks.TITANIUM_BLOCK))
+                    .offerTo(exporter);
+
+                createShaped(RecipeCategory.BUILDING_BLOCKS, ModBlocks.TITANIUM_SLAB, 6)
+                    .pattern("TTT")
+                    .input('T', ModBlocks.TITANIUM_BLOCK)
+                    .criterion(hasItem(ModBlocks.TITANIUM_BLOCK), conditionsFromItem(ModBlocks.TITANIUM_BLOCK))
+                    .offerTo(exporter);
+
+                createShaped(RecipeCategory.DECORATIONS, ModBlocks.TITANIUM_BARS, 16)
+                    .pattern("TTT")
+                    .pattern("TTT")
+                    .input('T', ModItems.TITANIUM_INGOT)
+                    .criterion(hasItem(ModItems.TITANIUM_INGOT), conditionsFromItem(ModItems.TITANIUM_INGOT))
+                    .offerTo(exporter);
+
+                createShaped(RecipeCategory.REDSTONE, ModBlocks.TITANIUM_DOOR, 3)
+                    .pattern("TT")
+                    .pattern("TT")
+                    .pattern("TT")
+                    .input('T', ModItems.TITANIUM_INGOT)
+                    .criterion(hasItem(ModItems.TITANIUM_INGOT), conditionsFromItem(ModItems.TITANIUM_INGOT))
+                    .offerTo(exporter);
+
+                createShaped(RecipeCategory.REDSTONE, ModBlocks.TITANIUM_TRAPDOOR)
+                    .pattern("TT")
+                    .pattern("TT")
+                    .input('T', ModItems.TITANIUM_INGOT)
+                    .criterion(hasItem(ModItems.TITANIUM_INGOT), conditionsFromItem(ModItems.TITANIUM_INGOT))
+                    .offerTo(exporter);
             }
         };
     }

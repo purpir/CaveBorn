@@ -34,5 +34,12 @@
   "block.caveborn.titanium_block": "Блок титана",
   "block.caveborn.netherite_titanium_block": "Блок незеритового титана",
   "block.caveborn.weed": "Сорняк",
-  "block.caveborn.weed_top": "Сорняк"
+  "block.caveborn.weed_top": "Сорняк",
+  "block.caveborn.hogweed": "Борщевик",
+  "block.caveborn.titanium_grate": "Титановая решётка",
+  "block.caveborn.titanium_stairs": "Титановые ступеньки",
+  "block.caveborn.titanium_slab": "Титановая плита",
+  "block.caveborn.titanium_bars": "Титановые прутья",
+  "block.caveborn.titanium_door": "Титановая дверь",
+  "block.caveborn.titanium_trapdoor": "Титановый люк"
 }

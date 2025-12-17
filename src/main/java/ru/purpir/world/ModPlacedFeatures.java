@@ -19,6 +19,7 @@ public class ModPlacedFeatures {
     public static final RegistryKey<PlacedFeature> TITANIUM_ORE_PLACED_KEY = registerKey("titanium_ore");
     public static final RegistryKey<PlacedFeature> DEEPSLATE_TITANIUM_ORE_PLACED_KEY = registerKey("deepslate_titanium_ore");
     public static final RegistryKey<PlacedFeature> WEED_PATCH_PLACED_KEY = registerKey("weed_patch");
+    public static final RegistryKey<PlacedFeature> HOGWEED_PATCH_PLACED_KEY = registerKey("hogweed_patch");
 
     public static void bootstrap(Registerable<PlacedFeature> context) {
         var configuredFeatures = context.getRegistryLookup(RegistryKeys.CONFIGURED_FEATURE);
@@ -43,6 +44,16 @@ public class ModPlacedFeatures {
             configuredFeatures.getOrThrow(ModConfiguredFeatures.WEED_PATCH_KEY),
             List.of(
                 RarityFilterPlacementModifier.of(32), // 1 в 32 чанках - редко
+                SquarePlacementModifier.of(),
+                PlacedFeatures.MOTION_BLOCKING_HEIGHTMAP,
+                BiomePlacementModifier.of()
+            ));
+
+        // Hogweed patch - moderate in taiga/jungle (1 per 8 chunks)
+        register(context, HOGWEED_PATCH_PLACED_KEY,
+            configuredFeatures.getOrThrow(ModConfiguredFeatures.HOGWEED_PATCH_KEY),
+            List.of(
+                RarityFilterPlacementModifier.of(8), // 1 в 8 чанках - умеренно
                 SquarePlacementModifier.of(),
                 PlacedFeatures.MOTION_BLOCKING_HEIGHTMAP,
                 BiomePlacementModifier.of()

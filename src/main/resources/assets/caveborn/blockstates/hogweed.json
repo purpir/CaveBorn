@@ -1,0 +1,6 @@
+{
+  "variants": {
+    "top=false": { "model": "caveborn:block/hogweed_stem" },
+    "top=true": { "model": "caveborn:block/hogweed_top" }
+  }
+}

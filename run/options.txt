@@ -30,7 +30,7 @@ screenEffectScale:1.0
 soundDevice:""
 autoJump:false
 rotateWithMinecart:false
-operatorItemsTab:false
+operatorItemsTab:true
 autoSuggestions:true
 chatColors:true
 chatLinks:true
@@ -56,7 +56,7 @@ damageTiltStrength:0.0
 highContrast:false
 highContrastBlockOutline:false
 narratorHotkey:true
-resourcePacks:["fabric"]
+resourcePacks:["vanilla","fabric"]
 incompatibleResourcePacks:[]
 lastServer:
 lang:ru_ru
@@ -136,7 +136,7 @@ key_key.hotbar.7:key.keyboard.7
 key_key.hotbar.8:key.mouse.5
 key_key.hotbar.9:key.mouse.4
 soundCategory_master:1.0
-soundCategory_music:1.0
+soundCategory_music:0.0
 soundCategory_record:1.0
 soundCategory_weather:1.0
 soundCategory_block:1.0

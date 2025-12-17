@@ -34,5 +34,16 @@ public class ModOreGeneration {
             GenerationStep.Feature.VEGETAL_DECORATION,
             ModPlacedFeatures.WEED_PATCH_PLACED_KEY
         );
+
+        // Hogweed (Борщевик) - in taiga and jungle biomes
+        BiomeModifications.addFeature(
+            BiomeSelectors.includeByKey(
+                BiomeKeys.TAIGA, BiomeKeys.OLD_GROWTH_PINE_TAIGA, BiomeKeys.OLD_GROWTH_SPRUCE_TAIGA,
+                BiomeKeys.SNOWY_TAIGA,
+                BiomeKeys.JUNGLE, BiomeKeys.SPARSE_JUNGLE, BiomeKeys.BAMBOO_JUNGLE
+            ),
+            GenerationStep.Feature.VEGETAL_DECORATION,
+            ModPlacedFeatures.HOGWEED_PATCH_PLACED_KEY
+        );
     }
 }

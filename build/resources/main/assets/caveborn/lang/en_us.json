@@ -34,5 +34,12 @@
   "block.caveborn.titanium_block": "Block of Titanium",
   "block.caveborn.netherite_titanium_block": "Block of Netherite Titanium",
   "block.caveborn.weed": "Weed",
-  "block.caveborn.weed_top": "Weed"
+  "block.caveborn.weed_top": "Weed",
+  "block.caveborn.hogweed": "Giant Hogweed",
+  "block.caveborn.titanium_grate": "Titanium Grate",
+  "block.caveborn.titanium_stairs": "Titanium Stairs",
+  "block.caveborn.titanium_slab": "Titanium Slab",
+  "block.caveborn.titanium_bars": "Titanium Bars",
+  "block.caveborn.titanium_door": "Titanium Door",
+  "block.caveborn.titanium_trapdoor": "Titanium Trapdoor"
 }

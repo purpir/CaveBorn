@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "T": "caveborn:titanium_ingot"
+  },
+  "pattern": [
+    "TTT",
+    "TTT"
+  ],
+  "result": {
+    "count": 16,
+    "id": "caveborn:titanium_bars"
+  }
+}

@@ -19,8 +19,17 @@ public class ModModelProvider extends FabricModelProvider {
         blockStateModelGenerator.registerSimpleCubeAll(ModBlocks.BRONZE_BLOCK);
         blockStateModelGenerator.registerSimpleCubeAll(ModBlocks.TITANIUM_ORE);
         blockStateModelGenerator.registerSimpleCubeAll(ModBlocks.DEEPSLATE_TITANIUM_ORE);
-        blockStateModelGenerator.registerSimpleCubeAll(ModBlocks.TITANIUM_BLOCK);
         blockStateModelGenerator.registerSimpleCubeAll(ModBlocks.NETHERITE_TITANIUM_BLOCK);
+        
+        // Titanium building blocks - используем pool для titanium_block чтобы избежать дубликата
+        BlockStateModelGenerator.BlockTexturePool titaniumPool = blockStateModelGenerator.registerCubeAllModelTexturePool(ModBlocks.TITANIUM_BLOCK);
+        blockStateModelGenerator.registerSimpleCubeAll(ModBlocks.TITANIUM_GRATE);
+        titaniumPool.stairs(ModBlocks.TITANIUM_STAIRS);
+        titaniumPool.slab(ModBlocks.TITANIUM_SLAB);
+        
+        // Titanium bars - модели создаются вручную (см. resources/assets/caveborn/)
+        blockStateModelGenerator.registerDoor(ModBlocks.TITANIUM_DOOR);
+        blockStateModelGenerator.registerTrapdoor(ModBlocks.TITANIUM_TRAPDOOR);
     }
 
     @Override
