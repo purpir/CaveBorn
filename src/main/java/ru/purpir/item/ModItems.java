@@ -18,6 +18,9 @@ import ru.purpir.block.ModBlocks;
 import java.util.function.Function;
 
 public class ModItems {
+    // Misc Items
+    public static final Item FIBER = registerItem("fiber", Item::new, new Item.Settings());
+    
     // Bronze Items
     public static final Item BRONZE_INGOT = registerItem("bronze_ingot", Item::new, new Item.Settings());
     public static final Item RAW_BRONZE = registerItem("raw_bronze", Item::new, new Item.Settings());
@@ -88,6 +91,8 @@ public class ModItems {
                 .icon(() -> new ItemStack(NETHERITE_TITANIUM_INGOT))
                 .displayName(Text.translatable("itemGroup.caveborn.caveborn_group"))
                 .entries((context, entries) -> {
+                    // Misc
+                    entries.add(FIBER);
                     // Bronze
                     entries.add(ModBlocks.BRONZE_ORE);
                     entries.add(ModBlocks.BRONZE_BLOCK);

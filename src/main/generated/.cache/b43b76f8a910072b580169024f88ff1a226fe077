@@ -5,3 +5,5 @@ bf4902258ca810c152644c82b58bf4c292cece2f data/caveborn/loot_table/blocks/bronze_
 9439569290f5b82f3371b81ffe26ba2f15677be9 data/caveborn/loot_table/blocks/netherite_titanium_block.json
 74aaba18d8b3e83a527e9a0b2edad084b256cabb data/caveborn/loot_table/blocks/titanium_block.json
 3a66810132766d926e7cd4267e42331043ad4aaa data/caveborn/loot_table/blocks/titanium_ore.json
+89c18ccb4824f8988ecffc396dcab296a1745029 data/caveborn/loot_table/blocks/weed.json
+1d4929d7d6176f60e5ea991a577527ed251ef375 data/caveborn/loot_table/blocks/weed_top.json

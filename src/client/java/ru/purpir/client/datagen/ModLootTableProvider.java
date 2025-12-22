@@ -2,6 +2,11 @@ package ru.purpir.client.datagen;
 
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricBlockLootTableProvider;
+import net.minecraft.loot.LootPool;
+import net.minecraft.loot.LootTable;
+import net.minecraft.loot.condition.RandomChanceLootCondition;
+import net.minecraft.loot.entry.ItemEntry;
+import net.minecraft.loot.provider.number.ConstantLootNumberProvider;
 import net.minecraft.registry.RegistryWrapper;
 import ru.purpir.block.ModBlocks;
 import ru.purpir.item.ModItems;
@@ -25,5 +30,7 @@ public class ModLootTableProvider extends FabricBlockLootTableProvider {
         addDrop(ModBlocks.TITANIUM_BLOCK);
 
         addDrop(ModBlocks.NETHERITE_TITANIUM_BLOCK);
+        
+        // Weed loot tables are defined manually in resources/data/caveborn/loot_table/blocks/
     }
 }
