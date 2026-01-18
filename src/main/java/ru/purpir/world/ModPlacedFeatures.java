@@ -18,6 +18,7 @@ public class ModPlacedFeatures {
     public static final RegistryKey<PlacedFeature> BRONZE_ORE_PLACED_KEY = registerKey("bronze_ore");
     public static final RegistryKey<PlacedFeature> TITANIUM_ORE_PLACED_KEY = registerKey("titanium_ore");
     public static final RegistryKey<PlacedFeature> DEEPSLATE_TITANIUM_ORE_PLACED_KEY = registerKey("deepslate_titanium_ore");
+    public static final RegistryKey<PlacedFeature> VACUUMITE_ORE_PLACED_KEY = registerKey("vacuumite_ore");
     public static final RegistryKey<PlacedFeature> WEED_PATCH_PLACED_KEY = registerKey("weed_patch");
     public static final RegistryKey<PlacedFeature> HOGWEED_PATCH_PLACED_KEY = registerKey("hogweed_patch");
 
@@ -38,6 +39,11 @@ public class ModPlacedFeatures {
         register(context, DEEPSLATE_TITANIUM_ORE_PLACED_KEY, 
             configuredFeatures.getOrThrow(ModConfiguredFeatures.DEEPSLATE_TITANIUM_ORE_KEY),
             modifiersWithCount(1, HeightRangePlacementModifier.uniform(YOffset.fixed(-64), YOffset.fixed(-32))));
+
+        // Vacuumite ore in End - rare (3 veins per chunk)
+        register(context, VACUUMITE_ORE_PLACED_KEY, 
+            configuredFeatures.getOrThrow(ModConfiguredFeatures.VACUUMITE_ORE_KEY),
+            modifiersWithCount(3, HeightRangePlacementModifier.uniform(YOffset.fixed(0), YOffset.fixed(80))));
 
         // Weed patch - rare in plains (1 per 32 chunks roughly)
         register(context, WEED_PATCH_PLACED_KEY,

@@ -2,6 +2,7 @@
   "itemGroup.caveborn.caveborn_group": "Caveborn",
   
   "item.caveborn.fiber": "Волокно",
+  "item.caveborn.bag": "Сумка",
   "item.caveborn.bronze_ingot": "Бронзовый слиток",
   "item.caveborn.raw_bronze": "Рудная бронза",
   "item.caveborn.bronze_sword": "Бронзовый меч",
@@ -42,5 +43,9 @@
   "block.caveborn.titanium_slab": "Титановая плита",
   "block.caveborn.titanium_bars": "Титановые прутья",
   "block.caveborn.titanium_door": "Титановая дверь",
-  "block.caveborn.titanium_trapdoor": "Титановый люк"
+  "block.caveborn.titanium_trapdoor": "Титановый люк",
+  "block.caveborn.vacuumite_ore": "Вакуумитовая руда",
+  "block.caveborn.vacuumite_block": "Блок вакуумита",
+  "item.caveborn.vacuumite_ingot": "Вакуумитовый слиток",
+  "item.caveborn.raw_vacuumite": "Рудный вакуумит"
 }

@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "": {
+      "model": "caveborn:block/vacuumite_block"
+    }
+  }
+}

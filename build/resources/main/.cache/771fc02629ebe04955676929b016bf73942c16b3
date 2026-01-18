@@ -5,7 +5,7 @@
 35810cbb3517be97a272e7d02a06bacae628a8b5 data/minecraft/tags/block/incorrect_for_iron_tool.json
 4e9df74a4f26837a4df861bcf2a8698c1a6adbc3 data/minecraft/tags/block/incorrect_for_stone_tool.json
 4e9df74a4f26837a4df861bcf2a8698c1a6adbc3 data/minecraft/tags/block/incorrect_for_wooden_tool.json
-4e9df74a4f26837a4df861bcf2a8698c1a6adbc3 data/minecraft/tags/block/mineable/pickaxe.json
+ea2c77038aa44a65a1c13462f0018c35711309c5 data/minecraft/tags/block/mineable/pickaxe.json
 68851493e600da458ba979bd19bfb05e8226d221 data/minecraft/tags/block/slabs.json
 a1da7c501036f5dba8407b4639ba3889fd908e37 data/minecraft/tags/block/stairs.json
 cbad5b3a949eed32b115719598e6cfff1343d30c data/minecraft/tags/block/trapdoors.json

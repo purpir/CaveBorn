@@ -22,6 +22,8 @@ public class ModBlockTagProvider extends FabricTagProvider.BlockTagProvider {
             .add(ModBlocks.DEEPSLATE_TITANIUM_ORE)
             .add(ModBlocks.TITANIUM_BLOCK)
             .add(ModBlocks.NETHERITE_TITANIUM_BLOCK)
+            .add(ModBlocks.VACUUMITE_ORE)
+            .add(ModBlocks.VACUUMITE_BLOCK)
             .add(ModBlocks.TITANIUM_GRATE)
             .add(ModBlocks.TITANIUM_STAIRS)
             .add(ModBlocks.TITANIUM_SLAB)

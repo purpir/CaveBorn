@@ -2,6 +2,7 @@
   "itemGroup.caveborn.caveborn_group": "Caveborn",
   
   "item.caveborn.fiber": "Fiber",
+  "item.caveborn.bag": "Bag",
   "item.caveborn.bronze_ingot": "Bronze Ingot",
   "item.caveborn.raw_bronze": "Raw Bronze",
   "item.caveborn.bronze_sword": "Bronze Sword",
@@ -42,5 +43,9 @@
   "block.caveborn.titanium_slab": "Titanium Slab",
   "block.caveborn.titanium_bars": "Titanium Bars",
   "block.caveborn.titanium_door": "Titanium Door",
-  "block.caveborn.titanium_trapdoor": "Titanium Trapdoor"
+  "block.caveborn.titanium_trapdoor": "Titanium Trapdoor",
+  "block.caveborn.vacuumite_ore": "Vacuumite Ore",
+  "block.caveborn.vacuumite_block": "Block of Vacuumite",
+  "item.caveborn.vacuumite_ingot": "Vacuumite Ingot",
+  "item.caveborn.raw_vacuumite": "Raw Vacuumite"
 }

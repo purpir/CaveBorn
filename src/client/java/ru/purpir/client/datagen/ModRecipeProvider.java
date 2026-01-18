@@ -217,6 +217,18 @@ public class ModRecipeProvider extends FabricRecipeProvider {
                     .input('T', ModItems.TITANIUM_INGOT)
                     .criterion(hasItem(ModItems.TITANIUM_INGOT), conditionsFromItem(ModItems.TITANIUM_INGOT))
                     .offerTo(exporter);
+
+                // Bag
+                createShaped(RecipeCategory.TOOLS, ModItems.BAG)
+                    .pattern("KCK")
+                    .pattern("VIV")
+                    .pattern("KKK")
+                    .input('K', Items.LEATHER)
+                    .input('C', Items.CHEST)
+                    .input('V', ModItems.FIBER)
+                    .input('I', Items.IRON_INGOT)
+                    .criterion(hasItem(ModItems.FIBER), conditionsFromItem(ModItems.FIBER))
+                    .offerTo(exporter);
             }
         };
     }

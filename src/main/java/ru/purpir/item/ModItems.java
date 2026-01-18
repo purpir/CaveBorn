@@ -20,6 +20,7 @@ import java.util.function.Function;
 public class ModItems {
     // Misc Items
     public static final Item FIBER = registerItem("fiber", Item::new, new Item.Settings());
+    public static final Item BAG = registerItem("bag", BagItem::new, new Item.Settings().maxCount(1));
     
     // Bronze Items
     public static final Item BRONZE_INGOT = registerItem("bronze_ingot", Item::new, new Item.Settings());
@@ -50,6 +51,10 @@ public class ModItems {
     public static final Item TITANIUM_INGOT = registerItem("titanium_ingot", Item::new, new Item.Settings());
     public static final Item RAW_TITANIUM = registerItem("raw_titanium", Item::new, new Item.Settings());
     
+    // Vacuumite Items
+    public static final Item VACUUMITE_INGOT = registerItem("vacuumite_ingot", Item::new, new Item.Settings());
+    public static final Item RAW_VACUUMITE = registerItem("raw_vacuumite", Item::new, new Item.Settings());
+
     // Netherite Titanium Items
     public static final Item NETHERITE_TITANIUM_INGOT = registerItem("netherite_titanium_ingot", 
         Item::new, new Item.Settings().fireproof());
@@ -93,6 +98,7 @@ public class ModItems {
                 .entries((context, entries) -> {
                     // Misc
                     entries.add(FIBER);
+                    entries.add(BAG);
                     // Bronze
                     entries.add(ModBlocks.BRONZE_ORE);
                     entries.add(ModBlocks.BRONZE_BLOCK);
@@ -119,6 +125,11 @@ public class ModItems {
                     entries.add(ModBlocks.TITANIUM_TRAPDOOR);
                     entries.add(TITANIUM_INGOT);
                     entries.add(RAW_TITANIUM);
+                    // Vacuumite
+                    entries.add(ModBlocks.VACUUMITE_ORE);
+                    entries.add(ModBlocks.VACUUMITE_BLOCK);
+                    entries.add(VACUUMITE_INGOT);
+                    entries.add(RAW_VACUUMITE);
                     // Netherite Titanium
                     entries.add(ModBlocks.NETHERITE_TITANIUM_BLOCK);
                     entries.add(NETHERITE_TITANIUM_INGOT);

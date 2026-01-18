@@ -21,6 +21,7 @@ public class ModConfiguredFeatures {
     public static final RegistryKey<ConfiguredFeature<?, ?>> BRONZE_ORE_KEY = registerKey("bronze_ore");
     public static final RegistryKey<ConfiguredFeature<?, ?>> TITANIUM_ORE_KEY = registerKey("titanium_ore");
     public static final RegistryKey<ConfiguredFeature<?, ?>> DEEPSLATE_TITANIUM_ORE_KEY = registerKey("deepslate_titanium_ore");
+    public static final RegistryKey<ConfiguredFeature<?, ?>> VACUUMITE_ORE_KEY = registerKey("vacuumite_ore");
     public static final RegistryKey<ConfiguredFeature<?, ?>> WEED_PATCH_KEY = registerKey("weed_patch");
     public static final RegistryKey<ConfiguredFeature<?, ?>> HOGWEED_PATCH_KEY = registerKey("hogweed_patch");
 
@@ -43,6 +44,11 @@ public class ModConfiguredFeatures {
         register(context, DEEPSLATE_TITANIUM_ORE_KEY, Feature.ORE, new OreFeatureConfig(
             List.of(OreFeatureConfig.createTarget(deepslateReplaceable, ModBlocks.DEEPSLATE_TITANIUM_ORE.getDefaultState())),
             3));
+
+        // Vacuumite ore in End - rare, vein size 4
+        register(context, VACUUMITE_ORE_KEY, Feature.ORE, new OreFeatureConfig(
+            List.of(OreFeatureConfig.createTarget(endStoneReplaceable, ModBlocks.VACUUMITE_ORE.getDefaultState())),
+            4));
 
         // Weed patch - random flower-like patch on grass
         register(context, WEED_PATCH_KEY, Feature.FLOWER, new RandomPatchFeatureConfig(

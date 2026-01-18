@@ -28,6 +28,13 @@ public class ModOreGeneration {
             ModPlacedFeatures.DEEPSLATE_TITANIUM_ORE_PLACED_KEY
         );
 
+        // Vacuumite ore in End - rare
+        BiomeModifications.addFeature(
+            BiomeSelectors.foundInTheEnd(),
+            GenerationStep.Feature.UNDERGROUND_ORES,
+            ModPlacedFeatures.VACUUMITE_ORE_PLACED_KEY
+        );
+
         // Weed patches - only in plains biome
         BiomeModifications.addFeature(
             BiomeSelectors.includeByKey(BiomeKeys.PLAINS, BiomeKeys.SUNFLOWER_PLAINS),

@@ -30,6 +30,10 @@ public class ModLootTableProvider extends FabricBlockLootTableProvider {
         addDrop(ModBlocks.TITANIUM_BLOCK);
 
         addDrop(ModBlocks.NETHERITE_TITANIUM_BLOCK);
+
+        // Vacuumite ore drops raw vacuumite
+        addDrop(ModBlocks.VACUUMITE_ORE, oreDrops(ModBlocks.VACUUMITE_ORE, ModItems.RAW_VACUUMITE));
+        addDrop(ModBlocks.VACUUMITE_BLOCK);
         
         // Weed loot tables are defined manually in resources/data/caveborn/loot_table/blocks/
     }

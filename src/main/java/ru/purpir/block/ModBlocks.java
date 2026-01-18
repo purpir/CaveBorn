@@ -62,6 +62,21 @@ public class ModBlocks {
             .requiresTool()
             .sounds(BlockSoundGroup.NETHERITE));
 
+    // Vacuumite - rare End material, easy to mine (stone pickaxe)
+    public static final Block VACUUMITE_ORE = registerBlock("vacuumite_ore",
+        settings -> new ExperienceDroppingBlock(UniformIntProvider.create(4, 9), settings),
+        AbstractBlock.Settings.create()
+            .strength(1.5f, 1.5f)
+            .requiresTool()
+            .sounds(BlockSoundGroup.STONE));
+    
+    public static final Block VACUUMITE_BLOCK = registerBlock("vacuumite_block",
+        Block::new,
+        AbstractBlock.Settings.create()
+            .strength(2.0f, 2.0f)
+            .requiresTool()
+            .sounds(BlockSoundGroup.METAL));
+
     // Weed blocks
     public static final Block WEED = registerBlockNoItem("weed",
         WeedBlock::new,
