@@ -1,9 +1,0 @@
-// 1.21.10	-999999999-01-01T00:00:00	CaveBorn/Block Loot Tables
-44def36ef64f74241acdcece1ba09570ea0bb928 data/caveborn/loot_table/blocks/bronze_block.json
-bf4902258ca810c152644c82b58bf4c292cece2f data/caveborn/loot_table/blocks/bronze_ore.json
-138dc818c6fda33430a37b6174e16819ce5e706a data/caveborn/loot_table/blocks/deepslate_titanium_ore.json
-9439569290f5b82f3371b81ffe26ba2f15677be9 data/caveborn/loot_table/blocks/netherite_titanium_block.json
-74aaba18d8b3e83a527e9a0b2edad084b256cabb data/caveborn/loot_table/blocks/titanium_block.json
-3a66810132766d926e7cd4267e42331043ad4aaa data/caveborn/loot_table/blocks/titanium_ore.json
-1755b50c35c7f3734ddb02732a818051a51feeac data/caveborn/loot_table/blocks/vacuumite_block.json
-8dbfe9195442cade0e1fea1a5d1a56ae1a306f55 data/caveborn/loot_table/blocks/vacuumite_ore.json

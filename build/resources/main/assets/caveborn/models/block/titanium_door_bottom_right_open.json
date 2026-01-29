@@ -1,7 +1,0 @@
-{
-  "parent": "minecraft:block/door_bottom_right_open",
-  "textures": {
-    "bottom": "caveborn:block/titanium_door_bottom",
-    "top": "caveborn:block/titanium_door_top"
-  }
-}

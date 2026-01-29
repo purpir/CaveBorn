@@ -1,6 +1,0 @@
-{
-  "parent": "minecraft:block/cross",
-  "textures": {
-    "cross": "caveborn:block/hogweed_stem"
-  }
-}
