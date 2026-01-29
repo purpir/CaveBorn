@@ -1,0 +1,14 @@
+{
+  "fallback": "minecraft:village/plains/houses",
+  "elements": [
+    {
+      "weight": 2,
+      "element": {
+        "location": "caveborn:village/plains/custom_house",
+        "processors": "minecraft:empty",
+        "projection": "rigid",
+        "element_type": "minecraft:single_pool_element"
+      }
+    }
+  ]
+}
