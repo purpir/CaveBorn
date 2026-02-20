@@ -14,6 +14,8 @@ import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+import ru.purpir.multiblock.IMultiblock;
+import ru.purpir.multiblock.MultiblockManager;
 
 /**
  * Миксин для кастомного рендера outline мультиблоков.
@@ -27,28 +29,65 @@ public class WorldRendererMixin {
 
     /**
      * Перехватывает рисование outline блока.
-     * Для мультиблоков можно переопределить форму и предотвратить дублирование.
+     * Для мультиблоков переопределяет форму и предотвращает дублирование.
      */
     @Inject(method = "drawBlockOutline", at = @At("HEAD"), cancellable = true)
     private void onDrawBlockOutline(MatrixStack matrices, VertexConsumer vertexConsumer,
                                      double x, double y, double z,
                                      OutlineRenderState state, int color, CallbackInfo ci) {
-        // TODO: Добавить проверку на мультиблоки здесь
-        // Пример использования:
-        // BlockPos pos = state.pos();
-        // BlockState blockState = MinecraftClient.getInstance().world.getBlockState(pos);
-        // if (blockState.getBlock() instanceof IMultiblock multiblock) {
-        //     BlockPos originPos = multiblock.getOriginPos(pos, blockState);
-        //     if (originPos.equals(lastMultiblockOrigin)) {
-        //         ci.cancel();
-        //         return;
-        //     }
-        //     lastMultiblockOrigin = originPos;
-        //     VoxelShape shape = multiblock.getFullOutlineShape(blockState);
-        //     VertexRendering.drawOutline(matrices, vertexConsumer, shape,
-        //         (double)pos.getX() - x, (double)pos.getY() - y, (double)pos.getZ() - z, color);
-        //     ci.cancel();
-        // }
+        MinecraftClient client = MinecraftClient.getInstance();
+        if (client.world == null) return;
+        
+        BlockPos pos = state.pos();
+        BlockState blockState = client.world.getBlockState(pos);
+        
+        // Проверка через MultiblockManager
+        MultiblockManager manager = MultiblockManager.getInstance();
+        if (manager.isPartOfStructure(pos)) {
+            BlockPos originPos = manager.getOriginPos(pos);
+            
+            // Если уже рисовали outline для этой структуры в этом кадре, пропускаем
+            if (originPos != null && originPos.equals(lastMultiblockOrigin)) {
+                ci.cancel();
+                return;
+            }
+            
+            lastMultiblockOrigin = originPos;
+            VoxelShape shape = manager.getOutlineShape(pos);
+            
+            if (shape != null && originPos != null) {
+                // Рисуем outline относительно origin позиции
+                VertexRendering.drawOutline(matrices, vertexConsumer, shape,
+                    (double)originPos.getX() - x, 
+                    (double)originPos.getY() - y, 
+                    (double)originPos.getZ() - z, 
+                    color);
+                ci.cancel();
+            }
+        }
+        // Проверка через интерфейс IMultiblock (для блоков, которые сами управляют структурой)
+        else if (blockState.getBlock() instanceof IMultiblock multiblock) {
+            BlockPos originPos = multiblock.getOriginPos(client.world, pos, blockState);
+            
+            if (originPos != null) {
+                // Если уже рисовали outline для этой структуры в этом кадре, пропускаем
+                if (originPos.equals(lastMultiblockOrigin)) {
+                    ci.cancel();
+                    return;
+                }
+                
+                lastMultiblockOrigin = originPos;
+                VoxelShape shape = multiblock.getFullOutlineShape(client.world, originPos, blockState);
+                
+                // Рисуем outline относительно origin позиции
+                VertexRendering.drawOutline(matrices, vertexConsumer, shape,
+                    (double)originPos.getX() - x, 
+                    (double)originPos.getY() - y, 
+                    (double)originPos.getZ() - z, 
+                    color);
+                ci.cancel();
+            }
+        }
     }
 
     /**

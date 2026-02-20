@@ -171,6 +171,14 @@ public class ModBlocks {
             .nonOpaque()
             .allowsSpawning(Blocks::never));
 
+    // Example multiblock block (for testing)
+    public static final Block EXAMPLE_MULTIBLOCK = registerBlock("example_multiblock",
+        ru.purpir.multiblock.example.ExampleMultiblockBlock::new,
+        AbstractBlock.Settings.create()
+            .strength(5.0f, 6.0f)
+            .requiresTool()
+            .sounds(BlockSoundGroup.METAL));
+
     private static Block registerBlock(String name, Function<AbstractBlock.Settings, Block> factory, 
                                         AbstractBlock.Settings settings) {
         RegistryKey<Block> blockKey = RegistryKey.of(RegistryKeys.BLOCK, Identifier.of(Caveborn.MOD_ID, name));

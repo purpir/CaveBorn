@@ -47,5 +47,7 @@
   "block.caveborn.vacuumite_ore": "Вакуумитовая руда",
   "block.caveborn.vacuumite_block": "Блок вакуумита",
   "item.caveborn.vacuumite_ingot": "Вакуумитовый слиток",
-  "item.caveborn.raw_vacuumite": "Рудный вакуумит"
+  "item.caveborn.raw_vacuumite": "Рудный вакуумит",
+  
+  "block.caveborn.example_multiblock": "Пример мультиблока"
 }

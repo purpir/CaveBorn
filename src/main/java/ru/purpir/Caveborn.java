@@ -22,6 +22,7 @@ public class Caveborn implements ModInitializer {
         ModScreenHandlers.register();
         ModFeatures.register();
         ModOreGeneration.generateOres();
+        ru.purpir.event.MultiblockEvents.register();
         
         LOGGER.info("Caveborn mod initialized!");
     }
