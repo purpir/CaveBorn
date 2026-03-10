@@ -6,7 +6,11 @@
   "mixins": [
     "FarmlandBlockMixin",
     "CropBlockMixin",
-    "BlockMixin"
+    "BlockMixin",
+    "ItemEntityMixin",
+    "AnvilScreenHandlerMixin",
+    "MobEntityMixin",
+    "BreezeEntityMixin"
   ],
   "injectors": {
     "defaultRequire": 1

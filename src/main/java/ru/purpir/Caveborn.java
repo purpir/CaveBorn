@@ -17,12 +17,17 @@ public class Caveborn implements ModInitializer {
     @Override
     public void onInitialize() {
         ModArmorMaterials.initialize();
+        ru.purpir.component.ModComponents.register();
         ModBlocks.registerModBlocks();
         ModItems.registerModItems();
         ModScreenHandlers.register();
         ModFeatures.register();
         ModOreGeneration.generateOres();
         ru.purpir.event.MultiblockEvents.register();
+        ru.purpir.event.SolarCrystalTransformationHandler.register();
+        ru.purpir.event.SolarDamageHandler.register();
+        ru.purpir.event.SolarStrikeHandler.register();
+        ru.purpir.event.PetMobTickHandler.register();
         
         LOGGER.info("Caveborn mod initialized!");
     }

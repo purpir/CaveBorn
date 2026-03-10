@@ -3,6 +3,24 @@
   
   "item.caveborn.fiber": "Волокно",
   "item.caveborn.bag": "Сумка",
+  "item.caveborn.solar_crystal": "Солнечный кристалл",
+  
+  "tooltip.caveborn.solar_infused": "Солнечная инфузия",
+  "ability.caveborn.cooldown": "Кулдаун: %s сек",
+  "ability.caveborn.no_target": "Цель не найдена в радиусе 20 блоков",
+  "ability.caveborn.wooden_sword": "Подброс!",
+  "ability.caveborn.stone_sword": "Каменная стена!",
+  "ability.caveborn.golden_sword": "Сила!",
+  "ability.caveborn.iron_sword": "Наковальни!",
+  "ability.caveborn.diamond_sword": "Паутина!",
+  "ability.caveborn.netherite_sword": "Адское пламя!",
+  "ability.caveborn.bronze_sword": "Телепортация!",
+  "ability.caveborn.copper_sword": "Призыв вихрей!",
+  "ability.caveborn.mace": "Заряд ветра!",
+  "ability.caveborn.teleport_failed": "Не удалось найти безопасное место для телепортации",
+  "ability.caveborn.solar_strike.activated": "Солнечный удар активирован!",
+  "ability.caveborn.solar_strike.cooldown": "Кулдаун: %s сек",
+  "ability.caveborn.solar_strike.no_target": "Цель не найдена в радиусе 20 блоков",
   "item.caveborn.bronze_ingot": "Бронзовый слиток",
   "item.caveborn.raw_bronze": "Рудная бронза",
   "item.caveborn.bronze_sword": "Бронзовый меч",
@@ -49,5 +67,6 @@
   "item.caveborn.vacuumite_ingot": "Вакуумитовый слиток",
   "item.caveborn.raw_vacuumite": "Рудный вакуумит",
   
-  "block.caveborn.example_multiblock": "Пример мультиблока"
+  "block.caveborn.example_multiblock": "Пример мультиблока",
+  "block.caveborn.test_colored_block": "Тестовый цветной блок"
 }

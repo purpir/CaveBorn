@@ -1,4 +1,4 @@
-package ru.purpir.mixin.client;
+package ru.purpir.client.mixin;
 
 import net.minecraft.block.BlockState;
 import net.minecraft.client.MinecraftClient;

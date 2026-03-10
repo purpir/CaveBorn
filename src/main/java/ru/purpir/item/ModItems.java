@@ -20,6 +20,8 @@ import java.util.function.Function;
 public class ModItems {
     // Misc Items
     public static final Item FIBER = registerItem("fiber", Item::new, new Item.Settings());
+    // Solar Crystal
+    public static final Item SOLAR_CRYSTAL = registerItem("solar_crystal", Item::new, new Item.Settings());
     public static final Item BAG = registerItem("bag", BagItem::new, new Item.Settings().maxCount(1));
     
     // Bronze Items
@@ -99,6 +101,7 @@ public class ModItems {
                     // Misc
                     entries.add(FIBER);
                     entries.add(BAG);
+                    entries.add(SOLAR_CRYSTAL);
                     // Bronze
                     entries.add(ModBlocks.BRONZE_ORE);
                     entries.add(ModBlocks.BRONZE_BLOCK);

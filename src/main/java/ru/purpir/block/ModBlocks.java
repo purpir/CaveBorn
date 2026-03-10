@@ -178,6 +178,14 @@ public class ModBlocks {
             .strength(5.0f, 6.0f)
             .requiresTool()
             .sounds(BlockSoundGroup.METAL));
+    
+    // Test colored block (for testing dynamic textures)
+    public static final Block TEST_COLORED_BLOCK = registerBlock("test_colored_block",
+        TestColoredBlock::new,
+        AbstractBlock.Settings.create()
+            .strength(3.0f, 3.0f)
+            .requiresTool()
+            .sounds(BlockSoundGroup.STONE));
 
     private static Block registerBlock(String name, Function<AbstractBlock.Settings, Block> factory, 
                                         AbstractBlock.Settings settings) {
