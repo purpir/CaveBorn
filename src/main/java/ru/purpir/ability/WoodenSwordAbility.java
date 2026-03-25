@@ -28,6 +28,12 @@ public class WoodenSwordAbility implements SwordAbility {
             return false;
         }
         
+        // Проверка конфигурации
+        if (!ru.purpir.config.SolarAbilityConfig.getInstance().isAbilityEnabled(getAbilityName())) {
+            player.sendMessage(Text.translatable("ability.caveborn.disabled").formatted(Formatting.RED), true);
+            return false;
+        }
+        
         long currentTime = world.getTime();
         CooldownComponent cooldown = stack.getOrDefault(ModComponents.ABILITY_COOLDOWN, CooldownComponent.DEFAULT);
         
@@ -46,7 +52,7 @@ public class WoodenSwordAbility implements SwordAbility {
         LivingEntity entity = target.get();
         Vec3d velocity = new Vec3d(0, 2.0, 0); // Подбрасываем вверх
         entity.setVelocity(velocity);
-        entity.velocityModified = true;
+        entity.velocityDirty = true;
         
         stack.set(ModComponents.ABILITY_COOLDOWN, new CooldownComponent(currentTime));
         player.sendMessage(Text.translatable("ability.caveborn.wooden_sword").formatted(Formatting.GREEN), true);

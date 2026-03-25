@@ -31,7 +31,13 @@ public class SolarStrikeHandler {
             
             for (SwordAbility ability : ABILITIES) {
                 if (ability.canUse(stack)) {
-                    ability.tryUse(player, world, stack);
+                    boolean success = ability.tryUse(player, world, stack);
+                    
+                    // Если способность успешно использована, наносим урон прочности
+                    if (success && !world.isClient()) {
+                        stack.damage(10, player, player.getPreferredEquipmentSlot(stack));
+                    }
+                    
                     return ActionResult.SUCCESS;
                 }
             }

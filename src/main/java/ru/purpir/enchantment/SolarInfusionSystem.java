@@ -13,27 +13,35 @@ public class SolarInfusionSystem {
     
     private static final Identifier SOLAR_DAMAGE_MODIFIER_ID = Identifier.of("caveborn", "solar_infusion_damage");
     
-    public static boolean canInfuse(ItemStack sword, ItemStack crystal) {
-        // Проверяем что это меч (имеет sword компонент) и солнечный кристалл
-        return sword.getItem().getComponents().contains(net.minecraft.component.DataComponentTypes.TOOL) &&
+    public static boolean canInfuse(ItemStack item, ItemStack crystal) {
+        // Проверяем что это меч (имеет TOOL компонент) или заряд ветра, и солнечный кристалл
+        boolean isSword = item.getItem().getComponents().contains(net.minecraft.component.DataComponentTypes.TOOL);
+        boolean isWindCharge = item.isOf(net.minecraft.item.Items.WIND_CHARGE);
+        
+        return (isSword || isWindCharge) &&
                crystal.isOf(ModItems.SOLAR_CRYSTAL) &&
-               !isInfused(sword);
+               !isInfused(item);
     }
     
     public static boolean isInfused(ItemStack stack) {
         return stack.getOrDefault(ModComponents.SOLAR_INFUSED, false);
     }
     
-    public static ItemStack infuseSword(ItemStack sword, ItemStack crystal) {
-        if (!canInfuse(sword, crystal)) {
+    public static ItemStack infuseSword(ItemStack item, ItemStack crystal) {
+        if (!canInfuse(item, crystal)) {
             return ItemStack.EMPTY;
         }
         
-        ItemStack result = sword.copy();
+        ItemStack result = item.copy();
         result.set(ModComponents.SOLAR_INFUSED, true);
         result.set(net.minecraft.component.DataComponentTypes.ENCHANTMENT_GLINT_OVERRIDE, true);
         
-        // Добавляем модификатор урона
+        // Для зарядов ветра не добавляем модификатор урона
+        if (result.isOf(net.minecraft.item.Items.WIND_CHARGE)) {
+            return result;
+        }
+        
+        // Добавляем модификатор урона только для мечей
         AttributeModifiersComponent modifiers = result.getOrDefault(
             net.minecraft.component.DataComponentTypes.ATTRIBUTE_MODIFIERS, 
             AttributeModifiersComponent.DEFAULT

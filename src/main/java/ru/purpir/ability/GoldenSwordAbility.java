@@ -25,6 +25,12 @@ public class GoldenSwordAbility implements SwordAbility {
             return false;
         }
         
+        // Проверка конфигурации
+        if (!ru.purpir.config.SolarAbilityConfig.getInstance().isAbilityEnabled(getAbilityName())) {
+            player.sendMessage(net.minecraft.text.Text.translatable("ability.caveborn.disabled").formatted(net.minecraft.util.Formatting.RED), true);
+            return false;
+        }
+        
         long currentTime = world.getTime();
         CooldownComponent cooldown = stack.getOrDefault(ModComponents.ABILITY_COOLDOWN, CooldownComponent.DEFAULT);
         

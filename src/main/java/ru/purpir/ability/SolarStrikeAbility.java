@@ -39,6 +39,12 @@ public class SolarStrikeAbility implements SwordAbility {
             return true;
         }
         
+        // Проверка конфигурации
+        if (!ru.purpir.config.SolarAbilityConfig.getInstance().isAbilityEnabled(getAbilityName())) {
+            player.sendMessage(Text.translatable("ability.caveborn.disabled").formatted(Formatting.RED), true);
+            return false;
+        }
+        
         ServerWorld serverWorld = (ServerWorld) world;
         long currentTime = world.getTime();
         

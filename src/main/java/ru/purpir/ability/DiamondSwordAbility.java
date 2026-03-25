@@ -29,6 +29,12 @@ public class DiamondSwordAbility implements SwordAbility {
             return false;
         }
         
+        // Проверка конфигурации
+        if (!ru.purpir.config.SolarAbilityConfig.getInstance().isAbilityEnabled(getAbilityName())) {
+            player.sendMessage(Text.translatable("ability.caveborn.disabled").formatted(Formatting.RED), true);
+            return false;
+        }
+        
         long currentTime = world.getTime();
         CooldownComponent cooldown = stack.getOrDefault(ModComponents.ABILITY_COOLDOWN, CooldownComponent.DEFAULT);
         

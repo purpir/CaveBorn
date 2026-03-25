@@ -10,7 +10,9 @@
     "ItemEntityMixin",
     "AnvilScreenHandlerMixin",
     "MobEntityMixin",
-    "BreezeEntityMixin"
+    "BreezeEntityMixin",
+    "WindChargeEntityMixin",
+    "WindChargeItemMixin"
   ],
   "injectors": {
     "defaultRequire": 1
