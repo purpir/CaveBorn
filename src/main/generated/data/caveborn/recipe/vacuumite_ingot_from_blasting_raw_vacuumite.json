@@ -1,8 +1,9 @@
 {
-  "type": "minecraft:smelting",
+  "type": "minecraft:blasting",
   "category": "misc",
-  "cookingtime": 200,
+  "cookingtime": 100,
   "experience": 1.0,
+  "group": "vacuumite",
   "ingredient": "caveborn:raw_vacuumite",
   "result": {
     "id": "caveborn:vacuumite_ingot"

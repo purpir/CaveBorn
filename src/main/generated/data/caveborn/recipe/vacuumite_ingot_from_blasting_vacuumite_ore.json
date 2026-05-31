@@ -3,6 +3,7 @@
   "category": "misc",
   "cookingtime": 100,
   "experience": 1.0,
+  "group": "vacuumite",
   "ingredient": "caveborn:vacuumite_ore",
   "result": {
     "id": "caveborn:vacuumite_ingot"

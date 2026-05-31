@@ -52,6 +52,7 @@ cb3ab088d7378163af161071fcb827b230ecae4a assets/caveborn/items/titanium_stairs.j
 9fba79b95ad57ea1448a5179846124c50c2fef14 assets/caveborn/items/titanium_trapdoor.json
 90e4e7c1c1a22759c96b8da7150694a07611c320 assets/caveborn/items/vacuumite_block.json
 c9a9468fd97083bd9afe2ffe93ec3e820734ab31 assets/caveborn/items/vacuumite_ingot.json
+4c04202c68a6a1d1621f40eb74e361d51379b109 assets/caveborn/items/vacuumite_magnet.json
 dffaa8600b55ab356004ffb8327228bca1f8d96d assets/caveborn/items/vacuumite_ore.json
 5a6c8ecd5b581414e61a9aa39eb315a104587e27 assets/caveborn/models/block/bronze_block.json
 e2534dbb723e5936e41a0bd2fa41f19a5bc2fde7 assets/caveborn/models/block/bronze_ore.json
@@ -107,3 +108,4 @@ ecbc3bb664ae1bdce350246bd0a79fd40ef2bd3d assets/caveborn/models/item/netherite_t
 1780e0e749d355681b59118558018a0a8c1ac5ca assets/caveborn/models/item/titanium_door.json
 6ce143c2cc50debde721dccc3f703bfdbfcc1cce assets/caveborn/models/item/titanium_ingot.json
 bbd9ac6897ca381a6091f633f508ace22dbc2257 assets/caveborn/models/item/vacuumite_ingot.json
+8789f8ea2a90031abdcc0b88a6bd0b51a91a3048 assets/caveborn/models/item/vacuumite_magnet.json

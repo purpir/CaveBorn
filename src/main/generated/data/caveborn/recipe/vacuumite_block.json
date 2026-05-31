@@ -1,13 +1,13 @@
 {
   "type": "minecraft:crafting_shaped",
-  "category": "building",
+  "category": "misc",
   "key": {
-    "V": "caveborn:vacuumite_ingot"
+    "#": "caveborn:vacuumite_ingot"
   },
   "pattern": [
-    "VVV",
-    "VVV",
-    "VVV"
+    "###",
+    "###",
+    "###"
   ],
   "result": {
     "count": 1,

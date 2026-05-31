@@ -9,3 +9,8 @@ script = ""
 name = "старт"
 icon = "run"
 command = ".\\gradlew.bat runClient"
+
+[[actions]]
+name = "data"
+icon = "tool"
+command = ".\\gradlew.bat runDatagen"
