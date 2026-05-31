@@ -12,7 +12,11 @@
     "MobEntityMixin",
     "BreezeEntityMixin",
     "WindChargeEntityMixin",
-    "WindChargeItemMixin"
+    "WindChargeItemMixin",
+    "BowItemMixin",
+    "RangedWeaponItemMixin",
+    "PersistentProjectileEntityMixin",
+    "VanillaBiomeParametersMixin"
   ],
   "injectors": {
     "defaultRequire": 1

@@ -12,7 +12,8 @@ import net.minecraft.world.gen.feature.Feature;
 import net.minecraft.world.gen.feature.util.FeatureContext;
 
 public class AmethystSpikeFeature extends Feature<DefaultFeatureConfig> {
-    
+    private static final BlockState AMETHYST = Blocks.AMETHYST_BLOCK.getDefaultState();
+
     public AmethystSpikeFeature(Codec<DefaultFeatureConfig> codec) {
         super(codec);
     }
@@ -20,39 +21,56 @@ public class AmethystSpikeFeature extends Feature<DefaultFeatureConfig> {
     @Override
     public boolean generate(FeatureContext<DefaultFeatureConfig> context) {
         StructureWorldAccess world = context.getWorld();
-        BlockPos pos = context.getOrigin();
+        BlockPos origin = context.getOrigin();
         Random random = context.getRandom();
-        
-        // Высота столба от 15 до 35 блоков
-        int height = 15 + random.nextInt(21);
-        
-        // Проверяем, можно ли разместить столб
-        if (!world.getBlockState(pos.down()).isOpaque()) {
+
+        if (!world.getBlockState(origin.down()).isOpaque()) {
             return false;
         }
-        
-        // Генерируем столб с конусообразной формой
+
+        int height = 9 + random.nextInt(9);
+        int radius = 2 + random.nextInt(2);
+        if (random.nextInt(12) == 0) {
+            height += 14 + random.nextInt(18);
+            radius += 1;
+        }
+
         for (int y = 0; y < height; y++) {
-            float progress = (float) y / height;
-            // Радиус уменьшается к вершине
-            int radius = MathHelper.ceil((1.0f - progress) * 3.0f);
-            
-            for (int x = -radius; x <= radius; x++) {
-                for (int z = -radius; z <= radius; z++) {
-                    double distance = Math.sqrt(x * x + z * z);
-                    if (distance <= radius) {
-                        BlockPos placePos = pos.add(x, y, z);
-                        BlockState state = world.getBlockState(placePos);
-                        
-                        // Заменяем только воздух и мягкие блоки
-                        if (state.isAir() || !state.isOpaque()) {
-                            world.setBlockState(placePos, Blocks.AMETHYST_BLOCK.getDefaultState(), 3);
-                        }
+            float layerRadius = (1.0F - (float) y / (float) height) * radius;
+            int blockRadius = MathHelper.ceil(layerRadius);
+
+            for (int x = -blockRadius; x <= blockRadius; x++) {
+                float xDistance = MathHelper.abs(x) - 0.25F;
+                for (int z = -blockRadius; z <= blockRadius; z++) {
+                    float zDistance = MathHelper.abs(z) - 0.25F;
+                    if ((x == 0 && z == 0) || xDistance * xDistance + zDistance * zDistance <= layerRadius * layerRadius) {
+                        placeSpikeBlock(world, origin.add(x, y, z));
                     }
                 }
             }
         }
-        
+
+        int rootDepth = 4 + random.nextInt(7);
+        for (int y = -1; y >= -rootDepth; y--) {
+            float layerRadius = Math.max(1.0F, radius - MathHelper.abs(y) * 0.35F);
+            int blockRadius = MathHelper.floor(layerRadius);
+
+            for (int x = -blockRadius; x <= blockRadius; x++) {
+                for (int z = -blockRadius; z <= blockRadius; z++) {
+                    if (x * x + z * z <= layerRadius * layerRadius + 0.5F) {
+                        world.setBlockState(origin.add(x, y, z), AMETHYST, 3);
+                    }
+                }
+            }
+        }
+
         return true;
+    }
+
+    private static void placeSpikeBlock(StructureWorldAccess world, BlockPos pos) {
+        BlockState state = world.getBlockState(pos);
+        if (state.isAir() || !state.isOpaque()) {
+            world.setBlockState(pos, AMETHYST, 3);
+        }
     }
 }

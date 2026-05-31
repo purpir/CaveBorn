@@ -19,8 +19,9 @@ public class SolarInfusionSystem {
         boolean isWindCharge = item.isOf(net.minecraft.item.Items.WIND_CHARGE);
         boolean isVacuumiteMagnet = item.isOf(ModItems.VACUUMITE_MAGNET);
         boolean isShield = item.isOf(net.minecraft.item.Items.SHIELD);
+        boolean isBow = item.isOf(net.minecraft.item.Items.BOW);
         
-        return (isSword || isWindCharge || isVacuumiteMagnet || isShield) &&
+        return (isSword || isWindCharge || isVacuumiteMagnet || isShield || isBow) &&
                crystal.isOf(ModItems.SOLAR_CRYSTAL) &&
                !isInfused(item);
     }
@@ -40,7 +41,7 @@ public class SolarInfusionSystem {
         
         // Для зарядов ветра не добавляем модификатор урона
         if (result.isOf(net.minecraft.item.Items.WIND_CHARGE) || result.isOf(ModItems.VACUUMITE_MAGNET) ||
-            result.isOf(net.minecraft.item.Items.SHIELD)) {
+            result.isOf(net.minecraft.item.Items.SHIELD) || result.isOf(net.minecraft.item.Items.BOW)) {
             return result;
         }
         
@@ -78,6 +79,10 @@ public class SolarInfusionSystem {
     }
     
     public static float getAdditionalDamage(ItemStack stack) {
+        if (stack.isOf(net.minecraft.item.Items.BOW)) {
+            return 0.0f;
+        }
+
         return isInfused(stack) ? 2.0f : 0.0f;
     }
 }

@@ -39,6 +39,7 @@ public class SolarInfusionGuideScreen extends Screen {
         new AbilityEntry(new ItemStack(ModItems.NETHERITE_TITANIUM_SWORD), "guide.caveborn.solar.ability.solar_strike", "guide.caveborn.solar.ability.solar_strike.content"),
         new AbilityEntry(new ItemStack(Items.SHIELD), "guide.caveborn.solar.ability.shield", "guide.caveborn.solar.ability.shield.content"),
         new AbilityEntry(new ItemStack(ModItems.VACUUMITE_MAGNET), "guide.caveborn.solar.ability.magnet", "guide.caveborn.solar.ability.magnet.content"),
+        new AbilityEntry(new ItemStack(Items.BOW), "guide.caveborn.solar.ability.bow", "guide.caveborn.solar.ability.bow.content"),
         new AbilityEntry(new ItemStack(Items.WIND_CHARGE), "guide.caveborn.solar.ability.wind_charge", "guide.caveborn.solar.ability.wind_charge.content")
     };
 

@@ -9,8 +9,10 @@ import ru.purpir.Caveborn;
 
 public class ModFeatures {
     public static final Feature<DefaultFeatureConfig> HOGWEED = new HogweedFeature(DefaultFeatureConfig.CODEC);
+    public static final Feature<DefaultFeatureConfig> AMETHYST_SPIKE = new AmethystSpikeFeature(DefaultFeatureConfig.CODEC);
     
     public static void register() {
         Registry.register(Registries.FEATURE, Identifier.of(Caveborn.MOD_ID, "hogweed"), HOGWEED);
+        Registry.register(Registries.FEATURE, Identifier.of(Caveborn.MOD_ID, "amethyst_spike"), AMETHYST_SPIKE);
     }
 }
