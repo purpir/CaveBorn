@@ -25,6 +25,7 @@ public class ModConfiguredFeatures {
     public static final RegistryKey<ConfiguredFeature<?, ?>> WEED_PATCH_KEY = registerKey("weed_patch");
     public static final RegistryKey<ConfiguredFeature<?, ?>> HOGWEED_PATCH_KEY = registerKey("hogweed_patch");
     public static final RegistryKey<ConfiguredFeature<?, ?>> AMETHYST_SPIKE_KEY = registerKey("amethyst_spike");
+    public static final RegistryKey<ConfiguredFeature<?, ?>> SOLAR_IRIS_PATCH_KEY = registerKey("solar_iris_patch");
 
     public static void bootstrap(Registerable<ConfiguredFeature<?, ?>> context) {
         RuleTest endStoneReplaceable = new BlockMatchRuleTest(Blocks.END_STONE);
@@ -63,6 +64,13 @@ public class ModConfiguredFeatures {
         // Hogweed (Борщевик) patch - использует нашу кастомную Feature
         register(context, HOGWEED_PATCH_KEY, ModFeatures.HOGWEED, DefaultFeatureConfig.INSTANCE);
         register(context, AMETHYST_SPIKE_KEY, ModFeatures.AMETHYST_SPIKE, DefaultFeatureConfig.INSTANCE);
+        register(context, SOLAR_IRIS_PATCH_KEY, Feature.FLOWER, new RandomPatchFeatureConfig(
+            32,
+            5,
+            2,
+            PlacedFeatures.createEntry(Feature.SIMPLE_BLOCK,
+                new SimpleBlockFeatureConfig(BlockStateProvider.of(ModBlocks.SOLAR_IRIS)))
+        ));
     }
 
     public static RegistryKey<ConfiguredFeature<?, ?>> registerKey(String name) {

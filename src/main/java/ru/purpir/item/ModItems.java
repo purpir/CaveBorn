@@ -105,6 +105,7 @@ public class ModItems {
                     entries.add(BAG);
                     entries.add(SOLAR_CRYSTAL);
                     entries.add(SOLAR_INFUSION_GUIDE);
+                    entries.add(ModBlocks.SOLAR_IRIS);
                     // Bronze
                     entries.add(ModBlocks.BRONZE_ORE);
                     entries.add(ModBlocks.BRONZE_BLOCK);

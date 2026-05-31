@@ -2,6 +2,7 @@ package ru.purpir.block;
 
 import net.minecraft.block.*;
 import net.minecraft.block.piston.PistonBehavior;
+import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
 import net.minecraft.registry.Registries;
@@ -100,6 +101,17 @@ public class ModBlocks {
             .noCollision()
             .breakInstantly()
             .sounds(BlockSoundGroup.GRASS));
+
+    public static final Block SOLAR_IRIS = registerBlock("solar_iris",
+        settings -> new FlowerBlock(StatusEffects.GLOWING, 6.0F, settings),
+        AbstractBlock.Settings.create()
+            .mapColor(MapColor.LIGHT_BLUE)
+            .noCollision()
+            .breakInstantly()
+            .sounds(BlockSoundGroup.GRASS)
+            .luminance(state -> 7)
+            .pistonBehavior(PistonBehavior.DESTROY)
+            .offset(AbstractBlock.OffsetType.XZ));
 
     // Titanium building blocks
     public static final Block TITANIUM_GRATE = registerBlock("titanium_grate",

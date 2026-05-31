@@ -22,6 +22,7 @@ public class ModPlacedFeatures {
     public static final RegistryKey<PlacedFeature> WEED_PATCH_PLACED_KEY = registerKey("weed_patch");
     public static final RegistryKey<PlacedFeature> HOGWEED_PATCH_PLACED_KEY = registerKey("hogweed_patch");
     public static final RegistryKey<PlacedFeature> AMETHYST_SPIKE_PLACED_KEY = registerKey("amethyst_spike");
+    public static final RegistryKey<PlacedFeature> SOLAR_IRIS_PATCH_PLACED_KEY = registerKey("solar_iris_patch");
 
     public static void bootstrap(Registerable<PlacedFeature> context) {
         var configuredFeatures = context.getRegistryLookup(RegistryKeys.CONFIGURED_FEATURE);
@@ -72,6 +73,15 @@ public class ModPlacedFeatures {
                 RarityFilterPlacementModifier.of(14),
                 SquarePlacementModifier.of(),
                 PlacedFeatures.WORLD_SURFACE_WG_HEIGHTMAP,
+                BiomePlacementModifier.of()
+            ));
+
+        register(context, SOLAR_IRIS_PATCH_PLACED_KEY,
+            configuredFeatures.getOrThrow(ModConfiguredFeatures.SOLAR_IRIS_PATCH_KEY),
+            List.of(
+                RarityFilterPlacementModifier.of(3),
+                SquarePlacementModifier.of(),
+                PlacedFeatures.MOTION_BLOCKING_HEIGHTMAP,
                 BiomePlacementModifier.of()
             ));
     }
