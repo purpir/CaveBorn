@@ -40,6 +40,7 @@ public class Caveborn implements ModInitializer {
         ru.purpir.event.SolarStrikeHandler.register();
         ru.purpir.event.PetMobTickHandler.register();
         ru.purpir.event.VeinMinerHandler.register();
+        ru.purpir.event.VacuumiteMagnetHandler.register();
         
         LOGGER.info("Caveborn mod initialized!");
     }

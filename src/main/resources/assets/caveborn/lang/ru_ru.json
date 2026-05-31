@@ -74,5 +74,6 @@
   "item.caveborn.raw_vacuumite": "Рудный вакуумит",
   
   "block.caveborn.example_multiblock": "Пример мультиблока",
-  "block.caveborn.test_colored_block": "Тестовый цветной блок"
+  "block.caveborn.test_colored_block": "Тестовый цветной блок",
+  "item.caveborn.vacuumite_magnet": "Вакуумитовый магнит"
 }

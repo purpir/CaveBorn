@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    "caveborn:vacuumite_block"
+  ],
+  "result": {
+    "count": 9,
+    "id": "caveborn:vacuumite_ingot"
+  }
+}

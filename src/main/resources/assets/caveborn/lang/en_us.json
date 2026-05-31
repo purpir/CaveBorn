@@ -71,5 +71,6 @@
   "block.caveborn.vacuumite_ore": "Vacuumite Ore",
   "block.caveborn.vacuumite_block": "Block of Vacuumite",
   "item.caveborn.vacuumite_ingot": "Vacuumite Ingot",
-  "item.caveborn.raw_vacuumite": "Raw Vacuumite"
+  "item.caveborn.raw_vacuumite": "Raw Vacuumite",
+  "item.caveborn.vacuumite_magnet": "Vacuumite Magnet"
 }

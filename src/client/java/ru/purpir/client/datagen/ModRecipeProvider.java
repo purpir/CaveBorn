@@ -38,6 +38,16 @@ public class ModRecipeProvider extends FabricRecipeProvider {
                 offerBlasting(java.util.List.of(ModItems.RAW_TITANIUM), RecipeCategory.MISC, 
                     ModItems.TITANIUM_INGOT, 1.0f, 100, "titanium");
 
+                // Vacuumite smelting
+                offerSmelting(java.util.List.of(ModItems.RAW_VACUUMITE), RecipeCategory.MISC,
+                    ModItems.VACUUMITE_INGOT, 1.0f, 200, "vacuumite");
+                offerBlasting(java.util.List.of(ModItems.RAW_VACUUMITE), RecipeCategory.MISC,
+                    ModItems.VACUUMITE_INGOT, 1.0f, 100, "vacuumite");
+                offerSmelting(java.util.List.of(ModBlocks.VACUUMITE_ORE), RecipeCategory.MISC,
+                    ModItems.VACUUMITE_INGOT, 1.0f, 200, "vacuumite");
+                offerBlasting(java.util.List.of(ModBlocks.VACUUMITE_ORE), RecipeCategory.MISC,
+                    ModItems.VACUUMITE_INGOT, 1.0f, 100, "vacuumite");
+
                 // Bronze block
                 offerReversibleCompactingRecipes(RecipeCategory.BUILDING_BLOCKS, 
                     ModItems.BRONZE_INGOT, RecipeCategory.DECORATIONS, ModBlocks.BRONZE_BLOCK);
@@ -49,6 +59,10 @@ public class ModRecipeProvider extends FabricRecipeProvider {
                 // Netherite Titanium block
                 offerReversibleCompactingRecipes(RecipeCategory.BUILDING_BLOCKS, 
                     ModItems.NETHERITE_TITANIUM_INGOT, RecipeCategory.DECORATIONS, ModBlocks.NETHERITE_TITANIUM_BLOCK);
+
+                // Vacuumite block
+                offerReversibleCompactingRecipes(RecipeCategory.BUILDING_BLOCKS,
+                    ModItems.VACUUMITE_INGOT, RecipeCategory.DECORATIONS, ModBlocks.VACUUMITE_BLOCK);
 
                 // Netherite Titanium Ingot - 4 netherite ingots + 4 titanium ingots
                 createShaped(RecipeCategory.MISC, ModItems.NETHERITE_TITANIUM_INGOT, 1)
@@ -228,6 +242,18 @@ public class ModRecipeProvider extends FabricRecipeProvider {
                     .input('V', ModItems.FIBER)
                     .input('I', Items.IRON_INGOT)
                     .criterion(hasItem(ModItems.FIBER), conditionsFromItem(ModItems.FIBER))
+                    .offerTo(exporter);
+
+                // Vacuumite Magnet
+                createShaped(RecipeCategory.TOOLS, ModItems.VACUUMITE_MAGNET)
+                    .pattern(" E ")
+                    .pattern("IVI")
+                    .pattern(" R ")
+                    .input('E', Items.ENDER_PEARL)
+                    .input('I', Items.IRON_INGOT)
+                    .input('V', ModItems.VACUUMITE_INGOT)
+                    .input('R', Items.REDSTONE)
+                    .criterion(hasItem(ModItems.VACUUMITE_INGOT), conditionsFromItem(ModItems.VACUUMITE_INGOT))
                     .offerTo(exporter);
             }
         };

@@ -56,6 +56,7 @@ public class ModItems {
     // Vacuumite Items
     public static final Item VACUUMITE_INGOT = registerItem("vacuumite_ingot", Item::new, new Item.Settings());
     public static final Item RAW_VACUUMITE = registerItem("raw_vacuumite", Item::new, new Item.Settings());
+    public static final Item VACUUMITE_MAGNET = registerItem("vacuumite_magnet", Item::new, new Item.Settings().maxCount(1));
 
     // Netherite Titanium Items
     public static final Item NETHERITE_TITANIUM_INGOT = registerItem("netherite_titanium_ingot", 
@@ -133,6 +134,7 @@ public class ModItems {
                     entries.add(ModBlocks.VACUUMITE_BLOCK);
                     entries.add(VACUUMITE_INGOT);
                     entries.add(RAW_VACUUMITE);
+                    entries.add(VACUUMITE_MAGNET);
                     // Netherite Titanium
                     entries.add(ModBlocks.NETHERITE_TITANIUM_BLOCK);
                     entries.add(NETHERITE_TITANIUM_INGOT);
