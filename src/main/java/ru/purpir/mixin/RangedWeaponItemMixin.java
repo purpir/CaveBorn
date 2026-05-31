@@ -20,9 +20,23 @@ public class RangedWeaponItemMixin {
                                              ItemStack projectileStack, boolean critical,
                                              CallbackInfoReturnable<ProjectileEntity> cir) {
         ProjectileEntity projectile = cir.getReturnValue();
-        if (weaponStack.isOf(Items.BOW) && SolarInfusionSystem.isInfused(weaponStack) &&
-                projectile instanceof PersistentProjectileEntity arrow) {
-            arrow.setDamage(3.0);
+        if (projectile instanceof PersistentProjectileEntity arrow) {
+            double damage = 2.0;
+            boolean changed = false;
+
+            if (weaponStack.isOf(Items.BOW) && SolarInfusionSystem.isInfused(weaponStack)) {
+                damage *= 1.5;
+                changed = true;
+            }
+
+            if (projectileStack.isOf(Items.ARROW) && SolarInfusionSystem.isInfused(projectileStack)) {
+                damage += 2.0;
+                changed = true;
+            }
+
+            if (changed) {
+                arrow.setDamage(damage);
+            }
         }
     }
 }

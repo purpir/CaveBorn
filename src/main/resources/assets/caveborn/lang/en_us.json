@@ -89,7 +89,7 @@
   "guide.caveborn.solar.section.cooldowns": "Rules",
   "guide.caveborn.solar.content.basics": "Solar Infusion is a light-based upgrade system. It does not replace enchantments. It adds special behavior to selected items and marks them with a golden glint.\\nMost infused tools use right click or a combat trigger. Abilities usually cost durability and have cooldowns.",
   "guide.caveborn.solar.content.crystal": "Solar Crystals are made from amethyst shards. Drop amethyst under open sky during clear daytime. After about 60 seconds in full sunlight, lightning flashes and the shard becomes a Solar Crystal.\\nRain, night, shade, or low sky light resets the exposure timer.",
-  "guide.caveborn.solar.content.infusion": "Use an anvil to combine a valid item with a Solar Crystal. The result keeps the item and adds Solar Infusion.\\nSupported items include swords, bow, mace, wind charges, shields, and the Vacuumite Magnet.",
+  "guide.caveborn.solar.content.infusion": "Use an anvil to combine a valid item with a Solar Crystal. The result keeps the item and adds Solar Infusion.\\nSupported items include swords, bow, arrows, mace, wind charges, shields, and the Vacuumite Magnet.",
   "guide.caveborn.solar.content.abilities": "Choose an infused item on the left. Each icon opens a page for that item's solar behavior.",
   "guide.caveborn.solar.content.swords": "Infused swords use right click abilities. Wooden launches a target upward. Stone creates a wall. Gold grants strength. Iron drops anvils. Diamond traps with cobweb. Netherite burns and withers. Bronze teleports. Copper summons temporary breezes. Netherite Titanium can call Solar Strike.",
   "guide.caveborn.solar.content.shield": "An infused shield stores light while blocking. Hold block for at least half a second, then release to emit a solar wave in front of you.\\nA longer block charges a wider and stronger wave. Undead take extra damage and ignite. The shield then enters cooldown and loses durability.",
@@ -123,6 +123,10 @@
   "guide.caveborn.solar.ability.magnet.content": "While carried, it pulls dropped items from 16 blocks with double strength.\\nWhen charged, hit an entity to knock it back for 5 damage, then pulse again after half a second for 2 more damage. The magnet recharges over 15 seconds.",
   "guide.caveborn.solar.ability.bow": "Bow",
   "guide.caveborn.solar.ability.bow.content": "Arrows fired from an infused bow leave with 1.5x impulse, making them faster and deadlier.\\nA target hit by the arrow is set on fire.",
+  "guide.caveborn.solar.ability.arrow": "Arrow",
+  "guide.caveborn.solar.ability.arrow.content": "A solar-infused arrow deals +2 base damage.\\nOn hit, lightning strikes the target.",
+  "guide.caveborn.solar.ability.spectral_arrow": "Spectral Arrow",
+  "guide.caveborn.solar.ability.spectral_arrow.content": "A solar-infused spectral arrow can break up to 2 fragile blocks in its path, up to and including stone hardness, without losing speed.\\nOn hit, lightning strikes the target.",
   "guide.caveborn.solar.ability.wind_charge": "Wind Charge",
   "guide.caveborn.solar.ability.wind_charge.content": "Throwing an infused wind charge creates an extra solar explosion on impact.\\nUse it for burst movement, crowd control, and risky plays."
 }
