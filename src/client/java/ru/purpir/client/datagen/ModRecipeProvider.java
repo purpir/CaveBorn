@@ -244,6 +244,18 @@ public class ModRecipeProvider extends FabricRecipeProvider {
                     .criterion(hasItem(ModItems.FIBER), conditionsFromItem(ModItems.FIBER))
                     .offerTo(exporter);
 
+                // Solar Infusion Guide
+                createShaped(RecipeCategory.MISC, ModItems.SOLAR_INFUSION_GUIDE)
+                    .pattern("PSP")
+                    .pattern("ABA")
+                    .pattern("PPP")
+                    .input('P', Items.PAPER)
+                    .input('S', ModItems.SOLAR_CRYSTAL)
+                    .input('A', Items.AMETHYST_SHARD)
+                    .input('B', Items.BOOK)
+                    .criterion(hasItem(ModItems.SOLAR_CRYSTAL), conditionsFromItem(ModItems.SOLAR_CRYSTAL))
+                    .offerTo(exporter);
+
                 // Vacuumite Magnet
                 createShaped(RecipeCategory.TOOLS, ModItems.VACUUMITE_MAGNET)
                     .pattern(" E ")

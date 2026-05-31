@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "A": "minecraft:amethyst_shard",
+    "B": "minecraft:book",
+    "P": "minecraft:paper",
+    "S": "caveborn:solar_crystal"
+  },
+  "pattern": [
+    "PSP",
+    "ABA",
+    "PPP"
+  ],
+  "result": {
+    "count": 1,
+    "id": "caveborn:solar_infusion_guide"
+  }
+}

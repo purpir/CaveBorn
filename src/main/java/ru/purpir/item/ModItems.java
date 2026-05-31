@@ -22,6 +22,7 @@ public class ModItems {
     public static final Item FIBER = registerItem("fiber", Item::new, new Item.Settings());
     // Solar Crystal
     public static final Item SOLAR_CRYSTAL = registerItem("solar_crystal", Item::new, new Item.Settings());
+    public static final Item SOLAR_INFUSION_GUIDE = registerItem("solar_infusion_guide", Item::new, new Item.Settings().maxCount(1));
     public static final Item BAG = registerItem("bag", BagItem::new, new Item.Settings().maxCount(1));
     
     // Bronze Items
@@ -56,7 +57,7 @@ public class ModItems {
     // Vacuumite Items
     public static final Item VACUUMITE_INGOT = registerItem("vacuumite_ingot", Item::new, new Item.Settings());
     public static final Item RAW_VACUUMITE = registerItem("raw_vacuumite", Item::new, new Item.Settings());
-    public static final Item VACUUMITE_MAGNET = registerItem("vacuumite_magnet", Item::new, new Item.Settings().maxCount(1));
+    public static final Item VACUUMITE_MAGNET = registerItem("vacuumite_magnet", Item::new, new Item.Settings().maxCount(1).maxDamage(300));
 
     // Netherite Titanium Items
     public static final Item NETHERITE_TITANIUM_INGOT = registerItem("netherite_titanium_ingot", 
@@ -103,6 +104,7 @@ public class ModItems {
                     entries.add(FIBER);
                     entries.add(BAG);
                     entries.add(SOLAR_CRYSTAL);
+                    entries.add(SOLAR_INFUSION_GUIDE);
                     // Bronze
                     entries.add(ModBlocks.BRONZE_ORE);
                     entries.add(ModBlocks.BRONZE_BLOCK);

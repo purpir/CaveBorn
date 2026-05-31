@@ -7,6 +7,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.ActionResult;
 import ru.purpir.enchantment.SolarInfusionSystem;
+import ru.purpir.item.ModItems;
 
 public class SolarDamageHandler {
     
@@ -15,6 +16,10 @@ public class SolarDamageHandler {
             if (!world.isClient() && entity instanceof LivingEntity target) {
                 ItemStack weapon = player.getStackInHand(hand);
                 
+                if (weapon.isOf(ModItems.VACUUMITE_MAGNET)) {
+                    return ActionResult.PASS;
+                }
+
                 if (SolarInfusionSystem.isInfused(weapon)) {
                     float additionalDamage = SolarInfusionSystem.getAdditionalDamage(weapon);
                     if (additionalDamage > 0) {

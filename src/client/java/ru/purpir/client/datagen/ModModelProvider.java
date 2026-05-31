@@ -40,6 +40,7 @@ public class ModModelProvider extends FabricModelProvider {
         itemModelGenerator.register(ModItems.FIBER, Models.GENERATED);
         itemModelGenerator.register(ModItems.BAG, Models.GENERATED);
         itemModelGenerator.register(ModItems.SOLAR_CRYSTAL, Models.GENERATED);
+        itemModelGenerator.register(ModItems.SOLAR_INFUSION_GUIDE, Models.GENERATED);
         
         itemModelGenerator.register(ModItems.BRONZE_INGOT, Models.GENERATED);
         itemModelGenerator.register(ModItems.RAW_BRONZE, Models.GENERATED);

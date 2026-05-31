@@ -17,8 +17,10 @@ public class SolarInfusionSystem {
         // Проверяем что это меч (имеет TOOL компонент) или заряд ветра, и солнечный кристалл
         boolean isSword = item.getItem().getComponents().contains(net.minecraft.component.DataComponentTypes.TOOL);
         boolean isWindCharge = item.isOf(net.minecraft.item.Items.WIND_CHARGE);
+        boolean isVacuumiteMagnet = item.isOf(ModItems.VACUUMITE_MAGNET);
+        boolean isShield = item.isOf(net.minecraft.item.Items.SHIELD);
         
-        return (isSword || isWindCharge) &&
+        return (isSword || isWindCharge || isVacuumiteMagnet || isShield) &&
                crystal.isOf(ModItems.SOLAR_CRYSTAL) &&
                !isInfused(item);
     }
@@ -37,7 +39,8 @@ public class SolarInfusionSystem {
         result.set(net.minecraft.component.DataComponentTypes.ENCHANTMENT_GLINT_OVERRIDE, true);
         
         // Для зарядов ветра не добавляем модификатор урона
-        if (result.isOf(net.minecraft.item.Items.WIND_CHARGE)) {
+        if (result.isOf(net.minecraft.item.Items.WIND_CHARGE) || result.isOf(ModItems.VACUUMITE_MAGNET) ||
+            result.isOf(net.minecraft.item.Items.SHIELD)) {
             return result;
         }
         
