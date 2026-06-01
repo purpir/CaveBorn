@@ -78,7 +78,9 @@
   "block.caveborn.crystal_growth": "Crystal Growth",
   "item.caveborn.vacuumite_ingot": "Vacuumite Ingot",
   "item.caveborn.raw_vacuumite": "Raw Vacuumite",
+  "item.caveborn.vacuumite_sword": "Vacuumite Sword",
   "item.caveborn.limestone_dust": "Limestone Dust",
+  "item.caveborn.crystal_dust": "Crystal Dust",
   "entity.caveborn.cave_firefly": "Cave Firefly",
   "item.caveborn.vacuumite_magnet": "Vacuumite Magnet",
   "ability.caveborn.solar_shield": "Solar Shield hit %s targets",
@@ -91,6 +93,7 @@
   "guide.caveborn.solar.section.basics": "Basics",
   "guide.caveborn.solar.section.crystal": "Crystal",
   "guide.caveborn.solar.section.infusion": "Infusion",
+  "guide.caveborn.solar.section.indicator": "Indicator",
   "guide.caveborn.solar.section.abilities": "Abilities",
   "guide.caveborn.solar.section.swords": "Swords",
   "guide.caveborn.solar.section.shield": "Shield",
@@ -100,6 +103,7 @@
   "guide.caveborn.solar.content.basics": "Solar Infusion is a light-based upgrade system. It does not replace enchantments. It adds special behavior to selected items and marks them with a golden glint.\\nMost infused tools use right click or a combat trigger. Abilities usually cost durability and have cooldowns.",
   "guide.caveborn.solar.content.crystal": "Solar Crystals are made from amethyst shards. Drop amethyst under open sky during clear daytime. After about 60 seconds in full sunlight, lightning flashes and the shard becomes a Solar Crystal.\\nRain, night, shade, or low sky light resets the exposure timer.",
   "guide.caveborn.solar.content.infusion": "Use an anvil to combine a valid item with a Solar Crystal. The result keeps the item and adds Solar Infusion.\\nSupported items include swords, bow, trident, arrows, mace, wind charges, shields, and the Vacuumite Magnet.",
+  "guide.caveborn.solar.content.indicator": "Some infused items use shared solar points. When one of those items is held, a 0/100 indicator appears in the bottom-left corner.\\nThe points belong to the player, not to a single item: if one weapon fills the indicator, another supported item sees the same amount. The infused Vacuumite Sword currently fills it by collapsing Void Wounds and spends 50 points on its burst ability.",
   "guide.caveborn.solar.content.abilities": "Choose an infused item on the left. Each icon opens a page for that item's solar behavior.",
   "guide.caveborn.solar.content.swords": "Infused swords use right click abilities. Wooden launches a target upward. Stone creates a wall. Gold grants strength. Iron drops anvils. Diamond traps with cobweb. Netherite burns and withers. Bronze teleports. Copper summons temporary breezes. Netherite Titanium can call Solar Strike.",
   "guide.caveborn.solar.content.shield": "An infused shield stores light while blocking. Hold block for at least half a second, then release to emit a solar wave in front of you.\\nA longer block charges a wider and stronger wave. Undead take extra damage and ignite. The shield then enters cooldown and loses durability.",
@@ -140,5 +144,11 @@
   "guide.caveborn.solar.ability.spectral_arrow": "Spectral Arrow",
   "guide.caveborn.solar.ability.spectral_arrow.content": "A solar-infused spectral arrow can break up to 2 fragile blocks in its path, up to and including stone hardness, without losing speed.\\nOn hit, lightning strikes the target.",
   "guide.caveborn.solar.ability.wind_charge": "Wind Charge",
-  "guide.caveborn.solar.ability.wind_charge.content": "Throwing an infused wind charge creates an extra solar explosion on impact.\\nUse it for burst movement, crowd control, and risky plays."
+  "guide.caveborn.solar.ability.wind_charge.content": "Throwing an infused wind charge creates an extra solar explosion on impact.\\nUse it for burst movement, crowd control, and risky plays.",
+  "guide.caveborn.solar.ability.crystal_dust": "Crystal Dust",
+  "guide.caveborn.solar.ability.crystal_dust.content": "Right-click a block to scatter a 3x3 solar crystal dust field for 5 seconds.\\nEveryone except the owner takes 3 damage per second and Wither for 5 seconds. Cooldown: 15 seconds.",
+  "guide.caveborn.solar.ability.totem": "Totem of Undying",
+  "guide.caveborn.solar.ability.totem.content": "When a solar totem triggers, the player is fully healed, becomes completely immune to damage for 2 seconds, and gains fiery strikes for 5 seconds.\\nWhile active, attacks ignite the target and deal +2 damage. If an infused totem is in the offhand, attacks always deal +2 damage.",
+  "guide.caveborn.solar.ability.vacuumite_sword": "Vacuumite Sword",
+  "guide.caveborn.solar.ability.vacuumite_sword.content": "Collapsing a Void Wound with an infused Vacuumite Sword grants +5 shared solar points.\\nAt 50 points, right click to spend them and activate a 5 second burst: every hit triggers Void Wound damage and ignites the target, but does not generate solar points."
 }

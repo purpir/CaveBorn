@@ -1,6 +1,7 @@
 package ru.purpir.client;
 
 import net.fabricmc.api.ClientModInitializer;
+import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
 import net.fabricmc.fabric.api.client.rendering.v1.EntityRendererRegistry;
 import net.fabricmc.fabric.api.event.player.UseItemCallback;
 import net.fabricmc.fabric.api.client.rendering.v1.BlockRenderLayerMap;
@@ -14,11 +15,13 @@ import net.minecraft.util.Identifier;
 import ru.purpir.Caveborn;
 import ru.purpir.block.ModBlocks;
 import ru.purpir.client.render.BlockTintSource;
+import ru.purpir.client.render.SolarPointsHud;
 import ru.purpir.client.screen.BagScreen;
 import ru.purpir.client.screen.CrusherScreen;
 import ru.purpir.client.screen.SolarInfusionGuideScreen;
 import ru.purpir.entity.ModEntities;
 import ru.purpir.item.ModItems;
+import ru.purpir.network.ModPackets;
 import ru.purpir.screen.ModScreenHandlers;
 
 public class CavebornClient implements ClientModInitializer {
@@ -36,6 +39,9 @@ public class CavebornClient implements ClientModInitializer {
         
         // Регистрируем тултип для солнечной инфузии
         SolarInfusionTooltip.register();
+        SolarPointsHud.register();
+        ClientPlayNetworking.registerGlobalReceiver(ModPackets.SolarPointsPayload.ID,
+            (payload, context) -> SolarPointsClientState.setPoints(payload.points()));
         
         // Регистрируем экран сумки
         HandledScreens.register(ModScreenHandlers.BAG_SCREEN_HANDLER, BagScreen::new);

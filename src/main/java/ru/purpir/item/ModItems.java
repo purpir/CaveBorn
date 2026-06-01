@@ -58,7 +58,10 @@ public class ModItems {
     public static final Item VACUUMITE_INGOT = registerItem("vacuumite_ingot", Item::new, new Item.Settings());
     public static final Item RAW_VACUUMITE = registerItem("raw_vacuumite", Item::new, new Item.Settings());
     public static final Item VACUUMITE_MAGNET = registerItem("vacuumite_magnet", Item::new, new Item.Settings().maxCount(1).maxDamage(300));
+    public static final Item VACUUMITE_SWORD = registerItem("vacuumite_sword", Item::new,
+        new Item.Settings().sword(ModToolMaterials.VACUUMITE, 3, -2.4f));
     public static final Item LIMESTONE_DUST = registerItem("limestone_dust", Item::new, new Item.Settings());
+    public static final Item CRYSTAL_DUST = registerItem("crystal_dust", Item::new, new Item.Settings());
 
     // Netherite Titanium Items
     public static final Item NETHERITE_TITANIUM_INGOT = registerItem("netherite_titanium_ingot", 
@@ -139,10 +142,12 @@ public class ModItems {
                     entries.add(VACUUMITE_INGOT);
                     entries.add(RAW_VACUUMITE);
                     entries.add(VACUUMITE_MAGNET);
+                    entries.add(VACUUMITE_SWORD);
                     // Natural stone
                     entries.add(ModBlocks.DEEP_GRANITE);
                     entries.add(ModBlocks.ASHEN_LIMESTONE);
                     entries.add(LIMESTONE_DUST);
+                    entries.add(CRYSTAL_DUST);
                     entries.add(ModBlocks.IRON_CASING);
                     entries.add(ModBlocks.CRUSHER);
                     entries.add(ModBlocks.CRYSTAL_GROWTH);

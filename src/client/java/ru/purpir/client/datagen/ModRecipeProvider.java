@@ -268,6 +268,15 @@ public class ModRecipeProvider extends FabricRecipeProvider {
                     .criterion(hasItem(ModItems.VACUUMITE_INGOT), conditionsFromItem(ModItems.VACUUMITE_INGOT))
                     .offerTo(exporter);
 
+                createShaped(RecipeCategory.COMBAT, ModItems.VACUUMITE_SWORD)
+                    .pattern("V")
+                    .pattern("V")
+                    .pattern("S")
+                    .input('V', ModItems.VACUUMITE_INGOT)
+                    .input('S', Items.STICK)
+                    .criterion(hasItem(ModItems.VACUUMITE_INGOT), conditionsFromItem(ModItems.VACUUMITE_INGOT))
+                    .offerTo(exporter);
+
                 createShaped(RecipeCategory.BUILDING_BLOCKS, ModBlocks.IRON_CASING)
                     .pattern("BIB")
                     .pattern("I I")

@@ -8,6 +8,7 @@
     "CropBlockMixin",
     "BlockMixin",
     "ItemEntityMixin",
+    "LivingEntityMixin",
     "AnvilScreenHandlerMixin",
     "MobEntityMixin",
     "BreezeEntityMixin",

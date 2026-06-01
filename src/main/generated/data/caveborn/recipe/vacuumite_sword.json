@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "S": "minecraft:stick",
+    "V": "caveborn:vacuumite_ingot"
+  },
+  "pattern": [
+    "V",
+    "V",
+    "S"
+  ],
+  "result": {
+    "count": 1,
+    "id": "caveborn:vacuumite_sword"
+  }
+}

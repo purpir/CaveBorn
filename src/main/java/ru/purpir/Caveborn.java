@@ -35,6 +35,7 @@ public class Caveborn implements ModInitializer {
         ModEntities.register();
         ModItems.registerModItems();
         ModScreenHandlers.register();
+        ru.purpir.network.ModPackets.registerServer();
         ModFeatures.register();
         ModOreGeneration.generateOres();
         ru.purpir.enchantment.ModEnchantments.register();
@@ -43,10 +44,14 @@ public class Caveborn implements ModInitializer {
         ru.purpir.event.SolarDamageHandler.register();
         ru.purpir.event.SolarStrikeHandler.register();
         ru.purpir.event.SolarShieldHandler.register();
+        ru.purpir.event.SolarCrystalDustHandler.register();
+        ru.purpir.event.SolarTotemHandler.register();
         ru.purpir.event.SolarInfusionGuideGiftHandler.register();
         ru.purpir.event.PetMobTickHandler.register();
         ru.purpir.event.VeinMinerHandler.register();
         ru.purpir.event.VacuumiteMagnetHandler.register();
+        ru.purpir.event.VacuumiteSwordHandler.register();
+        ru.purpir.solar.SolarPointBank.register();
         
         LOGGER.info("Caveborn mod initialized!");
     }

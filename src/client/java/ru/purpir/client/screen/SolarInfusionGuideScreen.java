@@ -18,11 +18,12 @@ public class SolarInfusionGuideScreen extends Screen {
     private static final int PANEL_HEIGHT = 250;
     private static final int TAB_WIDTH = 92;
     private static final int ABILITY_BUTTON_SIZE = 24;
-    private static final int ABILITIES_SECTION = 3;
+    private static final int ABILITIES_SECTION = 4;
     private static final Section[] SECTIONS = new Section[] {
         new Section("guide.caveborn.solar.section.basics", "guide.caveborn.solar.content.basics"),
         new Section("guide.caveborn.solar.section.crystal", "guide.caveborn.solar.content.crystal"),
         new Section("guide.caveborn.solar.section.infusion", "guide.caveborn.solar.content.infusion"),
+        new Section("guide.caveborn.solar.section.indicator", "guide.caveborn.solar.content.indicator"),
         new Section("guide.caveborn.solar.section.abilities", "guide.caveborn.solar.content.abilities"),
         new Section("guide.caveborn.solar.section.cooldowns", "guide.caveborn.solar.content.cooldowns")
     };
@@ -34,6 +35,7 @@ public class SolarInfusionGuideScreen extends Screen {
         new AbilityEntry(new ItemStack(Items.DIAMOND_SWORD), "guide.caveborn.solar.ability.diamond_sword", "guide.caveborn.solar.ability.diamond_sword.content"),
         new AbilityEntry(new ItemStack(Items.NETHERITE_SWORD), "guide.caveborn.solar.ability.netherite_sword", "guide.caveborn.solar.ability.netherite_sword.content"),
         new AbilityEntry(new ItemStack(ModItems.BRONZE_SWORD), "guide.caveborn.solar.ability.bronze_sword", "guide.caveborn.solar.ability.bronze_sword.content"),
+        new AbilityEntry(new ItemStack(ModItems.VACUUMITE_SWORD), "guide.caveborn.solar.ability.vacuumite_sword", "guide.caveborn.solar.ability.vacuumite_sword.content"),
         new AbilityEntry(new ItemStack(Items.COPPER_SWORD), "guide.caveborn.solar.ability.copper_sword", "guide.caveborn.solar.ability.copper_sword.content"),
         new AbilityEntry(new ItemStack(Items.MACE), "guide.caveborn.solar.ability.mace", "guide.caveborn.solar.ability.mace.content"),
         new AbilityEntry(new ItemStack(ModItems.NETHERITE_TITANIUM_SWORD), "guide.caveborn.solar.ability.solar_strike", "guide.caveborn.solar.ability.solar_strike.content"),
@@ -43,7 +45,9 @@ public class SolarInfusionGuideScreen extends Screen {
         new AbilityEntry(new ItemStack(Items.TRIDENT), "guide.caveborn.solar.ability.trident", "guide.caveborn.solar.ability.trident.content"),
         new AbilityEntry(new ItemStack(Items.ARROW), "guide.caveborn.solar.ability.arrow", "guide.caveborn.solar.ability.arrow.content"),
         new AbilityEntry(new ItemStack(Items.SPECTRAL_ARROW), "guide.caveborn.solar.ability.spectral_arrow", "guide.caveborn.solar.ability.spectral_arrow.content"),
-        new AbilityEntry(new ItemStack(Items.WIND_CHARGE), "guide.caveborn.solar.ability.wind_charge", "guide.caveborn.solar.ability.wind_charge.content")
+        new AbilityEntry(new ItemStack(Items.WIND_CHARGE), "guide.caveborn.solar.ability.wind_charge", "guide.caveborn.solar.ability.wind_charge.content"),
+        new AbilityEntry(new ItemStack(ModItems.CRYSTAL_DUST), "guide.caveborn.solar.ability.crystal_dust", "guide.caveborn.solar.ability.crystal_dust.content"),
+        new AbilityEntry(new ItemStack(Items.TOTEM_OF_UNDYING), "guide.caveborn.solar.ability.totem", "guide.caveborn.solar.ability.totem.content")
     };
 
     private int selectedSection = 0;

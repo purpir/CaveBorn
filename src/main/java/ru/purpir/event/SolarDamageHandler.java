@@ -27,6 +27,13 @@ public class SolarDamageHandler {
                         target.damage((ServerWorld) world, damageSource, additionalDamage);
                     }
                 }
+
+                ServerWorld serverWorld = (ServerWorld) world;
+                float totemDamage = SolarTotemHandler.getAttackBonus(player, serverWorld);
+                if (totemDamage > 0) {
+                    target.damage(serverWorld, player.getDamageSources().playerAttack(player), totemDamage);
+                    SolarTotemHandler.applyFireHit(player, serverWorld, target);
+                }
             }
             
             return ActionResult.PASS;

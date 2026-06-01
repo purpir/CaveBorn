@@ -22,8 +22,10 @@ public class SolarInfusionSystem {
         boolean isBow = item.isOf(net.minecraft.item.Items.BOW);
         boolean isSolarArrow = item.isOf(net.minecraft.item.Items.ARROW) || item.isOf(net.minecraft.item.Items.SPECTRAL_ARROW);
         boolean isTrident = item.isOf(net.minecraft.item.Items.TRIDENT);
+        boolean isCrystalDust = item.isOf(ModItems.CRYSTAL_DUST);
+        boolean isTotem = item.isOf(net.minecraft.item.Items.TOTEM_OF_UNDYING);
         
-        return (isSword || isWindCharge || isVacuumiteMagnet || isShield || isBow || isSolarArrow || isTrident) &&
+        return (isSword || isWindCharge || isVacuumiteMagnet || isShield || isBow || isSolarArrow || isTrident || isCrystalDust || isTotem) &&
                crystal.isOf(ModItems.SOLAR_CRYSTAL) &&
                !isInfused(item);
     }
@@ -45,7 +47,8 @@ public class SolarInfusionSystem {
         if (result.isOf(net.minecraft.item.Items.WIND_CHARGE) || result.isOf(ModItems.VACUUMITE_MAGNET) ||
             result.isOf(net.minecraft.item.Items.SHIELD) || result.isOf(net.minecraft.item.Items.BOW) ||
             result.isOf(net.minecraft.item.Items.ARROW) || result.isOf(net.minecraft.item.Items.SPECTRAL_ARROW) ||
-            result.isOf(net.minecraft.item.Items.TRIDENT)) {
+            result.isOf(net.minecraft.item.Items.TRIDENT) || result.isOf(ModItems.CRYSTAL_DUST) ||
+            result.isOf(net.minecraft.item.Items.TOTEM_OF_UNDYING) || result.isOf(ModItems.VACUUMITE_SWORD)) {
             return result;
         }
         
@@ -84,7 +87,8 @@ public class SolarInfusionSystem {
     
     public static float getAdditionalDamage(ItemStack stack) {
         if (stack.isOf(net.minecraft.item.Items.BOW) || stack.isOf(net.minecraft.item.Items.ARROW) ||
-            stack.isOf(net.minecraft.item.Items.SPECTRAL_ARROW) || stack.isOf(net.minecraft.item.Items.TRIDENT)) {
+            stack.isOf(net.minecraft.item.Items.SPECTRAL_ARROW) || stack.isOf(net.minecraft.item.Items.TRIDENT) ||
+            stack.isOf(ModItems.VACUUMITE_SWORD)) {
             return 0.0f;
         }
 

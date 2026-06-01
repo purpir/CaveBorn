@@ -63,7 +63,9 @@ public class ModModelProvider extends FabricModelProvider {
         itemModelGenerator.register(ModItems.VACUUMITE_INGOT, Models.GENERATED);
         itemModelGenerator.register(ModItems.RAW_VACUUMITE, Models.GENERATED);
         itemModelGenerator.register(ModItems.VACUUMITE_MAGNET, Models.GENERATED);
+        itemModelGenerator.register(ModItems.VACUUMITE_SWORD, Models.HANDHELD);
         itemModelGenerator.register(ModItems.LIMESTONE_DUST, Models.GENERATED);
+        itemModelGenerator.register(ModItems.CRYSTAL_DUST, Models.GENERATED);
 
         itemModelGenerator.register(ModItems.NETHERITE_TITANIUM_INGOT, Models.GENERATED);
         itemModelGenerator.register(ModItems.NETHERITE_TITANIUM_SWORD, Models.HANDHELD);

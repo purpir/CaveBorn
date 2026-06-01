@@ -21,6 +21,7 @@ public class ModTags {
         public static final TagKey<Item> TITANIUM_INGOTS = createTag("titanium_ingots");
         public static final TagKey<Item> BRONZE_REPAIR = createTag("bronze_repair");
         public static final TagKey<Item> NETHERITE_TITANIUM_REPAIR = createTag("netherite_titanium_repair");
+        public static final TagKey<Item> VACUUMITE_REPAIR = createTag("vacuumite_repair");
 
         private static TagKey<Item> createTag(String name) {
             return TagKey.of(RegistryKeys.ITEM, Identifier.of(Caveborn.MOD_ID, name));
