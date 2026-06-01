@@ -22,6 +22,8 @@ public class ModConfiguredFeatures {
     public static final RegistryKey<ConfiguredFeature<?, ?>> TITANIUM_ORE_KEY = registerKey("titanium_ore");
     public static final RegistryKey<ConfiguredFeature<?, ?>> DEEPSLATE_TITANIUM_ORE_KEY = registerKey("deepslate_titanium_ore");
     public static final RegistryKey<ConfiguredFeature<?, ?>> VACUUMITE_ORE_KEY = registerKey("vacuumite_ore");
+    public static final RegistryKey<ConfiguredFeature<?, ?>> DEEP_GRANITE_KEY = registerKey("deep_granite");
+    public static final RegistryKey<ConfiguredFeature<?, ?>> ASHEN_LIMESTONE_KEY = registerKey("ashen_limestone");
     public static final RegistryKey<ConfiguredFeature<?, ?>> WEED_PATCH_KEY = registerKey("weed_patch");
     public static final RegistryKey<ConfiguredFeature<?, ?>> HOGWEED_PATCH_KEY = registerKey("hogweed_patch");
     public static final RegistryKey<ConfiguredFeature<?, ?>> AMETHYST_SPIKE_KEY = registerKey("amethyst_spike");
@@ -51,6 +53,18 @@ public class ModConfiguredFeatures {
         register(context, VACUUMITE_ORE_KEY, Feature.ORE, new OreFeatureConfig(
             List.of(OreFeatureConfig.createTarget(endStoneReplaceable, ModBlocks.VACUUMITE_ORE.getDefaultState())),
             4));
+
+        // Natural stone variants
+        register(context, DEEP_GRANITE_KEY, Feature.ORE, new OreFeatureConfig(
+            List.of(
+                OreFeatureConfig.createTarget(stoneReplaceable, ModBlocks.DEEP_GRANITE.getDefaultState()),
+                OreFeatureConfig.createTarget(deepslateReplaceable, ModBlocks.DEEP_GRANITE.getDefaultState())
+            ),
+            48));
+
+        register(context, ASHEN_LIMESTONE_KEY, Feature.ORE, new OreFeatureConfig(
+            List.of(OreFeatureConfig.createTarget(stoneReplaceable, ModBlocks.ASHEN_LIMESTONE.getDefaultState())),
+            40));
 
         // Weed patch - random flower-like patch on grass
         register(context, WEED_PATCH_KEY, Feature.FLOWER, new RandomPatchFeatureConfig(

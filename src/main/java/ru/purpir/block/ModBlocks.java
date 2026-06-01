@@ -78,6 +78,23 @@ public class ModBlocks {
             .requiresTool()
             .sounds(BlockSoundGroup.METAL));
 
+    // Natural stone variants
+    public static final Block DEEP_GRANITE = registerBlock("deep_granite",
+        Block::new,
+        AbstractBlock.Settings.create()
+            .mapColor(MapColor.DARK_RED)
+            .strength(1.5f, 6.0f)
+            .requiresTool()
+            .sounds(BlockSoundGroup.STONE));
+
+    public static final Block ASHEN_LIMESTONE = registerBlock("ashen_limestone",
+        Block::new,
+        AbstractBlock.Settings.create()
+            .mapColor(MapColor.LIGHT_GRAY)
+            .strength(1.25f, 4.2f)
+            .requiresTool()
+            .sounds(BlockSoundGroup.STONE));
+
     // Weed blocks
     public static final Block WEED = registerBlockNoItem("weed",
         WeedBlock::new,

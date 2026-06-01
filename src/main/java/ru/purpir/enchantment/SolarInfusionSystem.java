@@ -21,8 +21,9 @@ public class SolarInfusionSystem {
         boolean isShield = item.isOf(net.minecraft.item.Items.SHIELD);
         boolean isBow = item.isOf(net.minecraft.item.Items.BOW);
         boolean isSolarArrow = item.isOf(net.minecraft.item.Items.ARROW) || item.isOf(net.minecraft.item.Items.SPECTRAL_ARROW);
+        boolean isTrident = item.isOf(net.minecraft.item.Items.TRIDENT);
         
-        return (isSword || isWindCharge || isVacuumiteMagnet || isShield || isBow || isSolarArrow) &&
+        return (isSword || isWindCharge || isVacuumiteMagnet || isShield || isBow || isSolarArrow || isTrident) &&
                crystal.isOf(ModItems.SOLAR_CRYSTAL) &&
                !isInfused(item);
     }
@@ -43,7 +44,8 @@ public class SolarInfusionSystem {
         // Для зарядов ветра не добавляем модификатор урона
         if (result.isOf(net.minecraft.item.Items.WIND_CHARGE) || result.isOf(ModItems.VACUUMITE_MAGNET) ||
             result.isOf(net.minecraft.item.Items.SHIELD) || result.isOf(net.minecraft.item.Items.BOW) ||
-            result.isOf(net.minecraft.item.Items.ARROW) || result.isOf(net.minecraft.item.Items.SPECTRAL_ARROW)) {
+            result.isOf(net.minecraft.item.Items.ARROW) || result.isOf(net.minecraft.item.Items.SPECTRAL_ARROW) ||
+            result.isOf(net.minecraft.item.Items.TRIDENT)) {
             return result;
         }
         
@@ -82,7 +84,7 @@ public class SolarInfusionSystem {
     
     public static float getAdditionalDamage(ItemStack stack) {
         if (stack.isOf(net.minecraft.item.Items.BOW) || stack.isOf(net.minecraft.item.Items.ARROW) ||
-            stack.isOf(net.minecraft.item.Items.SPECTRAL_ARROW)) {
+            stack.isOf(net.minecraft.item.Items.SPECTRAL_ARROW) || stack.isOf(net.minecraft.item.Items.TRIDENT)) {
             return 0.0f;
         }
 

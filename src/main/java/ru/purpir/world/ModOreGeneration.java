@@ -35,6 +35,19 @@ public class ModOreGeneration {
             ModPlacedFeatures.VACUUMITE_ORE_PLACED_KEY
         );
 
+        // Natural stone variants in Overworld
+        BiomeModifications.addFeature(
+            BiomeSelectors.foundInOverworld(),
+            GenerationStep.Feature.UNDERGROUND_ORES,
+            ModPlacedFeatures.DEEP_GRANITE_PLACED_KEY
+        );
+
+        BiomeModifications.addFeature(
+            BiomeSelectors.foundInOverworld(),
+            GenerationStep.Feature.UNDERGROUND_ORES,
+            ModPlacedFeatures.ASHEN_LIMESTONE_PLACED_KEY
+        );
+
         // Weed patches - only in plains biome
         BiomeModifications.addFeature(
             BiomeSelectors.includeByKey(BiomeKeys.PLAINS, BiomeKeys.SUNFLOWER_PLAINS),

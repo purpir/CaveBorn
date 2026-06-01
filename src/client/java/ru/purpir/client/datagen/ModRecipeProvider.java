@@ -272,6 +272,11 @@ public class ModRecipeProvider extends FabricRecipeProvider {
                     .input(ModBlocks.SOLAR_IRIS)
                     .criterion(hasItem(ModBlocks.SOLAR_IRIS), conditionsFromItem(ModBlocks.SOLAR_IRIS))
                     .offerTo(exporter, "light_blue_dye_from_solar_iris");
+
+                createShapeless(RecipeCategory.MISC, ModItems.LIMESTONE_DUST, 4)
+                    .input(ModBlocks.ASHEN_LIMESTONE)
+                    .criterion(hasItem(ModBlocks.ASHEN_LIMESTONE), conditionsFromItem(ModBlocks.ASHEN_LIMESTONE))
+                    .offerTo(exporter, "limestone_dust_from_ashen_limestone");
             }
         };
     }

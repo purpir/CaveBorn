@@ -22,6 +22,8 @@ public class ModModelProvider extends FabricModelProvider {
         blockStateModelGenerator.registerSimpleCubeAll(ModBlocks.NETHERITE_TITANIUM_BLOCK);
         blockStateModelGenerator.registerSimpleCubeAll(ModBlocks.VACUUMITE_ORE);
         blockStateModelGenerator.registerSimpleCubeAll(ModBlocks.VACUUMITE_BLOCK);
+        blockStateModelGenerator.registerSimpleCubeAll(ModBlocks.DEEP_GRANITE);
+        blockStateModelGenerator.registerSimpleCubeAll(ModBlocks.ASHEN_LIMESTONE);
         
         // Titanium building blocks - используем pool для titanium_block чтобы избежать дубликата
         BlockStateModelGenerator.BlockTexturePool titaniumPool = blockStateModelGenerator.registerCubeAllModelTexturePool(ModBlocks.TITANIUM_BLOCK);
@@ -60,6 +62,7 @@ public class ModModelProvider extends FabricModelProvider {
         itemModelGenerator.register(ModItems.VACUUMITE_INGOT, Models.GENERATED);
         itemModelGenerator.register(ModItems.RAW_VACUUMITE, Models.GENERATED);
         itemModelGenerator.register(ModItems.VACUUMITE_MAGNET, Models.GENERATED);
+        itemModelGenerator.register(ModItems.LIMESTONE_DUST, Models.GENERATED);
 
         itemModelGenerator.register(ModItems.NETHERITE_TITANIUM_INGOT, Models.GENERATED);
         itemModelGenerator.register(ModItems.NETHERITE_TITANIUM_SWORD, Models.HANDHELD);

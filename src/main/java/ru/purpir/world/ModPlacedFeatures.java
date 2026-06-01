@@ -19,6 +19,8 @@ public class ModPlacedFeatures {
     public static final RegistryKey<PlacedFeature> TITANIUM_ORE_PLACED_KEY = registerKey("titanium_ore");
     public static final RegistryKey<PlacedFeature> DEEPSLATE_TITANIUM_ORE_PLACED_KEY = registerKey("deepslate_titanium_ore");
     public static final RegistryKey<PlacedFeature> VACUUMITE_ORE_PLACED_KEY = registerKey("vacuumite_ore");
+    public static final RegistryKey<PlacedFeature> DEEP_GRANITE_PLACED_KEY = registerKey("deep_granite");
+    public static final RegistryKey<PlacedFeature> ASHEN_LIMESTONE_PLACED_KEY = registerKey("ashen_limestone");
     public static final RegistryKey<PlacedFeature> WEED_PATCH_PLACED_KEY = registerKey("weed_patch");
     public static final RegistryKey<PlacedFeature> HOGWEED_PATCH_PLACED_KEY = registerKey("hogweed_patch");
     public static final RegistryKey<PlacedFeature> AMETHYST_SPIKE_PLACED_KEY = registerKey("amethyst_spike");
@@ -46,6 +48,16 @@ public class ModPlacedFeatures {
         register(context, VACUUMITE_ORE_PLACED_KEY, 
             configuredFeatures.getOrThrow(ModConfiguredFeatures.VACUUMITE_ORE_KEY),
             modifiersWithCount(3, HeightRangePlacementModifier.uniform(YOffset.fixed(0), YOffset.fixed(80))));
+
+        // Deep Granite - deep overworld stone pockets
+        register(context, DEEP_GRANITE_PLACED_KEY,
+            configuredFeatures.getOrThrow(ModConfiguredFeatures.DEEP_GRANITE_KEY),
+            modifiersWithCount(3, HeightRangePlacementModifier.uniform(YOffset.fixed(-64), YOffset.fixed(16))));
+
+        // Ashen Limestone - upper and middle overworld stone pockets
+        register(context, ASHEN_LIMESTONE_PLACED_KEY,
+            configuredFeatures.getOrThrow(ModConfiguredFeatures.ASHEN_LIMESTONE_KEY),
+            modifiersWithCount(4, HeightRangePlacementModifier.uniform(YOffset.fixed(0), YOffset.fixed(96))));
 
         // Weed patch - rare in plains (1 per 32 chunks roughly)
         register(context, WEED_PATCH_PLACED_KEY,

@@ -14,6 +14,8 @@
     "WindChargeEntityMixin",
     "WindChargeItemMixin",
     "BowItemMixin",
+    "TridentItemMixin",
+    "TridentEntityMixin",
     "RangedWeaponItemMixin",
     "PersistentProjectileEntityMixin",
     "VanillaBiomeParametersMixin"

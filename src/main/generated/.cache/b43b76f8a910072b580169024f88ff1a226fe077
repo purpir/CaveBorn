@@ -1,6 +1,8 @@
 // 1.21.10	-999999999-01-01T00:00:00	CaveBorn/Block Loot Tables
+3752131ce4f88d1f286ecb0af994e908b555f75a data/caveborn/loot_table/blocks/ashen_limestone.json
 44def36ef64f74241acdcece1ba09570ea0bb928 data/caveborn/loot_table/blocks/bronze_block.json
 bf4902258ca810c152644c82b58bf4c292cece2f data/caveborn/loot_table/blocks/bronze_ore.json
+def27e5a85dd5e6fae29f08fe844f25e05f2270f data/caveborn/loot_table/blocks/deep_granite.json
 138dc818c6fda33430a37b6174e16819ce5e706a data/caveborn/loot_table/blocks/deepslate_titanium_ore.json
 9439569290f5b82f3371b81ffe26ba2f15677be9 data/caveborn/loot_table/blocks/netherite_titanium_block.json
 9bf708d0ef9d9efcba915dde0128d3e676918fb0 data/caveborn/loot_table/blocks/solar_iris.json
