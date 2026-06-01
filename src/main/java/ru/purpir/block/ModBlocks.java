@@ -95,6 +95,14 @@ public class ModBlocks {
             .requiresTool()
             .sounds(BlockSoundGroup.STONE));
 
+    public static final Block IRON_CASING = registerBlock("iron_casing",
+        Block::new,
+        AbstractBlock.Settings.create()
+            .mapColor(MapColor.IRON_GRAY)
+            .strength(5.0f, 6.0f)
+            .requiresTool()
+            .sounds(BlockSoundGroup.METAL));
+
     public static final Block CRUSHER = registerBlock("crusher",
         CrusherBlock::new,
         AbstractBlock.Settings.create()

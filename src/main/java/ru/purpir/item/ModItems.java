@@ -143,6 +143,7 @@ public class ModItems {
                     entries.add(ModBlocks.DEEP_GRANITE);
                     entries.add(ModBlocks.ASHEN_LIMESTONE);
                     entries.add(LIMESTONE_DUST);
+                    entries.add(ModBlocks.IRON_CASING);
                     entries.add(ModBlocks.CRUSHER);
                     // Netherite Titanium
                     entries.add(ModBlocks.NETHERITE_TITANIUM_BLOCK);

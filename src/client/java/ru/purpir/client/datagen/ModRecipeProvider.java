@@ -268,6 +268,29 @@ public class ModRecipeProvider extends FabricRecipeProvider {
                     .criterion(hasItem(ModItems.VACUUMITE_INGOT), conditionsFromItem(ModItems.VACUUMITE_INGOT))
                     .offerTo(exporter);
 
+                createShaped(RecipeCategory.BUILDING_BLOCKS, ModBlocks.IRON_CASING)
+                    .pattern("BIB")
+                    .pattern("I I")
+                    .pattern("BIB")
+                    .input('B', Items.IRON_BLOCK)
+                    .input('I', Items.IRON_INGOT)
+                    .criterion(hasItem(Items.IRON_BLOCK), conditionsFromItem(Items.IRON_BLOCK))
+                    .criterion(hasItem(Items.IRON_INGOT), conditionsFromItem(Items.IRON_INGOT))
+                    .offerTo(exporter);
+
+                createShaped(RecipeCategory.REDSTONE, ModBlocks.CRUSHER)
+                    .pattern("CPC")
+                    .pattern("GBG")
+                    .pattern("CPC")
+                    .input('C', ModBlocks.IRON_CASING)
+                    .input('P', Items.FURNACE)
+                    .input('G', ModBlocks.DEEP_GRANITE)
+                    .input('B', Items.REDSTONE_BLOCK)
+                    .criterion(hasItem(ModBlocks.IRON_CASING), conditionsFromItem(ModBlocks.IRON_CASING))
+                    .criterion(hasItem(ModBlocks.DEEP_GRANITE), conditionsFromItem(ModBlocks.DEEP_GRANITE))
+                    .criterion(hasItem(Items.REDSTONE_BLOCK), conditionsFromItem(Items.REDSTONE_BLOCK))
+                    .offerTo(exporter);
+
                 createShapeless(RecipeCategory.MISC, Items.LIGHT_BLUE_DYE)
                     .input(ModBlocks.SOLAR_IRIS)
                     .criterion(hasItem(ModBlocks.SOLAR_IRIS), conditionsFromItem(ModBlocks.SOLAR_IRIS))

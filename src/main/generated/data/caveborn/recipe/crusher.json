@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "redstone",
+  "key": {
+    "B": "minecraft:redstone_block",
+    "C": "caveborn:iron_casing",
+    "G": "caveborn:deep_granite",
+    "P": "minecraft:furnace"
+  },
+  "pattern": [
+    "CPC",
+    "GBG",
+    "CPC"
+  ],
+  "result": {
+    "count": 1,
+    "id": "caveborn:crusher"
+  }
+}

@@ -24,6 +24,7 @@ public class ModModelProvider extends FabricModelProvider {
         blockStateModelGenerator.registerSimpleCubeAll(ModBlocks.VACUUMITE_BLOCK);
         blockStateModelGenerator.registerSimpleCubeAll(ModBlocks.DEEP_GRANITE);
         blockStateModelGenerator.registerSimpleCubeAll(ModBlocks.ASHEN_LIMESTONE);
+        blockStateModelGenerator.registerSimpleCubeAll(ModBlocks.IRON_CASING);
         
         // Titanium building blocks - используем pool для titanium_block чтобы избежать дубликата
         BlockStateModelGenerator.BlockTexturePool titaniumPool = blockStateModelGenerator.registerCubeAllModelTexturePool(ModBlocks.TITANIUM_BLOCK);

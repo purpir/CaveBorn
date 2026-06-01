@@ -36,6 +36,7 @@ public class ModLootTableProvider extends FabricBlockLootTableProvider {
         addDrop(ModBlocks.VACUUMITE_BLOCK);
         addDrop(ModBlocks.DEEP_GRANITE);
         addDrop(ModBlocks.ASHEN_LIMESTONE);
+        addDrop(ModBlocks.IRON_CASING);
         addDrop(ModBlocks.CRUSHER);
         addDrop(ModBlocks.SOLAR_IRIS);
         
