@@ -1,11 +1,13 @@
 package ru.purpir.client;
 
 import net.fabricmc.api.ClientModInitializer;
+import net.fabricmc.fabric.api.client.rendering.v1.EntityRendererRegistry;
 import net.fabricmc.fabric.api.event.player.UseItemCallback;
 import net.fabricmc.fabric.api.client.rendering.v1.BlockRenderLayerMap;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.screen.ingame.HandledScreens;
 import net.minecraft.client.render.BlockRenderLayer;
+import net.minecraft.client.render.entity.EmptyEntityRenderer;
 import net.minecraft.client.render.item.tint.TintSourceTypes;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Identifier;
@@ -15,6 +17,7 @@ import ru.purpir.client.render.BlockTintSource;
 import ru.purpir.client.screen.BagScreen;
 import ru.purpir.client.screen.CrusherScreen;
 import ru.purpir.client.screen.SolarInfusionGuideScreen;
+import ru.purpir.entity.ModEntities;
 import ru.purpir.item.ModItems;
 import ru.purpir.screen.ModScreenHandlers;
 
@@ -37,6 +40,7 @@ public class CavebornClient implements ClientModInitializer {
         // Регистрируем экран сумки
         HandledScreens.register(ModScreenHandlers.BAG_SCREEN_HANDLER, BagScreen::new);
         HandledScreens.register(ModScreenHandlers.CRUSHER_SCREEN_HANDLER, CrusherScreen::new);
+        EntityRendererRegistry.register(ModEntities.CAVE_FIREFLY, EmptyEntityRenderer::new);
 
         UseItemCallback.EVENT.register((player, world, hand) -> {
             if (!world.isClient()) {

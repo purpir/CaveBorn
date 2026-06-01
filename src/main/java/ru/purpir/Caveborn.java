@@ -7,6 +7,7 @@ import org.slf4j.LoggerFactory;
 import ru.purpir.block.ModBlocks;
 import ru.purpir.block.entity.ModBlockEntities;
 import ru.purpir.command.CavebornCommand;
+import ru.purpir.entity.ModEntities;
 import ru.purpir.item.ModArmorMaterials;
 import ru.purpir.item.ModItems;
 import ru.purpir.screen.ModScreenHandlers;
@@ -31,6 +32,7 @@ public class Caveborn implements ModInitializer {
         ru.purpir.component.ModComponents.register();
         ModBlocks.registerModBlocks();
         ModBlockEntities.register();
+        ModEntities.register();
         ModItems.registerModItems();
         ModScreenHandlers.register();
         ModFeatures.register();

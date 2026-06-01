@@ -78,6 +78,7 @@
   "item.caveborn.vacuumite_ingot": "Вакуумитовый слиток",
   "item.caveborn.raw_vacuumite": "Рудный вакуумит",
   "item.caveborn.limestone_dust": "Известняковая пыль",
+  "entity.caveborn.cave_firefly": "Пещерный светлячок",
   
   "block.caveborn.example_multiblock": "Пример мультиблока",
   "block.caveborn.test_colored_block": "Тестовый цветной блок",
