@@ -50,7 +50,7 @@ public class BlockMixin {
                         
                         // Спавним мультиблок
                         if (!player.isCreative()) {
-                            ItemStack itemStack = new ItemStack(ModBlocks.EXAMPLE_MULTIBLOCK);
+                            ItemStack itemStack = caveborn$getMultiblockDrop(state);
                             ItemEntity itemEntity = new ItemEntity(world, pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, itemStack);
                             world.spawnEntity(itemEntity);
                         }
@@ -60,6 +60,15 @@ public class BlockMixin {
                 }
             }
         }
+    }
+
+    @Unique
+    private ItemStack caveborn$getMultiblockDrop(BlockState state) {
+        if (state.isOf(ModBlocks.CRUSHER)) {
+            return new ItemStack(ModBlocks.CRUSHER);
+        }
+
+        return new ItemStack(ModBlocks.EXAMPLE_MULTIBLOCK);
     }
     
     @Inject(method = "dropStacks(Lnet/minecraft/block/BlockState;Lnet/minecraft/world/World;Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/block/entity/BlockEntity;Lnet/minecraft/entity/Entity;Lnet/minecraft/item/ItemStack;)V", at = @At("HEAD"), cancellable = true)
