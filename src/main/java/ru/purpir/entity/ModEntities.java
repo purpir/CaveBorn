@@ -41,8 +41,8 @@ public class ModEntities {
             SpawnGroup.AMBIENT,
             CAVE_FIREFLY,
             55,
-            3,
-            7
+            1,
+            2
         );
 
         Caveborn.LOGGER.info("Registering Entities for " + Caveborn.MOD_ID);

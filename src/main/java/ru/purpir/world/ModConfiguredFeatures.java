@@ -28,6 +28,7 @@ public class ModConfiguredFeatures {
     public static final RegistryKey<ConfiguredFeature<?, ?>> HOGWEED_PATCH_KEY = registerKey("hogweed_patch");
     public static final RegistryKey<ConfiguredFeature<?, ?>> AMETHYST_SPIKE_KEY = registerKey("amethyst_spike");
     public static final RegistryKey<ConfiguredFeature<?, ?>> SOLAR_IRIS_PATCH_KEY = registerKey("solar_iris_patch");
+    public static final RegistryKey<ConfiguredFeature<?, ?>> CRYSTAL_GROWTH_PATCH_KEY = registerKey("crystal_growth_patch");
 
     public static void bootstrap(Registerable<ConfiguredFeature<?, ?>> context) {
         RuleTest endStoneReplaceable = new BlockMatchRuleTest(Blocks.END_STONE);
@@ -85,6 +86,8 @@ public class ModConfiguredFeatures {
             PlacedFeatures.createEntry(Feature.SIMPLE_BLOCK,
                 new SimpleBlockFeatureConfig(BlockStateProvider.of(ModBlocks.SOLAR_IRIS)))
         ));
+
+        register(context, CRYSTAL_GROWTH_PATCH_KEY, ModFeatures.CRYSTAL_GROWTH, DefaultFeatureConfig.INSTANCE);
     }
 
     public static RegistryKey<ConfiguredFeature<?, ?>> registerKey(String name) {

@@ -48,6 +48,12 @@ public class ModOreGeneration {
             ModPlacedFeatures.ASHEN_LIMESTONE_PLACED_KEY
         );
 
+        BiomeModifications.addFeature(
+            BiomeSelectors.foundInOverworld(),
+            GenerationStep.Feature.VEGETAL_DECORATION,
+            ModPlacedFeatures.CRYSTAL_GROWTH_PATCH_PLACED_KEY
+        );
+
         // Weed patches - only in plains biome
         BiomeModifications.addFeature(
             BiomeSelectors.includeByKey(BiomeKeys.PLAINS, BiomeKeys.SUNFLOWER_PLAINS),

@@ -145,6 +145,7 @@ public class ModItems {
                     entries.add(LIMESTONE_DUST);
                     entries.add(ModBlocks.IRON_CASING);
                     entries.add(ModBlocks.CRUSHER);
+                    entries.add(ModBlocks.CRYSTAL_GROWTH);
                     // Netherite Titanium
                     entries.add(ModBlocks.NETHERITE_TITANIUM_BLOCK);
                     entries.add(NETHERITE_TITANIUM_INGOT);

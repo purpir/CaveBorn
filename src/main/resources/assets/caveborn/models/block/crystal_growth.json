@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cross",
+  "textures": {
+    "particle": "caveborn:block/crystal_growth",
+    "cross": "caveborn:block/crystal_growth"
+  }
+}

@@ -111,6 +111,18 @@ public class ModBlocks {
             .requiresTool()
             .sounds(BlockSoundGroup.METAL));
 
+    public static final Block CRYSTAL_GROWTH = registerBlock("crystal_growth",
+        CrystalGrowthBlock::new,
+        AbstractBlock.Settings.create()
+            .mapColor(MapColor.PURPLE)
+            .noCollision()
+            .strength(1.5f, 1.5f)
+            .requiresTool()
+            .nonOpaque()
+            .luminance(state -> 5)
+            .sounds(BlockSoundGroup.AMETHYST_CLUSTER)
+            .pistonBehavior(PistonBehavior.DESTROY));
+
     // Weed blocks
     public static final Block WEED = registerBlockNoItem("weed",
         WeedBlock::new,

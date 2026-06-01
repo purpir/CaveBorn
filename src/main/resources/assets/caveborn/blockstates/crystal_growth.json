@@ -1,0 +1,11 @@
+{
+  "variants": {
+    "facing=up": {
+      "model": "caveborn:block/crystal_growth"
+    },
+    "facing=down": {
+      "model": "caveborn:block/crystal_growth",
+      "x": 180
+    }
+  }
+}
