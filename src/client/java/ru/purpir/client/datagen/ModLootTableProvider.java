@@ -36,6 +36,7 @@ public class ModLootTableProvider extends FabricBlockLootTableProvider {
         addDrop(ModBlocks.VACUUMITE_BLOCK);
         addDrop(ModBlocks.DEEP_GRANITE);
         addDrop(ModBlocks.ASHEN_LIMESTONE);
+        addDrop(ModBlocks.CRUSHER);
         addDrop(ModBlocks.SOLAR_IRIS);
         
         // Weed loot tables are defined manually in resources/data/caveborn/loot_table/blocks/

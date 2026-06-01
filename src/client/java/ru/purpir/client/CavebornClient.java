@@ -13,6 +13,7 @@ import ru.purpir.Caveborn;
 import ru.purpir.block.ModBlocks;
 import ru.purpir.client.render.BlockTintSource;
 import ru.purpir.client.screen.BagScreen;
+import ru.purpir.client.screen.CrusherScreen;
 import ru.purpir.client.screen.SolarInfusionGuideScreen;
 import ru.purpir.item.ModItems;
 import ru.purpir.screen.ModScreenHandlers;
@@ -35,6 +36,7 @@ public class CavebornClient implements ClientModInitializer {
         
         // Регистрируем экран сумки
         HandledScreens.register(ModScreenHandlers.BAG_SCREEN_HANDLER, BagScreen::new);
+        HandledScreens.register(ModScreenHandlers.CRUSHER_SCREEN_HANDLER, CrusherScreen::new);
 
         UseItemCallback.EVENT.register((player, world, hand) -> {
             if (!world.isClient()) {

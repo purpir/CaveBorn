@@ -5,6 +5,7 @@ import net.fabricmc.fabric.api.command.v2.CommandRegistrationCallback;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import ru.purpir.block.ModBlocks;
+import ru.purpir.block.entity.ModBlockEntities;
 import ru.purpir.command.CavebornCommand;
 import ru.purpir.item.ModArmorMaterials;
 import ru.purpir.item.ModItems;
@@ -29,6 +30,7 @@ public class Caveborn implements ModInitializer {
         ModArmorMaterials.initialize();
         ru.purpir.component.ModComponents.register();
         ModBlocks.registerModBlocks();
+        ModBlockEntities.register();
         ModItems.registerModItems();
         ModScreenHandlers.register();
         ModFeatures.register();

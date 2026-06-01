@@ -95,6 +95,14 @@ public class ModBlocks {
             .requiresTool()
             .sounds(BlockSoundGroup.STONE));
 
+    public static final Block CRUSHER = registerBlock("crusher",
+        CrusherBlock::new,
+        AbstractBlock.Settings.create()
+            .mapColor(MapColor.DEEPSLATE_GRAY)
+            .strength(5.0f, 8.0f)
+            .requiresTool()
+            .sounds(BlockSoundGroup.METAL));
+
     // Weed blocks
     public static final Block WEED = registerBlockNoItem("weed",
         WeedBlock::new,

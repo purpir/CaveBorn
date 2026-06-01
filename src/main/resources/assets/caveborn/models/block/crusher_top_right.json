@@ -1,0 +1,12 @@
+{
+  "parent": "minecraft:block/cube",
+  "textures": {
+    "particle": "caveborn:block/crusher_side",
+    "north": "caveborn:block/crusher_front_top_right",
+    "south": "caveborn:block/crusher_back_top_left",
+    "east": "caveborn:block/crusher_side",
+    "west": "caveborn:block/crusher_side",
+    "up": "caveborn:block/crusher_top",
+    "down": "caveborn:block/crusher_bottom"
+  }
+}
