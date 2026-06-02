@@ -35,6 +35,7 @@ public class ModModelProvider extends FabricModelProvider {
         // Titanium bars - модели создаются вручную (см. resources/assets/caveborn/)
         blockStateModelGenerator.registerDoor(ModBlocks.TITANIUM_DOOR);
         blockStateModelGenerator.registerTrapdoor(ModBlocks.TITANIUM_TRAPDOOR);
+
     }
 
     @Override
@@ -42,6 +43,7 @@ public class ModModelProvider extends FabricModelProvider {
         // Misc
         itemModelGenerator.register(ModItems.FIBER, Models.GENERATED);
         itemModelGenerator.register(ModItems.BAG, Models.GENERATED);
+        itemModelGenerator.register(ModItems.CRACK_HAMMER, Models.HANDHELD);
         itemModelGenerator.register(ModItems.SOLAR_CRYSTAL, Models.GENERATED);
         itemModelGenerator.register(ModItems.SOLAR_INFUSION_GUIDE, Models.GENERATED);
         

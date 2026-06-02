@@ -20,11 +20,12 @@ public class VanillaBiomeParametersMixin {
     private void caveborn$addAmethystPlains(
             Consumer<Pair<MultiNoiseUtil.NoiseHypercube, RegistryKey<Biome>>> parameters,
             CallbackInfo ci) {
-        add(parameters, 0.10f, 0.42f, -0.35f, 0.05f, 0.18f, 0.48f, -0.35f, 0.10f, -0.25f, 0.20f);
-        add(parameters, 0.25f, 0.58f, -0.50f, -0.12f, 0.36f, 0.68f, -0.55f, -0.18f, 0.25f, 0.58f);
+        add(parameters, ModBiomes.AMETHYST_PLAINS, 0.10f, 0.42f, -0.35f, 0.05f, 0.18f, 0.48f, -0.35f, 0.10f, -0.25f, 0.20f);
+        add(parameters, ModBiomes.AMETHYST_PLAINS, 0.25f, 0.58f, -0.50f, -0.12f, 0.36f, 0.68f, -0.55f, -0.18f, 0.25f, 0.58f);
     }
 
     private static void add(Consumer<Pair<MultiNoiseUtil.NoiseHypercube, RegistryKey<Biome>>> parameters,
+                            RegistryKey<Biome> biome,
                             float minTemperature, float maxTemperature,
                             float minHumidity, float maxHumidity,
                             float minContinentalness, float maxContinentalness,
@@ -40,7 +41,7 @@ public class VanillaBiomeParametersMixin {
                 MultiNoiseUtil.ParameterRange.of(minWeirdness, maxWeirdness),
                 0.0f
             ),
-            ModBiomes.AMETHYST_PLAINS
+            biome
         ));
     }
 }

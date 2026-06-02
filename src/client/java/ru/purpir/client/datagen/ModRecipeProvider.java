@@ -232,6 +232,16 @@ public class ModRecipeProvider extends FabricRecipeProvider {
                     .criterion(hasItem(ModItems.TITANIUM_INGOT), conditionsFromItem(ModItems.TITANIUM_INGOT))
                     .offerTo(exporter);
 
+                createShaped(RecipeCategory.TOOLS, ModItems.CRACK_HAMMER)
+                    .pattern("BGB")
+                    .pattern(" S ")
+                    .pattern(" S ")
+                    .input('B', ModBlocks.BRONZE_BLOCK)
+                    .input('G', ModBlocks.DEEP_GRANITE)
+                    .input('S', Items.STICK)
+                    .criterion(hasItem(ModBlocks.BRONZE_BLOCK), conditionsFromItem(ModBlocks.BRONZE_BLOCK))
+                    .offerTo(exporter);
+
                 // Bag
                 createShaped(RecipeCategory.TOOLS, ModItems.BAG)
                     .pattern("KCK")

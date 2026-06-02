@@ -1,6 +1,7 @@
 // 1.21.10	-999999999-01-01T00:00:00	CaveBorn/Tags for minecraft:item
 bae2aa66f2f8618ced57dad3bc6b312294ba84e5 data/caveborn/tags/item/bronze_ingots.json
 bae2aa66f2f8618ced57dad3bc6b312294ba84e5 data/caveborn/tags/item/bronze_repair.json
+bae2aa66f2f8618ced57dad3bc6b312294ba84e5 data/caveborn/tags/item/crack_hammer_repair.json
 6ff46117f160b4b300194248cb3645450043be5e data/caveborn/tags/item/netherite_titanium_repair.json
 457ae9851eddea0e961254292214d7818b209c4d data/caveborn/tags/item/titanium_ingots.json
 0c6eb8acc1672a6262822ded56df4eb0cc3f2787 data/caveborn/tags/item/vacuumite_repair.json

@@ -3,7 +3,6 @@ package ru.purpir.world;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.SpawnGroup;
 import net.minecraft.registry.Registerable;
-import net.minecraft.registry.RegistryEntryLookup;
 import net.minecraft.registry.RegistryKey;
 import net.minecraft.registry.RegistryKeys;
 import net.minecraft.sound.BiomeMoodSound;
@@ -13,8 +12,6 @@ import net.minecraft.world.biome.BiomeEffects;
 import net.minecraft.world.biome.GenerationSettings;
 import net.minecraft.world.biome.SpawnSettings;
 import net.minecraft.world.gen.GenerationStep;
-import net.minecraft.world.gen.carver.ConfiguredCarver;
-import net.minecraft.world.gen.feature.PlacedFeature;
 import ru.purpir.Caveborn;
 
 public class ModBiomes {
@@ -25,10 +22,10 @@ public class ModBiomes {
     }
 
     public static void bootstrap(Registerable<Biome> context) {
-        RegistryEntryLookup<PlacedFeature> placedFeatures = context.getRegistryLookup(RegistryKeys.PLACED_FEATURE);
-        RegistryEntryLookup<ConfiguredCarver<?>> configuredCarvers = context.getRegistryLookup(RegistryKeys.CONFIGURED_CARVER);
-
-        GenerationSettings.LookupBackedBuilder generation = new GenerationSettings.LookupBackedBuilder(placedFeatures, configuredCarvers);
+        GenerationSettings.LookupBackedBuilder generation = new GenerationSettings.LookupBackedBuilder(
+            context.getRegistryLookup(RegistryKeys.PLACED_FEATURE),
+            context.getRegistryLookup(RegistryKeys.CONFIGURED_CARVER)
+        );
         generation.feature(GenerationStep.Feature.SURFACE_STRUCTURES, ModPlacedFeatures.AMETHYST_SPIKE_PLACED_KEY);
 
         SpawnSettings.Builder spawns = new SpawnSettings.Builder();

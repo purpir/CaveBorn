@@ -31,6 +31,9 @@ public class ModItemTagProvider extends FabricTagProvider.ItemTagProvider {
         valueLookupBuilder(ModTags.Items.VACUUMITE_REPAIR)
             .add(ModItems.VACUUMITE_INGOT);
 
+        valueLookupBuilder(ModTags.Items.CRACK_HAMMER_REPAIR)
+            .add(ModItems.BRONZE_INGOT);
+
         // Armor trims support
         valueLookupBuilder(ItemTags.TRIMMABLE_ARMOR)
             .add(ModItems.BRONZE_HELMET)

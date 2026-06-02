@@ -15,4 +15,7 @@ public class ModToolMaterials {
     // Vacuumite - same stats as diamond
     public static final ToolMaterial VACUUMITE = new ToolMaterial(
         BlockTags.INCORRECT_FOR_DIAMOND_TOOL, 1561, 8.0f, 3.0f, 10, ModTags.Items.VACUUMITE_REPAIR);
+
+    public static final ToolMaterial CRACK_HAMMER = new ToolMaterial(
+        BlockTags.INCORRECT_FOR_DIAMOND_TOOL, 768, 6.0f, 2.0f, 8, ModTags.Items.CRACK_HAMMER_REPAIR);
 }

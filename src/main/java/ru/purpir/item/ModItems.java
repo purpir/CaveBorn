@@ -24,6 +24,8 @@ public class ModItems {
     public static final Item SOLAR_CRYSTAL = registerItem("solar_crystal", Item::new, new Item.Settings());
     public static final Item SOLAR_INFUSION_GUIDE = registerItem("solar_infusion_guide", Item::new, new Item.Settings().maxCount(1));
     public static final Item BAG = registerItem("bag", BagItem::new, new Item.Settings().maxCount(1));
+    public static final Item CRACK_HAMMER = registerItem("crack_hammer", CrackHammerItem::new,
+        new Item.Settings().pickaxe(ModToolMaterials.CRACK_HAMMER, 4.0F, -3.2F));
     
     // Bronze Items
     public static final Item BRONZE_INGOT = registerItem("bronze_ingot", Item::new, new Item.Settings());
@@ -107,6 +109,7 @@ public class ModItems {
                     // Misc
                     entries.add(FIBER);
                     entries.add(BAG);
+                    entries.add(CRACK_HAMMER);
                     entries.add(SOLAR_CRYSTAL);
                     entries.add(SOLAR_INFUSION_GUIDE);
                     entries.add(ModBlocks.SOLAR_IRIS);

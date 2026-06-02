@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "B": "caveborn:bronze_block",
+    "G": "caveborn:deep_granite",
+    "S": "minecraft:stick"
+  },
+  "pattern": [
+    "BGB",
+    " S ",
+    " S "
+  ],
+  "result": {
+    "count": 1,
+    "id": "caveborn:crack_hammer"
+  }
+}
