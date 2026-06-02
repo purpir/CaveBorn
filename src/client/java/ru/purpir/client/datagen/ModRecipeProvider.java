@@ -319,6 +319,29 @@ public class ModRecipeProvider extends FabricRecipeProvider {
                     .input(ModBlocks.ASHEN_LIMESTONE)
                     .criterion(hasItem(ModBlocks.ASHEN_LIMESTONE), conditionsFromItem(ModBlocks.ASHEN_LIMESTONE))
                     .offerTo(exporter, "limestone_dust_from_ashen_limestone");
+
+                createShapeless(RecipeCategory.MISC, ModItems.ENDER_PEARL_SHARD)
+                    .input(ModBlocks.VOID_EYE_PLANT)
+                    .criterion(hasItem(ModBlocks.VOID_EYE_PLANT), conditionsFromItem(ModBlocks.VOID_EYE_PLANT))
+                    .offerTo(exporter, "ender_pearl_shard_from_void_eye_plant");
+
+                createShaped(RecipeCategory.MISC, Items.ENDER_PEARL)
+                    .pattern("SS")
+                    .pattern("SS")
+                    .input('S', ModItems.ENDER_PEARL_SHARD)
+                    .criterion(hasItem(ModItems.ENDER_PEARL_SHARD), conditionsFromItem(ModItems.ENDER_PEARL_SHARD))
+                    .offerTo(exporter, "ender_pearl_from_shards");
+
+                createShaped(RecipeCategory.DECORATIONS, ModBlocks.VOID_LANTERN)
+                    .pattern(" S ")
+                    .pattern("VLV")
+                    .pattern(" S ")
+                    .input('S', ModItems.ENDER_PEARL_SHARD)
+                    .input('V', ModBlocks.VOID_EYE_PLANT)
+                    .input('L', Items.LANTERN)
+                    .criterion(hasItem(ModBlocks.VOID_EYE_PLANT), conditionsFromItem(ModBlocks.VOID_EYE_PLANT))
+                    .criterion(hasItem(ModItems.ENDER_PEARL_SHARD), conditionsFromItem(ModItems.ENDER_PEARL_SHARD))
+                    .offerTo(exporter);
             }
         };
     }

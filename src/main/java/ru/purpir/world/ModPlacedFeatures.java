@@ -25,7 +25,10 @@ public class ModPlacedFeatures {
     public static final RegistryKey<PlacedFeature> HOGWEED_PATCH_PLACED_KEY = registerKey("hogweed_patch");
     public static final RegistryKey<PlacedFeature> AMETHYST_SPIKE_PLACED_KEY = registerKey("amethyst_spike");
     public static final RegistryKey<PlacedFeature> SOLAR_IRIS_PATCH_PLACED_KEY = registerKey("solar_iris_patch");
+    public static final RegistryKey<PlacedFeature> VOID_EYE_PLANT_PATCH_PLACED_KEY = registerKey("void_eye_plant_patch");
     public static final RegistryKey<PlacedFeature> CRYSTAL_GROWTH_PATCH_PLACED_KEY = registerKey("crystal_growth_patch");
+    public static final RegistryKey<PlacedFeature> MINERS_CAMP_PLACED_KEY = registerKey("miners_camp");
+    public static final RegistryKey<PlacedFeature> HANGING_MINERS_CACHE_PLACED_KEY = registerKey("hanging_miners_cache");
 
     public static void bootstrap(Registerable<PlacedFeature> context) {
         var configuredFeatures = context.getRegistryLookup(RegistryKeys.CONFIGURED_FEATURE);
@@ -98,12 +101,39 @@ public class ModPlacedFeatures {
                 BiomePlacementModifier.of()
             ));
 
+        register(context, VOID_EYE_PLANT_PATCH_PLACED_KEY,
+            configuredFeatures.getOrThrow(ModConfiguredFeatures.VOID_EYE_PLANT_PATCH_KEY),
+            List.of(
+                RarityFilterPlacementModifier.of(5),
+                SquarePlacementModifier.of(),
+                PlacedFeatures.WORLD_SURFACE_WG_HEIGHTMAP,
+                BiomePlacementModifier.of()
+            ));
+
         register(context, CRYSTAL_GROWTH_PATCH_PLACED_KEY,
             configuredFeatures.getOrThrow(ModConfiguredFeatures.CRYSTAL_GROWTH_PATCH_KEY),
             List.of(
                 CountPlacementModifier.of(3),
                 SquarePlacementModifier.of(),
                 HeightRangePlacementModifier.uniform(YOffset.fixed(-48), YOffset.fixed(48)),
+                BiomePlacementModifier.of()
+            ));
+
+        register(context, MINERS_CAMP_PLACED_KEY,
+            configuredFeatures.getOrThrow(ModConfiguredFeatures.MINERS_CAMP_KEY),
+            List.of(
+                RarityFilterPlacementModifier.of(28),
+                SquarePlacementModifier.of(),
+                HeightRangePlacementModifier.uniform(YOffset.fixed(-60), YOffset.fixed(-8)),
+                BiomePlacementModifier.of()
+            ));
+
+        register(context, HANGING_MINERS_CACHE_PLACED_KEY,
+            configuredFeatures.getOrThrow(ModConfiguredFeatures.HANGING_MINERS_CACHE_KEY),
+            List.of(
+                RarityFilterPlacementModifier.of(42),
+                SquarePlacementModifier.of(),
+                HeightRangePlacementModifier.uniform(YOffset.fixed(-58), YOffset.fixed(-12)),
                 BiomePlacementModifier.of()
             ));
     }

@@ -158,6 +158,35 @@ public class ModBlocks {
             .pistonBehavior(PistonBehavior.DESTROY)
             .offset(AbstractBlock.OffsetType.XZ));
 
+    public static final Block VOID_EYE_PLANT = registerBlock("void_eye_plant",
+        settings -> new VoidEyePlantBlock(StatusEffects.BLINDNESS, 4.0F, settings),
+        AbstractBlock.Settings.create()
+            .mapColor(MapColor.PURPLE)
+            .noCollision()
+            .nonOpaque()
+            .breakInstantly()
+            .sounds(BlockSoundGroup.GRASS)
+            .luminance(state -> 3)
+            .pistonBehavior(PistonBehavior.DESTROY)
+            .offset(AbstractBlock.OffsetType.XZ));
+
+    public static final Block VOID_LANTERN = registerBlock("void_lantern",
+        LanternBlock::new,
+        AbstractBlock.Settings.create()
+            .mapColor(MapColor.PURPLE)
+            .strength(3.5f)
+            .sounds(BlockSoundGroup.LANTERN)
+            .luminance(state -> 12)
+            .nonOpaque()
+            .pistonBehavior(PistonBehavior.DESTROY));
+
+    public static final Block LOCKED_MINER_CRATE = registerBlock("locked_miner_crate",
+        LockedMinerCrateBlock::new,
+        AbstractBlock.Settings.create()
+            .mapColor(MapColor.BROWN)
+            .strength(3.0f, 6.0f)
+            .sounds(BlockSoundGroup.WOOD));
+
     // Titanium building blocks
     public static final Block TITANIUM_GRATE = registerBlock("titanium_grate",
         GrateBlock::new,

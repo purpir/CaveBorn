@@ -35,6 +35,12 @@ public class ModOreGeneration {
             ModPlacedFeatures.VACUUMITE_ORE_PLACED_KEY
         );
 
+        BiomeModifications.addFeature(
+            BiomeSelectors.includeByKey(BiomeKeys.END_HIGHLANDS, BiomeKeys.END_MIDLANDS, BiomeKeys.SMALL_END_ISLANDS),
+            GenerationStep.Feature.VEGETAL_DECORATION,
+            ModPlacedFeatures.VOID_EYE_PLANT_PATCH_PLACED_KEY
+        );
+
         // Natural stone variants in Overworld
         BiomeModifications.addFeature(
             BiomeSelectors.foundInOverworld(),
@@ -52,6 +58,18 @@ public class ModOreGeneration {
             BiomeSelectors.foundInOverworld(),
             GenerationStep.Feature.VEGETAL_DECORATION,
             ModPlacedFeatures.CRYSTAL_GROWTH_PATCH_PLACED_KEY
+        );
+
+        BiomeModifications.addFeature(
+            BiomeSelectors.foundInOverworld(),
+            GenerationStep.Feature.UNDERGROUND_DECORATION,
+            ModPlacedFeatures.MINERS_CAMP_PLACED_KEY
+        );
+
+        BiomeModifications.addFeature(
+            BiomeSelectors.foundInOverworld(),
+            GenerationStep.Feature.UNDERGROUND_DECORATION,
+            ModPlacedFeatures.HANGING_MINERS_CACHE_PLACED_KEY
         );
 
         // Weed patches - only in plains biome

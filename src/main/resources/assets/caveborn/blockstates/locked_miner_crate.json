@@ -1,0 +1,9 @@
+{
+  "multipart": [
+    {
+      "apply": {
+        "model": "caveborn:block/locked_miner_crate"
+      }
+    }
+  ]
+}

@@ -27,7 +27,10 @@ public class ModConfiguredFeatures {
     public static final RegistryKey<ConfiguredFeature<?, ?>> HOGWEED_PATCH_KEY = registerKey("hogweed_patch");
     public static final RegistryKey<ConfiguredFeature<?, ?>> AMETHYST_SPIKE_KEY = registerKey("amethyst_spike");
     public static final RegistryKey<ConfiguredFeature<?, ?>> SOLAR_IRIS_PATCH_KEY = registerKey("solar_iris_patch");
+    public static final RegistryKey<ConfiguredFeature<?, ?>> VOID_EYE_PLANT_PATCH_KEY = registerKey("void_eye_plant_patch");
     public static final RegistryKey<ConfiguredFeature<?, ?>> CRYSTAL_GROWTH_PATCH_KEY = registerKey("crystal_growth_patch");
+    public static final RegistryKey<ConfiguredFeature<?, ?>> MINERS_CAMP_KEY = registerKey("miners_camp");
+    public static final RegistryKey<ConfiguredFeature<?, ?>> HANGING_MINERS_CACHE_KEY = registerKey("hanging_miners_cache");
 
     public static void bootstrap(Registerable<ConfiguredFeature<?, ?>> context) {
         RuleTest endStoneReplaceable = new BlockMatchRuleTest(Blocks.END_STONE);
@@ -86,7 +89,17 @@ public class ModConfiguredFeatures {
                 new SimpleBlockFeatureConfig(BlockStateProvider.of(ModBlocks.SOLAR_IRIS)))
         ));
 
+        register(context, VOID_EYE_PLANT_PATCH_KEY, Feature.FLOWER, new RandomPatchFeatureConfig(
+            12,
+            3,
+            1,
+            PlacedFeatures.createEntry(Feature.SIMPLE_BLOCK,
+                new SimpleBlockFeatureConfig(BlockStateProvider.of(ModBlocks.VOID_EYE_PLANT)))
+        ));
+
         register(context, CRYSTAL_GROWTH_PATCH_KEY, ModFeatures.CRYSTAL_GROWTH, DefaultFeatureConfig.INSTANCE);
+        register(context, MINERS_CAMP_KEY, ModFeatures.MINERS_CAMP, DefaultFeatureConfig.INSTANCE);
+        register(context, HANGING_MINERS_CACHE_KEY, ModFeatures.HANGING_MINERS_CACHE, DefaultFeatureConfig.INSTANCE);
     }
 
     public static RegistryKey<ConfiguredFeature<?, ?>> registerKey(String name) {

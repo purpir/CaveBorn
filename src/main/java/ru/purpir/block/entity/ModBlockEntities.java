@@ -15,6 +15,12 @@ public class ModBlockEntities {
         FabricBlockEntityTypeBuilder.create(CrusherBlockEntity::new, ModBlocks.CRUSHER).build()
     );
 
+    public static final BlockEntityType<LockedMinerCrateBlockEntity> LOCKED_MINER_CRATE = Registry.register(
+        Registries.BLOCK_ENTITY_TYPE,
+        Identifier.of(Caveborn.MOD_ID, "locked_miner_crate"),
+        FabricBlockEntityTypeBuilder.create(LockedMinerCrateBlockEntity::new, ModBlocks.LOCKED_MINER_CRATE).build()
+    );
+
     public static void register() {
         Caveborn.LOGGER.info("Registering Block Entities for " + Caveborn.MOD_ID);
     }

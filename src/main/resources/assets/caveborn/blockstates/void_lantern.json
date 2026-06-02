@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "hanging=false": {
+      "model": "caveborn:block/void_lantern"
+    },
+    "hanging=true": {
+      "model": "caveborn:block/void_lantern_hanging"
+    }
+  }
+}

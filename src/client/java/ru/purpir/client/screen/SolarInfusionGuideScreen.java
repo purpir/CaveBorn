@@ -19,6 +19,9 @@ public class SolarInfusionGuideScreen extends Screen {
     private static final int TAB_WIDTH = 92;
     private static final int ABILITY_BUTTON_SIZE = 24;
     private static final int ABILITIES_SECTION = 4;
+    private static final int ABILITY_COLUMNS = 4;
+    private static final int ABILITY_ROWS = 5;
+    private static final int ABILITIES_PER_PAGE = ABILITY_COLUMNS * ABILITY_ROWS;
     private static final Section[] SECTIONS = new Section[] {
         new Section("guide.caveborn.solar.section.basics", "guide.caveborn.solar.content.basics"),
         new Section("guide.caveborn.solar.section.crystal", "guide.caveborn.solar.content.crystal"),
@@ -47,13 +50,17 @@ public class SolarInfusionGuideScreen extends Screen {
         new AbilityEntry(new ItemStack(Items.SPECTRAL_ARROW), "guide.caveborn.solar.ability.spectral_arrow", "guide.caveborn.solar.ability.spectral_arrow.content"),
         new AbilityEntry(new ItemStack(Items.WIND_CHARGE), "guide.caveborn.solar.ability.wind_charge", "guide.caveborn.solar.ability.wind_charge.content"),
         new AbilityEntry(new ItemStack(ModItems.CRYSTAL_DUST), "guide.caveborn.solar.ability.crystal_dust", "guide.caveborn.solar.ability.crystal_dust.content"),
-        new AbilityEntry(new ItemStack(Items.TOTEM_OF_UNDYING), "guide.caveborn.solar.ability.totem", "guide.caveborn.solar.ability.totem.content")
+        new AbilityEntry(new ItemStack(Items.TOTEM_OF_UNDYING), "guide.caveborn.solar.ability.totem", "guide.caveborn.solar.ability.totem.content"),
+        new AbilityEntry(new ItemStack(Items.ENDER_PEARL), "guide.caveborn.solar.ability.ender_pearl", "guide.caveborn.solar.ability.ender_pearl.content")
     };
 
     private int selectedSection = 0;
     private int selectedAbility = 0;
+    private int abilityPage = 0;
     private final List<ButtonWidget> tabButtons = new ArrayList<>();
     private final List<ButtonWidget> abilityButtons = new ArrayList<>();
+    private ButtonWidget previousAbilityPageButton;
+    private ButtonWidget nextAbilityPageButton;
 
     public SolarInfusionGuideScreen() {
         super(Text.translatable("guide.caveborn.solar.title"));
@@ -79,16 +86,39 @@ public class SolarInfusionGuideScreen extends Screen {
             this.addDrawableChild(button);
         }
 
-        for (int i = 0; i < ABILITIES.length; i++) {
-            final int abilityIndex = i;
-            int column = i % 4;
-            int row = i / 4;
-            ButtonWidget button = ButtonWidget.builder(Text.empty(), widget -> this.selectedAbility = abilityIndex)
+        for (int i = 0; i < ABILITIES_PER_PAGE; i++) {
+            final int slotIndex = i;
+            int column = i % ABILITY_COLUMNS;
+            int row = i / ABILITY_COLUMNS;
+            ButtonWidget button = ButtonWidget.builder(Text.empty(), widget -> {
+                    int abilityIndex = this.abilityPage * ABILITIES_PER_PAGE + slotIndex;
+                    if (abilityIndex < ABILITIES.length) {
+                        this.selectedAbility = abilityIndex;
+                    }
+                })
                 .dimensions(x + 120 + column * 30, y + 48 + row * 30, ABILITY_BUTTON_SIZE, ABILITY_BUTTON_SIZE)
                 .build();
             this.abilityButtons.add(button);
             this.addDrawableChild(button);
         }
+
+        this.previousAbilityPageButton = ButtonWidget.builder(Text.literal("<"), widget -> {
+                this.abilityPage = Math.max(0, this.abilityPage - 1);
+                this.selectedAbility = this.abilityPage * ABILITIES_PER_PAGE;
+                refreshTabButtons();
+            })
+            .dimensions(x + 150, y + 196, 24, 18)
+            .build();
+        this.addDrawableChild(this.previousAbilityPageButton);
+
+        this.nextAbilityPageButton = ButtonWidget.builder(Text.literal(">"), widget -> {
+                this.abilityPage = Math.min(getMaxAbilityPage(), this.abilityPage + 1);
+                this.selectedAbility = this.abilityPage * ABILITIES_PER_PAGE;
+                refreshTabButtons();
+            })
+            .dimensions(x + 190, y + 196, 24, 18)
+            .build();
+        this.addDrawableChild(this.nextAbilityPageButton);
 
         this.addDrawableChild(ButtonWidget.builder(Text.translatable("gui.caveborn.previous"), widget -> {
                 this.selectedSection = Math.max(0, this.selectedSection - 1);
@@ -113,9 +143,26 @@ public class SolarInfusionGuideScreen extends Screen {
         }
 
         boolean showAbilities = this.selectedSection == ABILITIES_SECTION;
-        for (ButtonWidget button : this.abilityButtons) {
-            button.visible = showAbilities;
-            button.active = showAbilities;
+        for (int i = 0; i < this.abilityButtons.size(); i++) {
+            int abilityIndex = this.abilityPage * ABILITIES_PER_PAGE + i;
+            ButtonWidget button = this.abilityButtons.get(i);
+            boolean hasAbility = abilityIndex < ABILITIES.length;
+            button.visible = showAbilities && hasAbility;
+            button.active = showAbilities && hasAbility;
+            int column = i % ABILITY_COLUMNS;
+            int row = i / ABILITY_COLUMNS;
+            if (button.visible) {
+                button.setPosition((this.width - PANEL_WIDTH) / 2 + 120 + column * 30, (this.height - PANEL_HEIGHT) / 2 + 48 + row * 30);
+            } else {
+                button.setPosition(-1000, -1000);
+            }
+        }
+
+        if (this.previousAbilityPageButton != null && this.nextAbilityPageButton != null) {
+            this.previousAbilityPageButton.visible = showAbilities && getMaxAbilityPage() > 0;
+            this.nextAbilityPageButton.visible = showAbilities && getMaxAbilityPage() > 0;
+            this.previousAbilityPageButton.active = showAbilities && this.abilityPage > 0;
+            this.nextAbilityPageButton.active = showAbilities && this.abilityPage < getMaxAbilityPage();
         }
     }
 
@@ -134,7 +181,7 @@ public class SolarInfusionGuideScreen extends Screen {
         if (this.selectedSection == ABILITIES_SECTION) {
             renderAbilitiesPage(context, x, y, mouseX, mouseY);
         } else {
-            drawWrappedContent(context, I18n.translate(section.contentKey()), x + 120, y + 54, 282, 0xff3b372d);
+            drawWrappedContent(context, translateForBook(section.contentKey()), x + 120, y + 54, 282, 0xff3b372d);
         }
 
         super.render(context, mouseX, mouseY, delta);
@@ -159,21 +206,38 @@ public class SolarInfusionGuideScreen extends Screen {
         int pageY = y + 54;
         context.fill(pageX - 8, pageY - 8, x + PANEL_WIDTH - 18, y + PANEL_HEIGHT - 43, 0x22ffffff);
         context.drawItem(ability.icon(), pageX, pageY - 2);
-        context.drawTextWithShadow(this.textRenderer, Text.translatable(ability.titleKey()), pageX + 22, pageY + 2, 0xfffff5c8);
-        drawWrappedContent(context, I18n.translate(ability.contentKey()), pageX, pageY + 24, 145, 0xff3b372d);
+        drawWrappedContent(context, translateForBook(ability.titleKey()), pageX + 22, pageY, 123, 0xff3b372d);
+        drawWrappedContent(context, translateForBook(ability.contentKey()), pageX, pageY + 28, 145, 0xff3b372d);
     }
 
     private void renderAbilityIcons(DrawContext context, int x, int y, int mouseX, int mouseY) {
-        for (int i = 0; i < ABILITIES.length; i++) {
-            int column = i % 4;
-            int row = i / 4;
+        for (int i = 0; i < ABILITIES_PER_PAGE; i++) {
+            int abilityIndex = this.abilityPage * ABILITIES_PER_PAGE + i;
+            if (abilityIndex >= ABILITIES.length) {
+                continue;
+            }
+
+            int column = i % ABILITY_COLUMNS;
+            int row = i / ABILITY_COLUMNS;
             int iconX = x + 124 + column * 30;
             int iconY = y + 52 + row * 30;
-            if (i == this.selectedAbility) {
+            if (abilityIndex == this.selectedAbility) {
                 context.fill(iconX - 4, iconY - 4, iconX + 20, iconY + 20, 0x55fff2a6);
             }
-            context.drawItem(ABILITIES[i].icon(), iconX, iconY);
+            context.drawItem(ABILITIES[abilityIndex].icon(), iconX, iconY);
         }
+    }
+
+    private int getMaxAbilityPage() {
+        return Math.max(0, (ABILITIES.length - 1) / ABILITIES_PER_PAGE);
+    }
+
+    private String translateForBook(String key) {
+        String translated = I18n.translate(key);
+        if (translated.startsWith("Format error: ")) {
+            return translated.substring("Format error: ".length());
+        }
+        return translated;
     }
 
     private void drawWrappedContent(DrawContext context, String text, int x, int y, int width, int color) {

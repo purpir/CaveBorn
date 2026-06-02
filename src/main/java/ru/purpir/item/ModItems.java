@@ -23,6 +23,7 @@ public class ModItems {
     // Solar Crystal
     public static final Item SOLAR_CRYSTAL = registerItem("solar_crystal", Item::new, new Item.Settings());
     public static final Item SOLAR_INFUSION_GUIDE = registerItem("solar_infusion_guide", Item::new, new Item.Settings().maxCount(1));
+    public static final Item RUSTED_MINER_KEY = registerItem("rusted_miner_key", Item::new, new Item.Settings());
     public static final Item BAG = registerItem("bag", BagItem::new, new Item.Settings().maxCount(1));
     public static final Item CRACK_HAMMER = registerItem("crack_hammer", CrackHammerItem::new,
         new Item.Settings().pickaxe(ModToolMaterials.CRACK_HAMMER, 4.0F, -3.2F));
@@ -64,6 +65,7 @@ public class ModItems {
         new Item.Settings().sword(ModToolMaterials.VACUUMITE, 3, -2.4f));
     public static final Item LIMESTONE_DUST = registerItem("limestone_dust", Item::new, new Item.Settings());
     public static final Item CRYSTAL_DUST = registerItem("crystal_dust", Item::new, new Item.Settings());
+    public static final Item ENDER_PEARL_SHARD = registerItem("ender_pearl_shard", Item::new, new Item.Settings());
 
     // Netherite Titanium Items
     public static final Item NETHERITE_TITANIUM_INGOT = registerItem("netherite_titanium_ingot", 
@@ -112,6 +114,7 @@ public class ModItems {
                     entries.add(CRACK_HAMMER);
                     entries.add(SOLAR_CRYSTAL);
                     entries.add(SOLAR_INFUSION_GUIDE);
+                    entries.add(RUSTED_MINER_KEY);
                     entries.add(ModBlocks.SOLAR_IRIS);
                     // Bronze
                     entries.add(ModBlocks.BRONZE_ORE);
@@ -151,9 +154,13 @@ public class ModItems {
                     entries.add(ModBlocks.ASHEN_LIMESTONE);
                     entries.add(LIMESTONE_DUST);
                     entries.add(CRYSTAL_DUST);
+                    entries.add(ENDER_PEARL_SHARD);
                     entries.add(ModBlocks.IRON_CASING);
                     entries.add(ModBlocks.CRUSHER);
                     entries.add(ModBlocks.CRYSTAL_GROWTH);
+                    entries.add(ModBlocks.VOID_EYE_PLANT);
+                    entries.add(ModBlocks.VOID_LANTERN);
+                    entries.add(ModBlocks.LOCKED_MINER_CRATE);
                     // Netherite Titanium
                     entries.add(ModBlocks.NETHERITE_TITANIUM_BLOCK);
                     entries.add(NETHERITE_TITANIUM_INGOT);

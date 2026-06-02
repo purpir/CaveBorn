@@ -11,10 +11,14 @@ public class ModFeatures {
     public static final Feature<DefaultFeatureConfig> HOGWEED = new HogweedFeature(DefaultFeatureConfig.CODEC);
     public static final Feature<DefaultFeatureConfig> AMETHYST_SPIKE = new AmethystSpikeFeature(DefaultFeatureConfig.CODEC);
     public static final Feature<DefaultFeatureConfig> CRYSTAL_GROWTH = new CrystalGrowthFeature(DefaultFeatureConfig.CODEC);
+    public static final Feature<DefaultFeatureConfig> MINERS_CAMP = new MinersCampFeature(DefaultFeatureConfig.CODEC);
+    public static final Feature<DefaultFeatureConfig> HANGING_MINERS_CACHE = new HangingMinersCacheFeature(DefaultFeatureConfig.CODEC);
     
     public static void register() {
         Registry.register(Registries.FEATURE, Identifier.of(Caveborn.MOD_ID, "hogweed"), HOGWEED);
         Registry.register(Registries.FEATURE, Identifier.of(Caveborn.MOD_ID, "amethyst_spike"), AMETHYST_SPIKE);
         Registry.register(Registries.FEATURE, Identifier.of(Caveborn.MOD_ID, "crystal_growth"), CRYSTAL_GROWTH);
+        Registry.register(Registries.FEATURE, Identifier.of(Caveborn.MOD_ID, "miners_camp"), MINERS_CAMP);
+        Registry.register(Registries.FEATURE, Identifier.of(Caveborn.MOD_ID, "hanging_miners_cache"), HANGING_MINERS_CACHE);
     }
 }

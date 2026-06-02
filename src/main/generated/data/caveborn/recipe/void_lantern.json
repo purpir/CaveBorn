@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "L": "minecraft:lantern",
+    "S": "caveborn:ender_pearl_shard",
+    "V": "caveborn:void_eye_plant"
+  },
+  "pattern": [
+    " S ",
+    "VLV",
+    " S "
+  ],
+  "result": {
+    "count": 1,
+    "id": "caveborn:void_lantern"
+  }
+}
