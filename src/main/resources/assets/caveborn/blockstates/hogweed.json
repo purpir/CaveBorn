@@ -1,6 +1,8 @@
 {
   "variants": {
-    "top=false": { "model": "caveborn:block/hogweed_stem" },
-    "top=true": { "model": "caveborn:block/hogweed_top" }
+    "drained=false,top=false": { "model": "caveborn:block/hogweed_stem" },
+    "drained=true,top=false": { "model": "caveborn:block/hogweed_stem" },
+    "drained=false,top=true": { "model": "caveborn:block/hogweed_top" },
+    "drained=true,top=true": { "model": "caveborn:block/hogweed_top" }
   }
 }

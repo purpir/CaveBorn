@@ -2,15 +2,25 @@ package ru.purpir.block;
 
 import com.mojang.serialization.MapCodec;
 import net.minecraft.block.*;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityCollisionHandler;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
+import net.minecraft.sound.SoundCategory;
+import net.minecraft.sound.SoundEvents;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.BooleanProperty;
+import net.minecraft.util.ActionResult;
+import net.minecraft.util.Hand;
+import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.random.Random;
+import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldView;
+import ru.purpir.item.ModItems;
 
 /**
  * Борщевик - высокое растение от 2 до 8 блоков
@@ -23,12 +33,13 @@ public class HogweedBlock extends PlantBlock {
     
     // true = это верхушка (зонтик), false = стебель
     public static final BooleanProperty TOP = BooleanProperty.of("top");
+    public static final BooleanProperty DRAINED = BooleanProperty.of("drained");
     
     private static final VoxelShape SHAPE = Block.createCuboidShape(4, 0, 4, 12, 16, 12);
     
     public HogweedBlock(Settings settings) {
         super(settings);
-        setDefaultState(getStateManager().getDefaultState().with(TOP, true));
+        setDefaultState(getStateManager().getDefaultState().with(TOP, true).with(DRAINED, false));
     }
     
     @Override
@@ -38,12 +49,42 @@ public class HogweedBlock extends PlantBlock {
     
     @Override
     protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
-        builder.add(TOP);
+        builder.add(TOP, DRAINED);
     }
     
     @Override
     protected VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
         return SHAPE;
+    }
+
+    @Override
+    protected void onEntityCollision(BlockState state, World world, BlockPos pos, Entity entity, EntityCollisionHandler handler, boolean initialCollision) {
+        if (entity instanceof PlayerEntity) {
+            entity.slowMovement(state, new Vec3d(0.75D, 1.0D, 0.75D));
+        }
+    }
+
+    @Override
+    protected ActionResult onUseWithItem(ItemStack stack, BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
+        if (!stack.isOf(Items.GLASS_BOTTLE) || state.get(DRAINED)) {
+            return ActionResult.PASS;
+        }
+
+        if (!world.isClient()) {
+            ItemStack juice = new ItemStack(ModItems.HOGWEED_JUICE);
+            if (!player.isCreative()) {
+                stack.decrement(1);
+            }
+
+            if (!player.getInventory().insertStack(juice)) {
+                player.dropItem(juice, false);
+            }
+
+            world.setBlockState(pos, state.with(DRAINED, true), Block.NOTIFY_ALL);
+            world.playSound(null, pos, SoundEvents.ITEM_BOTTLE_FILL, SoundCategory.BLOCKS, 0.8F, 0.9F);
+        }
+
+        return ActionResult.SUCCESS;
     }
     
     @Override

@@ -31,6 +31,7 @@ public class Caveborn implements ModInitializer {
         ModArmorMaterials.initialize();
         ru.purpir.component.ModComponents.register();
         ModBlocks.registerModBlocks();
+        ru.purpir.effect.ModStatusEffects.register();
         ModBlockEntities.register();
         ModEntities.register();
         ModItems.registerModItems();

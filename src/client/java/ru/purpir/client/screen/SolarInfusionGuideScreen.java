@@ -8,6 +8,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.text.OrderedText;
 import net.minecraft.text.Text;
+import ru.purpir.block.ModBlocks;
 import ru.purpir.item.ModItems;
 
 import java.util.ArrayList;
@@ -51,7 +52,8 @@ public class SolarInfusionGuideScreen extends Screen {
         new AbilityEntry(new ItemStack(Items.WIND_CHARGE), "guide.caveborn.solar.ability.wind_charge", "guide.caveborn.solar.ability.wind_charge.content"),
         new AbilityEntry(new ItemStack(ModItems.CRYSTAL_DUST), "guide.caveborn.solar.ability.crystal_dust", "guide.caveborn.solar.ability.crystal_dust.content"),
         new AbilityEntry(new ItemStack(Items.TOTEM_OF_UNDYING), "guide.caveborn.solar.ability.totem", "guide.caveborn.solar.ability.totem.content"),
-        new AbilityEntry(new ItemStack(Items.ENDER_PEARL), "guide.caveborn.solar.ability.ender_pearl", "guide.caveborn.solar.ability.ender_pearl.content")
+        new AbilityEntry(new ItemStack(Items.ENDER_PEARL), "guide.caveborn.solar.ability.ender_pearl", "guide.caveborn.solar.ability.ender_pearl.content"),
+        new AbilityEntry(new ItemStack(ModBlocks.HOGWEED_PASTE), "guide.caveborn.solar.ability.hogweed_paste", "guide.caveborn.solar.ability.hogweed_paste.content")
     };
 
     private int selectedSection = 0;

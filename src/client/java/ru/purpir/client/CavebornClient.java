@@ -15,6 +15,7 @@ import net.minecraft.util.Identifier;
 import ru.purpir.Caveborn;
 import ru.purpir.block.ModBlocks;
 import ru.purpir.client.render.BlockTintSource;
+import ru.purpir.client.render.SolarBurnOverlay;
 import ru.purpir.client.render.SolarPointsHud;
 import ru.purpir.client.screen.BagScreen;
 import ru.purpir.client.screen.CrusherScreen;
@@ -40,6 +41,7 @@ public class CavebornClient implements ClientModInitializer {
         // Регистрируем тултип для солнечной инфузии
         SolarInfusionTooltip.register();
         SolarPointsHud.register();
+        SolarBurnOverlay.register();
         ClientPlayNetworking.registerGlobalReceiver(ModPackets.SolarPointsPayload.ID,
             (payload, context) -> SolarPointsClientState.setPoints(payload.points()));
         
@@ -65,6 +67,7 @@ public class CavebornClient implements ClientModInitializer {
         BlockRenderLayerMap.putBlock(ModBlocks.WEED, BlockRenderLayer.CUTOUT);
         BlockRenderLayerMap.putBlock(ModBlocks.WEED_TOP, BlockRenderLayer.CUTOUT);
         BlockRenderLayerMap.putBlock(ModBlocks.HOGWEED, BlockRenderLayer.CUTOUT);
+        BlockRenderLayerMap.putBlock(ModBlocks.HOGWEED_PASTE, BlockRenderLayer.CUTOUT);
         BlockRenderLayerMap.putBlock(ModBlocks.SOLAR_IRIS, BlockRenderLayer.CUTOUT);
         BlockRenderLayerMap.putBlock(ModBlocks.VOID_EYE_PLANT, BlockRenderLayer.CUTOUT);
         BlockRenderLayerMap.putBlock(ModBlocks.VOID_LANTERN, BlockRenderLayer.CUTOUT);

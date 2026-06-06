@@ -24,6 +24,7 @@ public class ModItems {
     public static final Item SOLAR_CRYSTAL = registerItem("solar_crystal", Item::new, new Item.Settings());
     public static final Item SOLAR_INFUSION_GUIDE = registerItem("solar_infusion_guide", Item::new, new Item.Settings().maxCount(1));
     public static final Item RUSTED_MINER_KEY = registerItem("rusted_miner_key", Item::new, new Item.Settings());
+    public static final Item HOGWEED_JUICE = registerItem("hogweed_juice", HogweedJuiceItem::new, new Item.Settings().maxCount(16));
     public static final Item BAG = registerItem("bag", BagItem::new, new Item.Settings().maxCount(1));
     public static final Item CRACK_HAMMER = registerItem("crack_hammer", CrackHammerItem::new,
         new Item.Settings().pickaxe(ModToolMaterials.CRACK_HAMMER, 4.0F, -3.2F));
@@ -115,6 +116,8 @@ public class ModItems {
                     entries.add(SOLAR_CRYSTAL);
                     entries.add(SOLAR_INFUSION_GUIDE);
                     entries.add(RUSTED_MINER_KEY);
+                    entries.add(HOGWEED_JUICE);
+                    entries.add(ModBlocks.HOGWEED_PASTE);
                     entries.add(ModBlocks.SOLAR_IRIS);
                     // Bronze
                     entries.add(ModBlocks.BRONZE_ORE);

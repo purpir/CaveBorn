@@ -1,0 +1,40 @@
+{
+  "variants": {
+    "facing=north,solar=false": {
+      "model": "caveborn:block/hogweed_paste_north"
+    },
+    "facing=north,solar=true": {
+      "model": "caveborn:block/hogweed_paste_north"
+    },
+    "facing=south,solar=false": {
+      "model": "caveborn:block/hogweed_paste_south"
+    },
+    "facing=south,solar=true": {
+      "model": "caveborn:block/hogweed_paste_south"
+    },
+    "facing=east,solar=false": {
+      "model": "caveborn:block/hogweed_paste_east"
+    },
+    "facing=east,solar=true": {
+      "model": "caveborn:block/hogweed_paste_east"
+    },
+    "facing=west,solar=false": {
+      "model": "caveborn:block/hogweed_paste_west"
+    },
+    "facing=west,solar=true": {
+      "model": "caveborn:block/hogweed_paste_west"
+    },
+    "facing=up,solar=false": {
+      "model": "caveborn:block/hogweed_paste_up"
+    },
+    "facing=up,solar=true": {
+      "model": "caveborn:block/hogweed_paste_up"
+    },
+    "facing=down,solar=false": {
+      "model": "caveborn:block/hogweed_paste_down"
+    },
+    "facing=down,solar=true": {
+      "model": "caveborn:block/hogweed_paste_down"
+    }
+  }
+}

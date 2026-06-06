@@ -1,0 +1,22 @@
+{
+  "textures": {
+    "particle": "caveborn:block/hogweed_paste",
+    "paste": "caveborn:block/hogweed_paste"
+  },
+  "elements": [
+    {
+      "from": [0, 1, 1],
+      "to": [0.05, 15, 15],
+      "faces": {
+        "east": {
+          "uv": [1, 1, 15, 15],
+          "texture": "#paste"
+        },
+        "west": {
+          "uv": [1, 1, 15, 15],
+          "texture": "#paste"
+        }
+      }
+    }
+  ]
+}

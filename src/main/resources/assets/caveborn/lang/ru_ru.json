@@ -1,4 +1,4 @@
-{
+﻿{
   "itemGroup.caveborn.caveborn_group": "Caveborn",
   
   "item.caveborn.fiber": "Волокно",
@@ -6,6 +6,7 @@
   "item.caveborn.crack_hammer": "Трещинный молот",
   "item.caveborn.solar_crystal": "Солнечный кристалл",
   "item.caveborn.rusted_miner_key": "Ржавый шахтёрский ключ",
+  "item.caveborn.hogweed_juice": "Сок борщевика",
   
   "tooltip.caveborn.solar_infused": "Солнечная инфузия",
   "enchantment.caveborn.vein_miner": "Паутина",
@@ -162,5 +163,9 @@
   "guide.caveborn.solar.ability.vacuumite_sword": "Вакуумитовый меч",
   "guide.caveborn.solar.ability.vacuumite_sword.content": "Схлопывание Пустотной раны инфузированным вакуумитовым мечом дает +5 общих солнечных очков.\\nНа 50 очках нажми ПКМ, чтобы потратить их и включить рывок на 5 секунд: каждый удар вызывает урон Пустотной раны и поджигает цель, но не копит солнечные очки.",
   "guide.caveborn.solar.ability.ender_pearl": "Эндер-жемчуг",
-  "guide.caveborn.solar.ability.ender_pearl.content": "Инфузированный эндер-жемчуг бросается на 75%% сильнее обычного.\\nТелепортация от него не наносит урон жемчугом, а после перемещения выпускает маленькую пустотную вспышку, отталкивающую мобов рядом."
+  "guide.caveborn.solar.ability.ender_pearl.content": "Инфузированный эндер-жемчуг бросается на 75%% сильнее обычного.\\nТелепортация от него не наносит урон жемчугом, а после перемещения выпускает маленькую пустотную вспышку, отталкивающую мобов рядом.",
+  "block.caveborn.hogweed_paste": "Борщевичная паста",
+  "effect.caveborn.solar_burn": "Солнечный ожог",
+  "guide.caveborn.solar.ability.hogweed_paste": "Борщевичная паста",
+  "guide.caveborn.solar.ability.hogweed_paste.content": "Инфузированная борщевичная паста становится более жесткой ловушкой.\\nПри касании она сильнее замедляет, постоянно поджигает цель и оставляет Солнечный ожог на 10 секунд после выхода."
 }

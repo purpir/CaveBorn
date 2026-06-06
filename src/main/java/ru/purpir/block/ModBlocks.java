@@ -147,6 +147,17 @@ public class ModBlocks {
             .breakInstantly()
             .sounds(BlockSoundGroup.GRASS));
 
+    public static final Block HOGWEED_PASTE = registerBlock("hogweed_paste",
+        HogweedPasteBlock::new,
+        AbstractBlock.Settings.create()
+            .mapColor(MapColor.GREEN)
+            .noCollision()
+            .breakInstantly()
+            .nonOpaque()
+            .replaceable()
+            .sounds(BlockSoundGroup.SLIME)
+            .pistonBehavior(PistonBehavior.DESTROY));
+
     public static final Block SOLAR_IRIS = registerBlock("solar_iris",
         settings -> new FlowerBlock(StatusEffects.GLOWING, 6.0F, settings),
         AbstractBlock.Settings.create()

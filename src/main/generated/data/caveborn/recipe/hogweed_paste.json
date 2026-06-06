@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    "caveborn:hogweed_juice",
+    "minecraft:clay_ball",
+    "caveborn:limestone_dust"
+  ],
+  "result": {
+    "id": "caveborn:hogweed_paste",
+    "count": 4
+  }
+}

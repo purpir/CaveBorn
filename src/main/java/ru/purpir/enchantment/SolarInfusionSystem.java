@@ -25,8 +25,9 @@ public class SolarInfusionSystem {
         boolean isCrystalDust = item.isOf(ModItems.CRYSTAL_DUST);
         boolean isTotem = item.isOf(net.minecraft.item.Items.TOTEM_OF_UNDYING);
         boolean isEnderPearl = item.isOf(net.minecraft.item.Items.ENDER_PEARL);
+        boolean isHogweedPaste = item.isOf(ru.purpir.block.ModBlocks.HOGWEED_PASTE.asItem());
         
-        return (isSword || isWindCharge || isVacuumiteMagnet || isShield || isBow || isSolarArrow || isTrident || isCrystalDust || isTotem || isEnderPearl) &&
+        return (isSword || isWindCharge || isVacuumiteMagnet || isShield || isBow || isSolarArrow || isTrident || isCrystalDust || isTotem || isEnderPearl || isHogweedPaste) &&
                crystal.isOf(ModItems.SOLAR_CRYSTAL) &&
                !isInfused(item);
     }
@@ -50,7 +51,7 @@ public class SolarInfusionSystem {
             result.isOf(net.minecraft.item.Items.ARROW) || result.isOf(net.minecraft.item.Items.SPECTRAL_ARROW) ||
             result.isOf(net.minecraft.item.Items.TRIDENT) || result.isOf(ModItems.CRYSTAL_DUST) ||
             result.isOf(net.minecraft.item.Items.TOTEM_OF_UNDYING) || result.isOf(ModItems.VACUUMITE_SWORD) ||
-            result.isOf(net.minecraft.item.Items.ENDER_PEARL)) {
+            result.isOf(net.minecraft.item.Items.ENDER_PEARL) || result.isOf(ru.purpir.block.ModBlocks.HOGWEED_PASTE.asItem())) {
             return result;
         }
         
