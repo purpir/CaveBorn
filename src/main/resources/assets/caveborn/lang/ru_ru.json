@@ -195,6 +195,7 @@
   "event_altar.caveborn.available": "Доступно: %s/%s",
   "event_altar.caveborn.available_quests": "Доступные задания",
   "event_altar.caveborn.refresh_in": "Обновление: %s",
+  "event_altar.caveborn.possible_rewards": "Возможные награды:",
   "event_altar.caveborn.mine_short": "Взято тобой",
   "event_altar.caveborn.start": "Начать",
   "event_altar.caveborn.progress.killed": "Убито: %s из %s",

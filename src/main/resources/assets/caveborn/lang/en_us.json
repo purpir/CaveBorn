@@ -194,6 +194,7 @@
   "event_altar.caveborn.available": "Available: %s/%s",
   "event_altar.caveborn.available_quests": "Available Quests",
   "event_altar.caveborn.refresh_in": "Refresh: %s",
+  "event_altar.caveborn.possible_rewards": "Possible rewards:",
   "event_altar.caveborn.mine_short": "Claimed by you",
   "event_altar.caveborn.start": "Start",
   "event_altar.caveborn.progress.killed": "Killed: %s of %s",

@@ -8,6 +8,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.text.OrderedText;
 import net.minecraft.text.Text;
 import net.minecraft.util.math.BlockPos;
+import ru.purpir.eventaltar.EventAltarChallengeRewards;
 import ru.purpir.eventaltar.EventAltarQuestPool;
 import ru.purpir.eventaltar.EventAltarSavedData;
 import ru.purpir.network.ModPackets;
@@ -165,34 +166,42 @@ public class EventAltarScreen extends Screen {
     }
 
     private void drawChallenges(DrawContext context, int x, int y, int mouseX, int mouseY) {
-        drawChallengeCard(context, x + 146, y + 82, Text.translatable("event_altar.caveborn.challenge.wave"),
-            Text.translatable("event_altar.caveborn.challenge.wave.desc"), "wave", currentSeconds(state.waveCooldownSeconds), mouseX, mouseY);
-        drawChallengeCard(context, x + 146, y + 158, Text.translatable("event_altar.caveborn.challenge.defend"),
-            Text.translatable("event_altar.caveborn.challenge.defend.desc"), "defend", currentSeconds(state.defendCooldownSeconds), mouseX, mouseY);
+        drawChallengeCard(context, x + 146, y + 78, Text.translatable("event_altar.caveborn.challenge.wave"),
+            Text.translatable("event_altar.caveborn.challenge.wave.desc"), "wave", EventAltarChallengeRewards.possibleWaveRewards(state.level),
+            currentSeconds(state.waveCooldownSeconds), mouseX, mouseY);
+        drawChallengeCard(context, x + 146, y + 166, Text.translatable("event_altar.caveborn.challenge.defend"),
+            Text.translatable("event_altar.caveborn.challenge.defend.desc"), "defend", EventAltarChallengeRewards.possibleDefendRewards(state.level),
+            currentSeconds(state.defendCooldownSeconds), mouseX, mouseY);
     }
 
-    private void drawChallengeCard(DrawContext context, int x, int y, Text title, Text desc, String action, int cooldownSeconds, int mouseX, int mouseY) {
+    private void drawChallengeCard(DrawContext context, int x, int y, Text title, Text desc, String action, List<ItemStack> rewards, int cooldownSeconds, int mouseX, int mouseY) {
         boolean locked = state.altarChallengeActive || cooldownSeconds > 0;
-        context.fill(x, y, x + 282, y + 62, 0xffdcc28a);
-        context.fill(x, y, x + 6, y + 62, 0xff8b5a2b);
+        context.fill(x, y, x + 282, y + 82, 0xffdcc28a);
+        context.fill(x, y, x + 6, y + 82, 0xff8b5a2b);
         context.drawText(textRenderer, title, x + 14, y + 8, 0xff2f2415, false);
-        drawWrapped(context, desc, x + 14, y + 24, 158, 0xff4a3821, 3);
-        drawActionButton(context, x + 190, y + 22, 74, 22, Text.translatable("event_altar.caveborn.start"), mouseX, mouseY, () -> {
+        drawWrapped(context, desc, x + 14, y + 23, 158, 0xff4a3821, 2);
+        context.drawText(textRenderer, Text.translatable("event_altar.caveborn.possible_rewards"), x + 14, y + 45, 0xff2f2415, false);
+        drawItemStackIcons(context, rewards, x + 142, y + 43, 7, 18, mouseX, mouseY);
+        drawActionButton(context, x + 190, y + 12, 74, 22, Text.translatable("event_altar.caveborn.start"), mouseX, mouseY, () -> {
             if (!locked) {
                 send(action, 0);
             }
         });
         if (locked) {
-            context.fill(x, y, x + 282, y + 62, 0x99000000);
+            context.fill(x, y, x + 282, y + 82, 0x99000000);
             Text label = state.altarChallengeActive
                 ? Text.translatable("event_altar.caveborn.challenge.active_short")
                 : Text.translatable("event_altar.caveborn.challenge.cooldown_short", formatDuration(cooldownSeconds));
-            drawCenteredPlain(context, label, x + 141, y + 27, 0xffffffff);
+            drawCenteredPlain(context, label, x + 141, y + 37, 0xffffffff);
         }
     }
 
     private void drawRewardIcons(DrawContext context, QuestView quest, int x, int y, int columns, int spacing, int mouseX, int mouseY) {
         List<ItemStack> rewards = EventAltarQuestPool.rewards(quest.toState(), state.level);
+        drawItemStackIcons(context, rewards, x, y, columns, spacing, mouseX, mouseY);
+    }
+
+    private void drawItemStackIcons(DrawContext context, List<ItemStack> rewards, int x, int y, int columns, int spacing, int mouseX, int mouseY) {
         for (int i = 0; i < rewards.size(); i++) {
             ItemStack reward = rewards.get(i);
             int iconX = x + (i % columns) * spacing;

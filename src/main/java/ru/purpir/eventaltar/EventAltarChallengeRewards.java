@@ -1,7 +1,9 @@
 package ru.purpir.eventaltar;
 
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
+import ru.purpir.api.SolarInfusionApi;
 import ru.purpir.item.ModItems;
 
 import java.util.ArrayList;
@@ -27,6 +29,13 @@ public final class EventAltarChallengeRewards {
         return rewards;
     }
 
+    public static List<ItemStack> possibleWaveRewards(int level) {
+        List<ItemStack> rewards = new ArrayList<>(waveRewards(level));
+        rewards.add(new ItemStack(Items.NETHERITE_SCRAP, 1));
+        addPossibleInfusedRewards(rewards);
+        return rewards;
+    }
+
     public static List<ItemStack> defendRewards(int level) {
         return defendRewards(level, null);
     }
@@ -42,5 +51,29 @@ public final class EventAltarChallengeRewards {
         EventAltarQuestPool.addInfusedChance(rewards, random, 0.25F, true);
         EventAltarQuestPool.addChance(rewards, random, 0.04F, new ItemStack(Items.ENCHANTED_GOLDEN_APPLE, 1));
         return rewards;
+    }
+
+    public static List<ItemStack> possibleDefendRewards(int level) {
+        List<ItemStack> rewards = new ArrayList<>(defendRewards(level));
+        rewards.add(new ItemStack(Items.NETHERITE_SCRAP, 1));
+        rewards.add(new ItemStack(Items.ENCHANTED_GOLDEN_APPLE, 1));
+        addPossibleInfusedRewards(rewards);
+        return rewards;
+    }
+
+    private static void addPossibleInfusedRewards(List<ItemStack> rewards) {
+        Item[] possible = new Item[] {
+            Items.IRON_SWORD,
+            Items.DIAMOND_SWORD,
+            ModItems.BRONZE_SWORD,
+            Items.BOW,
+            Items.TRIDENT,
+            Items.SHIELD,
+            ModItems.CRYSTAL_DUST,
+            Items.ENDER_PEARL
+        };
+        for (Item item : possible) {
+            rewards.add(SolarInfusionApi.createInfusedCopy(new ItemStack(item)));
+        }
     }
 }
