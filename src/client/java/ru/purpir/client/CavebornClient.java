@@ -19,7 +19,9 @@ import ru.purpir.client.render.SolarBurnOverlay;
 import ru.purpir.client.render.SolarPointsHud;
 import ru.purpir.client.screen.BagScreen;
 import ru.purpir.client.screen.CrusherScreen;
+import ru.purpir.client.screen.EventAltarScreen;
 import ru.purpir.client.screen.SolarInfusionGuideScreen;
+import ru.purpir.client.util.SceneFadeOverlay;
 import ru.purpir.entity.ModEntities;
 import ru.purpir.item.ModItems;
 import ru.purpir.network.ModPackets;
@@ -42,8 +44,16 @@ public class CavebornClient implements ClientModInitializer {
         SolarInfusionTooltip.register();
         SolarPointsHud.register();
         SolarBurnOverlay.register();
+        SceneFadeOverlay.register();
         ClientPlayNetworking.registerGlobalReceiver(ModPackets.SolarPointsPayload.ID,
             (payload, context) -> SolarPointsClientState.setPoints(payload.points()));
+        ClientPlayNetworking.registerGlobalReceiver(ModPackets.OpenAltarScreenPayload.ID,
+            (payload, context) -> context.client().setScreen(new EventAltarScreen(payload)));
+        ClientPlayNetworking.registerGlobalReceiver(ModPackets.AltarScenePayload.ID,
+            (payload, context) -> {
+                context.client().setScreen(null);
+                SceneFadeOverlay.start(payload.data());
+            });
         
         // Регистрируем экран сумки
         HandledScreens.register(ModScreenHandlers.BAG_SCREEN_HANDLER, BagScreen::new);

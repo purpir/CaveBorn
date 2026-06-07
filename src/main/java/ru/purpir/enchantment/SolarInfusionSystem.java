@@ -90,8 +90,7 @@ public class SolarInfusionSystem {
     
     public static float getAdditionalDamage(ItemStack stack) {
         if (stack.isOf(net.minecraft.item.Items.BOW) || stack.isOf(net.minecraft.item.Items.ARROW) ||
-            stack.isOf(net.minecraft.item.Items.SPECTRAL_ARROW) || stack.isOf(net.minecraft.item.Items.TRIDENT) ||
-            stack.isOf(ModItems.VACUUMITE_SWORD)) {
+            stack.isOf(net.minecraft.item.Items.SPECTRAL_ARROW) || stack.isOf(net.minecraft.item.Items.TRIDENT)) {
             return 0.0f;
         }
 

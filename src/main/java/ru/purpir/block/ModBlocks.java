@@ -275,6 +275,14 @@ public class ModBlocks {
             .strength(5.0f, 6.0f)
             .requiresTool()
             .sounds(BlockSoundGroup.METAL));
+
+    public static final Block EVENT_ALTAR_BUILDER = registerBlock("event_altar_builder",
+        EventAltarBuilderBlock::new,
+        AbstractBlock.Settings.create()
+            .noCollision()
+            .breakInstantly()
+            .nonOpaque()
+            .sounds(BlockSoundGroup.STONE));
     
     // Test colored block (for testing dynamic textures)
     public static final Block TEST_COLORED_BLOCK = registerBlock("test_colored_block",

@@ -52,6 +52,7 @@ public class Caveborn implements ModInitializer {
         ru.purpir.event.VeinMinerHandler.register();
         ru.purpir.event.VacuumiteMagnetHandler.register();
         ru.purpir.event.VacuumiteSwordHandler.register();
+        ru.purpir.eventaltar.EventAltarHandler.register();
         ru.purpir.item.CrackHammerItem.registerTicker();
         ru.purpir.solar.SolarPointBank.register();
         

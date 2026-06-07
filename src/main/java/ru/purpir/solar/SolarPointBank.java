@@ -19,8 +19,8 @@ import java.util.UUID;
 public class SolarPointBank {
     public static final int MAX_POINTS = 100;
     public static final int VOID_WOUND_GAIN = 5;
-    public static final int VACUUMITE_SWORD_COST = 50;
-    public static final int VACUUMITE_SWORD_ACTIVE_TICKS = 100;
+    public static final int VACUUMITE_SWORD_COST = 40;
+    public static final int VACUUMITE_SWORD_ACTIVE_TICKS = 200;
 
     private static final Map<UUID, Integer> POINTS = new HashMap<>();
     private static final Map<UUID, Long> VACUUMITE_SWORD_ACTIVE_UNTIL = new HashMap<>();

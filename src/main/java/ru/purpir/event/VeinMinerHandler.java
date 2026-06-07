@@ -4,9 +4,11 @@ import net.fabricmc.fabric.api.event.player.PlayerBlockBreakEvents;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import ru.purpir.enchantment.VeinMinerEnchantment;
+import ru.purpir.eventaltar.EventAltarHandler;
 
 public class VeinMinerHandler {
     
@@ -16,5 +18,8 @@ public class VeinMinerHandler {
     
     private static void onBlockBroken(World world, PlayerEntity player, BlockPos pos, BlockState state, BlockEntity blockEntity) {
         VeinMinerEnchantment.onBlockBroken(world, pos, state, player, player.getMainHandStack());
+        if (!world.isClient() && player instanceof ServerPlayerEntity serverPlayer) {
+            EventAltarHandler.onBlockBroken(serverPlayer, state);
+        }
     }
 }

@@ -12,13 +12,15 @@ import ru.purpir.Caveborn;
 public class ModPackets {
     
     public static final Identifier OPEN_ALTAR_SCREEN = Identifier.of(Caveborn.MOD_ID, "open_altar_screen");
+    public static final Identifier SUBMIT_ALTAR_TASK = Identifier.of(Caveborn.MOD_ID, "submit_altar_task");
+    public static final Identifier ALTAR_ACTION = Identifier.of(Caveborn.MOD_ID, "altar_action");
+    public static final Identifier ALTAR_SCENE = Identifier.of(Caveborn.MOD_ID, "altar_scene");
     public static final Identifier SOLAR_POINTS = Identifier.of(Caveborn.MOD_ID, "solar_points");
     
-    public record OpenAltarScreenPayload(int questLevel, int totalCompleted) implements CustomPayload {
+    public record OpenAltarScreenPayload(String data) implements CustomPayload {
         public static final Id<OpenAltarScreenPayload> ID = new Id<>(OPEN_ALTAR_SCREEN);
         public static final PacketCodec<RegistryByteBuf, OpenAltarScreenPayload> CODEC = PacketCodec.tuple(
-            PacketCodecs.INTEGER, OpenAltarScreenPayload::questLevel,
-            PacketCodecs.INTEGER, OpenAltarScreenPayload::totalCompleted,
+            PacketCodecs.STRING, OpenAltarScreenPayload::data,
             OpenAltarScreenPayload::new
         );
         
@@ -40,9 +42,53 @@ public class ModPackets {
             return ID;
         }
     }
+
+    public record SubmitAltarTaskPayload(int x, int y, int z) implements CustomPayload {
+        public static final Id<SubmitAltarTaskPayload> ID = new Id<>(SUBMIT_ALTAR_TASK);
+        public static final PacketCodec<RegistryByteBuf, SubmitAltarTaskPayload> CODEC = PacketCodec.tuple(
+            PacketCodecs.INTEGER, SubmitAltarTaskPayload::x,
+            PacketCodecs.INTEGER, SubmitAltarTaskPayload::y,
+            PacketCodecs.INTEGER, SubmitAltarTaskPayload::z,
+            SubmitAltarTaskPayload::new
+        );
+
+        @Override
+        public Id<? extends CustomPayload> getId() {
+            return ID;
+        }
+    }
+
+    public record AltarActionPayload(String data) implements CustomPayload {
+        public static final Id<AltarActionPayload> ID = new Id<>(ALTAR_ACTION);
+        public static final PacketCodec<RegistryByteBuf, AltarActionPayload> CODEC = PacketCodec.tuple(
+            PacketCodecs.STRING, AltarActionPayload::data,
+            AltarActionPayload::new
+        );
+
+        @Override
+        public Id<? extends CustomPayload> getId() {
+            return ID;
+        }
+    }
+
+    public record AltarScenePayload(String data) implements CustomPayload {
+        public static final Id<AltarScenePayload> ID = new Id<>(ALTAR_SCENE);
+        public static final PacketCodec<RegistryByteBuf, AltarScenePayload> CODEC = PacketCodec.tuple(
+            PacketCodecs.STRING, AltarScenePayload::data,
+            AltarScenePayload::new
+        );
+
+        @Override
+        public Id<? extends CustomPayload> getId() {
+            return ID;
+        }
+    }
     
     public static void registerServer() {
         PayloadTypeRegistry.playS2C().register(OpenAltarScreenPayload.ID, OpenAltarScreenPayload.CODEC);
+        PayloadTypeRegistry.playC2S().register(SubmitAltarTaskPayload.ID, SubmitAltarTaskPayload.CODEC);
+        PayloadTypeRegistry.playC2S().register(AltarActionPayload.ID, AltarActionPayload.CODEC);
+        PayloadTypeRegistry.playS2C().register(AltarScenePayload.ID, AltarScenePayload.CODEC);
         PayloadTypeRegistry.playS2C().register(SolarPointsPayload.ID, SolarPointsPayload.CODEC);
     }
 }

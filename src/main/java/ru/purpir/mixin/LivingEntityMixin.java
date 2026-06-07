@@ -3,6 +3,7 @@ package ru.purpir.mixin;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
@@ -10,6 +11,7 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 import ru.purpir.event.SolarTotemHandler;
+import ru.purpir.eventaltar.EventAltarHandler;
 
 @Mixin(LivingEntity.class)
 public class LivingEntityMixin {
@@ -34,5 +36,12 @@ public class LivingEntityMixin {
             SolarTotemHandler.onSolarTotemUsed((LivingEntity) (Object) this);
         }
         this.caveborn$hadSolarTotem = false;
+    }
+
+    @Inject(method = "onDeath", at = @At("HEAD"))
+    private void caveborn$trackEventAltarKill(DamageSource source, org.spongepowered.asm.mixin.injection.callback.CallbackInfo ci) {
+        if (source.getAttacker() instanceof ServerPlayerEntity player) {
+            EventAltarHandler.onMobKilled(player, (LivingEntity) (Object) this);
+        }
     }
 }
