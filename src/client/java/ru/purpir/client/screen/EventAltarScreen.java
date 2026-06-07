@@ -23,6 +23,7 @@ public class EventAltarScreen extends Screen {
     private final State state;
     private final List<ClickArea> clickAreas = new ArrayList<>();
     private final long openedAtMillis = System.currentTimeMillis();
+    private ItemStack hoveredReward = ItemStack.EMPTY;
     private int tab;
     private QuestView selectedQuest;
 
@@ -44,6 +45,7 @@ public class EventAltarScreen extends Screen {
     @Override
     public void render(DrawContext context, int mouseX, int mouseY, float delta) {
         clickAreas.clear();
+        hoveredReward = ItemStack.EMPTY;
         context.fill(0, 0, width, height, 0xb5000000);
         int x = (width - PANEL_WIDTH) / 2;
         int y = (height - PANEL_HEIGHT) / 2;
@@ -63,6 +65,9 @@ public class EventAltarScreen extends Screen {
         }
 
         super.render(context, mouseX, mouseY, delta);
+        if (!hoveredReward.isEmpty()) {
+            context.drawItemTooltip(textRenderer, hoveredReward, mouseX, mouseY);
+        }
     }
 
     private void drawFrame(DrawContext context, int x, int y) {
@@ -124,7 +129,7 @@ public class EventAltarScreen extends Screen {
         context.fill(x, y, x + 6, y + 27, rarityColor(quest.rarity));
         context.drawText(textRenderer, EventAltarQuestPool.title(quest.toState()), x + 12, y + 4, 0xff2f2415, false);
         context.drawText(textRenderer, trimToWidth(quest.listStatusText(), 154), x + 12, y + 15, 0xff5d4528, false);
-        drawRewardIcons(context, quest, x + 180, y + 5, 4);
+        drawRewardIcons(context, quest, x + 174, y + 4, 5, 18, mouseX, mouseY);
         clickAreas.add(new ClickArea(x, y, 282, 27, () -> {
             if (!quest.claimed || quest.mine) {
                 selectedQuest = quest;
@@ -145,7 +150,7 @@ public class EventAltarScreen extends Screen {
         context.drawText(textRenderer, Text.translatable("event_altar.caveborn.reward_xp", EventAltarQuestPool.xp(questState)), x + 146, y + 190, 0xff2f2415, false);
 
         context.drawText(textRenderer, Text.translatable("event_altar.caveborn.reward"), x + 334, y + 82, 0xff2f2415, false);
-        drawRewardIcons(context, quest, x + 332, y + 102, 3);
+        drawRewardIcons(context, quest, x + 320, y + 102, 4, 18, mouseX, mouseY);
 
         boolean lockedToMine = quest.mine;
         if (!lockedToMine) {
@@ -186,16 +191,18 @@ public class EventAltarScreen extends Screen {
         }
     }
 
-    private void drawRewardIcons(DrawContext context, QuestView quest, int x, int y, int columns) {
+    private void drawRewardIcons(DrawContext context, QuestView quest, int x, int y, int columns, int spacing, int mouseX, int mouseY) {
         List<ItemStack> rewards = EventAltarQuestPool.rewards(quest.toState(), state.level);
         for (int i = 0; i < rewards.size(); i++) {
-            int iconX = x + (i % columns) * 20;
-            int iconY = y + (i / columns) * 20;
+            ItemStack reward = rewards.get(i);
+            int iconX = x + (i % columns) * spacing;
+            int iconY = y + (i / columns) * spacing;
             context.fill(iconX - 2, iconY - 2, iconX + 18, iconY + 18, 0xff8a6d3b);
             context.fill(iconX - 1, iconY - 1, iconX + 17, iconY + 17, 0xfff4e2b7);
-            context.drawItem(rewards.get(i), iconX, iconY);
-            if (rewards.get(i).getCount() > 1) {
-                context.drawText(textRenderer, Text.literal(String.valueOf(rewards.get(i).getCount())), iconX + 8, iconY + 9, 0xffffffff, true);
+            context.drawItem(reward, iconX, iconY);
+            context.drawStackOverlay(textRenderer, reward, iconX, iconY);
+            if (in(mouseX, mouseY, iconX - 2, iconY - 2, 20, 20)) {
+                hoveredReward = reward;
             }
         }
     }

@@ -4,6 +4,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.text.Text;
+import ru.purpir.api.SolarInfusionApi;
 import ru.purpir.item.ModItems;
 
 import java.util.ArrayList;
@@ -60,33 +61,99 @@ public final class EventAltarQuestPool {
 
     public static int xp(EventAltarSavedData.QuestState quest) {
         return switch (quest.rarity()) {
-            case RARITY_HARD -> 45;
-            case RARITY_HARDCORE -> 85;
-            default -> 20;
+            case RARITY_HARD -> 55;
+            case RARITY_HARDCORE -> 95;
+            default -> 25;
         };
     }
 
     public static List<ItemStack> rewards(EventAltarSavedData.QuestState quest, int altarLevel) {
+        return rewards(quest, altarLevel, null);
+    }
+
+    public static List<ItemStack> rewards(EventAltarSavedData.QuestState quest, int altarLevel, net.minecraft.util.math.random.Random random) {
         int levelBonus = Math.max(0, altarLevel - 1);
         List<ItemStack> rewards = new ArrayList<>();
         switch (quest.rarity()) {
             case RARITY_HARD -> {
-                rewards.add(new ItemStack(Items.DIAMOND, 3 + levelBonus));
-                rewards.add(new ItemStack(ModItems.SOLAR_CRYSTAL, 6 + levelBonus));
-                rewards.add(new ItemStack(Items.EXPERIENCE_BOTTLE, 18 + levelBonus * 2));
+                rewards.add(new ItemStack(Items.DIAMOND, amount(random, 7, 10) + levelBonus / 2));
+                rewards.add(new ItemStack(ModItems.SOLAR_CRYSTAL, amount(random, 10, 15) + levelBonus));
+                rewards.add(new ItemStack(Items.EXPERIENCE_BOTTLE, amount(random, 24, 36) + levelBonus * 2));
+                rewards.add(new ItemStack(Items.GOLDEN_APPLE, 1));
+                addChance(rewards, random, 0.20F, new ItemStack(Items.NETHERITE_SCRAP, 1));
+                addInfusedChance(rewards, random, 0.12F, false);
             }
             case RARITY_HARDCORE -> {
-                rewards.add(new ItemStack(Items.NETHERITE_SCRAP, 2 + levelBonus / 2));
-                rewards.add(new ItemStack(Items.ENCHANTED_GOLDEN_APPLE, 1 + levelBonus / 4));
-                rewards.add(new ItemStack(ModItems.SOLAR_CRYSTAL, 12 + levelBonus * 2));
+                rewards.add(new ItemStack(Items.DIAMOND, amount(random, 12, 16) + levelBonus / 2));
+                rewards.add(new ItemStack(ModItems.SOLAR_CRYSTAL, amount(random, 16, 24) + levelBonus));
+                rewards.add(new ItemStack(Items.EXPERIENCE_BOTTLE, amount(random, 36, 52) + levelBonus * 2));
+                rewards.add(new ItemStack(Items.GOLDEN_APPLE, amount(random, 1, 2)));
+                rewards.add(new ItemStack(Items.NETHERITE_SCRAP, 1));
+                addChance(rewards, random, 0.25F, new ItemStack(Items.NETHERITE_SCRAP, 1));
+                addInfusedChance(rewards, random, 0.18F, true);
+                addChance(rewards, random, 0.05F, new ItemStack(Items.ENCHANTED_GOLDEN_APPLE, 1));
             }
             default -> {
-                rewards.add(new ItemStack(Items.EMERALD, 6 + levelBonus));
-                rewards.add(new ItemStack(ModItems.SOLAR_CRYSTAL, 3 + levelBonus / 2));
-                rewards.add(new ItemStack(Items.EXPERIENCE_BOTTLE, 8 + levelBonus));
+                rewards.add(new ItemStack(Items.DIAMOND, amount(random, 3, 5) + levelBonus / 3));
+                rewards.add(new ItemStack(ModItems.SOLAR_CRYSTAL, amount(random, 5, 8) + levelBonus / 2));
+                rewards.add(new ItemStack(Items.EXPERIENCE_BOTTLE, amount(random, 14, 22) + levelBonus));
+                rewards.add(new ItemStack(random != null && random.nextBoolean() ? Items.GOLD_INGOT : Items.IRON_INGOT, amount(random, 8, 16) + levelBonus));
+                addChance(rewards, random, 0.10F, new ItemStack(Items.GOLDEN_APPLE, 1));
             }
         }
         return rewards;
+    }
+
+    static int amount(net.minecraft.util.math.random.Random random, int min, int max) {
+        if (random == null) {
+            return (min + max) / 2;
+        }
+        return random.nextBetween(min, max);
+    }
+
+    static void addChance(List<ItemStack> rewards, net.minecraft.util.math.random.Random random, float chance, ItemStack stack) {
+        if (random != null && random.nextFloat() < chance) {
+            rewards.add(stack);
+        }
+    }
+
+    static void addInfusedChance(List<ItemStack> rewards, net.minecraft.util.math.random.Random random, float chance, boolean goodPool) {
+        if (random == null || random.nextFloat() >= chance) {
+            return;
+        }
+
+        Item item = pickInfusedItem(random, goodPool);
+        ItemStack stack = SolarInfusionApi.createInfusedCopy(new ItemStack(item));
+        if (stack.isDamageable() && random != null) {
+            stack.setDamage(random.nextBetween(stack.getMaxDamage() / 4, stack.getMaxDamage() * 3 / 4));
+        }
+        rewards.add(stack);
+    }
+
+    private static Item pickInfusedItem(net.minecraft.util.math.random.Random random, boolean goodPool) {
+        Item[] simple = new Item[] {
+            Items.WOODEN_SWORD,
+            Items.STONE_SWORD,
+            Items.GOLDEN_SWORD,
+            Items.IRON_SWORD,
+            Items.BOW,
+            Items.ARROW,
+            Items.SPECTRAL_ARROW,
+            Items.WIND_CHARGE
+        };
+        Item[] good = new Item[] {
+            Items.IRON_SWORD,
+            Items.DIAMOND_SWORD,
+            ModItems.BRONZE_SWORD,
+            Items.BOW,
+            Items.TRIDENT,
+            Items.SHIELD,
+            ModItems.CRYSTAL_DUST,
+            Items.ENDER_PEARL
+        };
+        Item[] pool = goodPool ? good : simple;
+        int index = random == null ? 0 : random.nextInt(pool.length);
+        return pool[index];
     }
 
     public static Text progressText(EventAltarSavedData.QuestState quest) {

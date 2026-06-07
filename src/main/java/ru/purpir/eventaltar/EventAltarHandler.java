@@ -172,7 +172,7 @@ public final class EventAltarHandler {
                 if (quest != null && quest.isClaimedBy(player.getUuid()) && quest.rewardReady() && !quest.completed()) {
                     int xp = EventAltarQuestPool.xp(quest);
                     data.completeQuest(quest, xp);
-                    playCompletion(world, origin, EventAltarQuestPool.rewards(quest, data.getAltarLevel()));
+                    playCompletion(world, origin, EventAltarQuestPool.rewards(quest, data.getAltarLevel(), world.random));
                 }
             }
             case "wave" -> {
@@ -332,9 +332,9 @@ public final class EventAltarHandler {
                 if (challenge.wave >= challenge.maxWaves) {
                     EventAltarSavedData data = EventAltarSavedData.get(world.getServer());
                     playCompletion(world, challenge.origin, challenge.type == 0
-                        ? EventAltarChallengeRewards.waveRewards(data.getAltarLevel())
-                        : EventAltarChallengeRewards.defendRewards(data.getAltarLevel()));
-                    data.addAltarXp((challenge.type == 0 ? 20 : 25) + data.getAltarLevel() * 6);
+                        ? EventAltarChallengeRewards.waveRewards(data.getAltarLevel(), world.random)
+                        : EventAltarChallengeRewards.defendRewards(data.getAltarLevel(), world.random));
+                    data.addAltarXp((challenge.type == 0 ? 45 : 55) + data.getAltarLevel() * 5);
                     finished.add(challenge);
                 } else {
                     challenge.countdown = 100;
