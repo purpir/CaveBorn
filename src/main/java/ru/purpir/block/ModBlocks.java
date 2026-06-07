@@ -55,6 +55,28 @@ public class ModBlocks {
             .requiresTool()
             .sounds(BlockSoundGroup.METAL));
 
+    // Cobalt - deep technical material, found mostly in deepslate
+    public static final Block COBALT_ORE = registerBlock("cobalt_ore",
+        settings -> new ExperienceDroppingBlock(UniformIntProvider.create(2, 5), settings),
+        AbstractBlock.Settings.create()
+            .strength(3.5f, 4.0f)
+            .requiresTool()
+            .sounds(BlockSoundGroup.STONE));
+
+    public static final Block DEEPSLATE_COBALT_ORE = registerBlock("deepslate_cobalt_ore",
+        settings -> new ExperienceDroppingBlock(UniformIntProvider.create(2, 5), settings),
+        AbstractBlock.Settings.create()
+            .strength(4.5f, 4.5f)
+            .requiresTool()
+            .sounds(BlockSoundGroup.DEEPSLATE));
+
+    public static final Block COBALT_BLOCK = registerBlock("cobalt_block",
+        Block::new,
+        AbstractBlock.Settings.create()
+            .strength(5.0f, 6.0f)
+            .requiresTool()
+            .sounds(BlockSoundGroup.METAL));
+
     // Netherite Titanium Block
     public static final Block NETHERITE_TITANIUM_BLOCK = registerBlock("netherite_titanium_block",
         Block::new,

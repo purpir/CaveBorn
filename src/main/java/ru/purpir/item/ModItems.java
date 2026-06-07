@@ -57,6 +57,10 @@ public class ModItems {
     // Titanium Items
     public static final Item TITANIUM_INGOT = registerItem("titanium_ingot", Item::new, new Item.Settings());
     public static final Item RAW_TITANIUM = registerItem("raw_titanium", Item::new, new Item.Settings());
+
+    // Cobalt Items
+    public static final Item COBALT_INGOT = registerItem("cobalt_ingot", Item::new, new Item.Settings());
+    public static final Item RAW_COBALT = registerItem("raw_cobalt", Item::new, new Item.Settings());
     
     // Vacuumite Items
     public static final Item VACUUMITE_INGOT = registerItem("vacuumite_ingot", Item::new, new Item.Settings());
@@ -145,6 +149,12 @@ public class ModItems {
                     entries.add(ModBlocks.TITANIUM_TRAPDOOR);
                     entries.add(TITANIUM_INGOT);
                     entries.add(RAW_TITANIUM);
+                    // Cobalt
+                    entries.add(ModBlocks.COBALT_ORE);
+                    entries.add(ModBlocks.DEEPSLATE_COBALT_ORE);
+                    entries.add(ModBlocks.COBALT_BLOCK);
+                    entries.add(COBALT_INGOT);
+                    entries.add(RAW_COBALT);
                     // Vacuumite
                     entries.add(ModBlocks.VACUUMITE_ORE);
                     entries.add(ModBlocks.VACUUMITE_BLOCK);

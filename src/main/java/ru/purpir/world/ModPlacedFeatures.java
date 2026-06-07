@@ -18,6 +18,7 @@ public class ModPlacedFeatures {
     public static final RegistryKey<PlacedFeature> BRONZE_ORE_PLACED_KEY = registerKey("bronze_ore");
     public static final RegistryKey<PlacedFeature> TITANIUM_ORE_PLACED_KEY = registerKey("titanium_ore");
     public static final RegistryKey<PlacedFeature> DEEPSLATE_TITANIUM_ORE_PLACED_KEY = registerKey("deepslate_titanium_ore");
+    public static final RegistryKey<PlacedFeature> DEEPSLATE_COBALT_ORE_PLACED_KEY = registerKey("deepslate_cobalt_ore");
     public static final RegistryKey<PlacedFeature> VACUUMITE_ORE_PLACED_KEY = registerKey("vacuumite_ore");
     public static final RegistryKey<PlacedFeature> DEEP_GRANITE_PLACED_KEY = registerKey("deep_granite");
     public static final RegistryKey<PlacedFeature> ASHEN_LIMESTONE_PLACED_KEY = registerKey("ashen_limestone");
@@ -47,6 +48,11 @@ public class ModPlacedFeatures {
         register(context, DEEPSLATE_TITANIUM_ORE_PLACED_KEY, 
             configuredFeatures.getOrThrow(ModConfiguredFeatures.DEEPSLATE_TITANIUM_ORE_KEY),
             modifiersWithCount(1, HeightRangePlacementModifier.uniform(YOffset.fixed(-64), YOffset.fixed(-32))));
+
+        // Deepslate Cobalt ore - uncommon, useful for future machinery
+        register(context, DEEPSLATE_COBALT_ORE_PLACED_KEY,
+            configuredFeatures.getOrThrow(ModConfiguredFeatures.DEEPSLATE_COBALT_ORE_KEY),
+            modifiersWithCount(4, HeightRangePlacementModifier.uniform(YOffset.fixed(-64), YOffset.fixed(-16))));
 
         // Vacuumite ore in End - rare (3 veins per chunk)
         register(context, VACUUMITE_ORE_PLACED_KEY, 

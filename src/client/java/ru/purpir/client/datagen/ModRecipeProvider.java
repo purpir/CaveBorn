@@ -38,6 +38,20 @@ public class ModRecipeProvider extends FabricRecipeProvider {
                 offerBlasting(java.util.List.of(ModItems.RAW_TITANIUM), RecipeCategory.MISC, 
                     ModItems.TITANIUM_INGOT, 1.0f, 100, "titanium");
 
+                // Cobalt smelting
+                offerSmelting(java.util.List.of(ModItems.RAW_COBALT), RecipeCategory.MISC,
+                    ModItems.COBALT_INGOT, 0.8f, 200, "cobalt");
+                offerBlasting(java.util.List.of(ModItems.RAW_COBALT), RecipeCategory.MISC,
+                    ModItems.COBALT_INGOT, 0.8f, 100, "cobalt");
+                offerSmelting(java.util.List.of(ModBlocks.COBALT_ORE), RecipeCategory.MISC,
+                    ModItems.COBALT_INGOT, 0.8f, 200, "cobalt");
+                offerBlasting(java.util.List.of(ModBlocks.COBALT_ORE), RecipeCategory.MISC,
+                    ModItems.COBALT_INGOT, 0.8f, 100, "cobalt");
+                offerSmelting(java.util.List.of(ModBlocks.DEEPSLATE_COBALT_ORE), RecipeCategory.MISC,
+                    ModItems.COBALT_INGOT, 0.8f, 200, "cobalt");
+                offerBlasting(java.util.List.of(ModBlocks.DEEPSLATE_COBALT_ORE), RecipeCategory.MISC,
+                    ModItems.COBALT_INGOT, 0.8f, 100, "cobalt");
+
                 // Vacuumite smelting
                 offerSmelting(java.util.List.of(ModItems.RAW_VACUUMITE), RecipeCategory.MISC,
                     ModItems.VACUUMITE_INGOT, 1.0f, 200, "vacuumite");
@@ -55,6 +69,10 @@ public class ModRecipeProvider extends FabricRecipeProvider {
                 // Titanium block
                 offerReversibleCompactingRecipes(RecipeCategory.BUILDING_BLOCKS, 
                     ModItems.TITANIUM_INGOT, RecipeCategory.DECORATIONS, ModBlocks.TITANIUM_BLOCK);
+
+                // Cobalt block
+                offerReversibleCompactingRecipes(RecipeCategory.BUILDING_BLOCKS,
+                    ModItems.COBALT_INGOT, RecipeCategory.DECORATIONS, ModBlocks.COBALT_BLOCK);
                 
                 // Netherite Titanium block
                 offerReversibleCompactingRecipes(RecipeCategory.BUILDING_BLOCKS, 

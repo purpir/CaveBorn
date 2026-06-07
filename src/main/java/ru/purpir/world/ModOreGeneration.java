@@ -28,6 +28,13 @@ public class ModOreGeneration {
             ModPlacedFeatures.DEEPSLATE_TITANIUM_ORE_PLACED_KEY
         );
 
+        // Deepslate Cobalt ore in Overworld - deep technical material
+        BiomeModifications.addFeature(
+            BiomeSelectors.foundInOverworld(),
+            GenerationStep.Feature.UNDERGROUND_ORES,
+            ModPlacedFeatures.DEEPSLATE_COBALT_ORE_PLACED_KEY
+        );
+
         // Vacuumite ore in End - rare
         BiomeModifications.addFeature(
             BiomeSelectors.foundInTheEnd(),

@@ -29,6 +29,10 @@ public class ModLootTableProvider extends FabricBlockLootTableProvider {
         addDrop(ModBlocks.DEEPSLATE_TITANIUM_ORE, oreDrops(ModBlocks.DEEPSLATE_TITANIUM_ORE, ModItems.RAW_TITANIUM));
         addDrop(ModBlocks.TITANIUM_BLOCK);
 
+        addDrop(ModBlocks.COBALT_ORE, oreDrops(ModBlocks.COBALT_ORE, ModItems.RAW_COBALT));
+        addDrop(ModBlocks.DEEPSLATE_COBALT_ORE, oreDrops(ModBlocks.DEEPSLATE_COBALT_ORE, ModItems.RAW_COBALT));
+        addDrop(ModBlocks.COBALT_BLOCK);
+
         addDrop(ModBlocks.NETHERITE_TITANIUM_BLOCK);
 
         // Vacuumite ore drops raw vacuumite

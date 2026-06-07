@@ -47,6 +47,8 @@
   
   "item.caveborn.titanium_ingot": "Titanium Ingot",
   "item.caveborn.raw_titanium": "Raw Titanium",
+  "item.caveborn.cobalt_ingot": "Cobalt Ingot",
+  "item.caveborn.raw_cobalt": "Raw Cobalt",
   
   "item.caveborn.netherite_titanium_ingot": "Netherite Titanium Ingot",
   "item.caveborn.netherite_titanium_sword": "Netherite Titanium Sword",
@@ -64,6 +66,9 @@
   "block.caveborn.titanium_ore": "Titanium Ore",
   "block.caveborn.deepslate_titanium_ore": "Deepslate Titanium Ore",
   "block.caveborn.titanium_block": "Block of Titanium",
+  "block.caveborn.cobalt_ore": "Cobalt Ore",
+  "block.caveborn.deepslate_cobalt_ore": "Deepslate Cobalt Ore",
+  "block.caveborn.cobalt_block": "Block of Cobalt",
   "block.caveborn.netherite_titanium_block": "Block of Netherite Titanium",
   "block.caveborn.weed": "Weed",
   "block.caveborn.weed_top": "Weed",

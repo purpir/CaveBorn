@@ -46,6 +46,8 @@
   
   "item.caveborn.titanium_ingot": "Титановый слиток",
   "item.caveborn.raw_titanium": "Рудный титан",
+  "item.caveborn.cobalt_ingot": "Кобальтовый слиток",
+  "item.caveborn.raw_cobalt": "Рудный кобальт",
   
   "item.caveborn.netherite_titanium_ingot": "Незеритово-титановый слиток",
   "item.caveborn.netherite_titanium_sword": "Незеритово-титановый меч",
@@ -63,6 +65,9 @@
   "block.caveborn.titanium_ore": "Титановая руда",
   "block.caveborn.deepslate_titanium_ore": "Глубинносланцевая титановая руда",
   "block.caveborn.titanium_block": "Блок титана",
+  "block.caveborn.cobalt_ore": "Кобальтовая руда",
+  "block.caveborn.deepslate_cobalt_ore": "Глубинносланцевая кобальтовая руда",
+  "block.caveborn.cobalt_block": "Блок кобальта",
   "block.caveborn.netherite_titanium_block": "Блок незеритового титана",
   "block.caveborn.weed": "Сорняк",
   "block.caveborn.weed_top": "Сорняк",

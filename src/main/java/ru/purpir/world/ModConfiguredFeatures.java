@@ -20,6 +20,7 @@ public class ModConfiguredFeatures {
     public static final RegistryKey<ConfiguredFeature<?, ?>> BRONZE_ORE_KEY = registerKey("bronze_ore");
     public static final RegistryKey<ConfiguredFeature<?, ?>> TITANIUM_ORE_KEY = registerKey("titanium_ore");
     public static final RegistryKey<ConfiguredFeature<?, ?>> DEEPSLATE_TITANIUM_ORE_KEY = registerKey("deepslate_titanium_ore");
+    public static final RegistryKey<ConfiguredFeature<?, ?>> DEEPSLATE_COBALT_ORE_KEY = registerKey("deepslate_cobalt_ore");
     public static final RegistryKey<ConfiguredFeature<?, ?>> VACUUMITE_ORE_KEY = registerKey("vacuumite_ore");
     public static final RegistryKey<ConfiguredFeature<?, ?>> DEEP_GRANITE_KEY = registerKey("deep_granite");
     public static final RegistryKey<ConfiguredFeature<?, ?>> ASHEN_LIMESTONE_KEY = registerKey("ashen_limestone");
@@ -51,6 +52,11 @@ public class ModConfiguredFeatures {
         register(context, DEEPSLATE_TITANIUM_ORE_KEY, Feature.ORE, new OreFeatureConfig(
             List.of(OreFeatureConfig.createTarget(deepslateReplaceable, ModBlocks.DEEPSLATE_TITANIUM_ORE.getDefaultState())),
             3));
+
+        // Cobalt ore in deepslate - uncommon technical material, vein size 5
+        register(context, DEEPSLATE_COBALT_ORE_KEY, Feature.ORE, new OreFeatureConfig(
+            List.of(OreFeatureConfig.createTarget(deepslateReplaceable, ModBlocks.DEEPSLATE_COBALT_ORE.getDefaultState())),
+            5));
 
         // Vacuumite ore in End - rare, vein size 4
         register(context, VACUUMITE_ORE_KEY, Feature.ORE, new OreFeatureConfig(

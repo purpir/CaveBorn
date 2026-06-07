@@ -19,6 +19,9 @@ public class ModModelProvider extends FabricModelProvider {
         blockStateModelGenerator.registerSimpleCubeAll(ModBlocks.BRONZE_BLOCK);
         blockStateModelGenerator.registerSimpleCubeAll(ModBlocks.TITANIUM_ORE);
         blockStateModelGenerator.registerSimpleCubeAll(ModBlocks.DEEPSLATE_TITANIUM_ORE);
+        blockStateModelGenerator.registerSimpleCubeAll(ModBlocks.COBALT_ORE);
+        blockStateModelGenerator.registerSimpleCubeAll(ModBlocks.DEEPSLATE_COBALT_ORE);
+        blockStateModelGenerator.registerSimpleCubeAll(ModBlocks.COBALT_BLOCK);
         blockStateModelGenerator.registerSimpleCubeAll(ModBlocks.NETHERITE_TITANIUM_BLOCK);
         blockStateModelGenerator.registerSimpleCubeAll(ModBlocks.VACUUMITE_ORE);
         blockStateModelGenerator.registerSimpleCubeAll(ModBlocks.VACUUMITE_BLOCK);
@@ -61,6 +64,8 @@ public class ModModelProvider extends FabricModelProvider {
 
         itemModelGenerator.register(ModItems.TITANIUM_INGOT, Models.GENERATED);
         itemModelGenerator.register(ModItems.RAW_TITANIUM, Models.GENERATED);
+        itemModelGenerator.register(ModItems.COBALT_INGOT, Models.GENERATED);
+        itemModelGenerator.register(ModItems.RAW_COBALT, Models.GENERATED);
 
         itemModelGenerator.register(ModItems.VACUUMITE_INGOT, Models.GENERATED);
         itemModelGenerator.register(ModItems.RAW_VACUUMITE, Models.GENERATED);
