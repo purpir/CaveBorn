@@ -1,6 +1,7 @@
 package ru.purpir.client.screen;
 
 import net.minecraft.client.gui.DrawContext;
+import net.minecraft.client.gui.Click;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.gui.widget.ButtonWidget;
 import net.minecraft.client.gl.RenderPipelines;
@@ -12,6 +13,7 @@ import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 import ru.purpir.Caveborn;
 import ru.purpir.block.ModBlocks;
+import ru.purpir.client.screen.widget.ScrollableTextPanel;
 import ru.purpir.item.ModItems;
 
 import java.util.ArrayList;
@@ -59,7 +61,9 @@ public class SolarInfusionGuideScreen extends Screen {
         new AbilityEntry(new ItemStack(ModItems.CRYSTAL_DUST), "guide.caveborn.solar.ability.crystal_dust", "guide.caveborn.solar.ability.crystal_dust.content"),
         new AbilityEntry(new ItemStack(Items.TOTEM_OF_UNDYING), "guide.caveborn.solar.ability.totem", "guide.caveborn.solar.ability.totem.content"),
         new AbilityEntry(new ItemStack(Items.ENDER_PEARL), "guide.caveborn.solar.ability.ender_pearl", "guide.caveborn.solar.ability.ender_pearl.content"),
-        new AbilityEntry(new ItemStack(ModBlocks.HOGWEED_PASTE), "guide.caveborn.solar.ability.hogweed_paste", "guide.caveborn.solar.ability.hogweed_paste.content")
+        new AbilityEntry(new ItemStack(ModBlocks.HOGWEED_PASTE), "guide.caveborn.solar.ability.hogweed_paste", "guide.caveborn.solar.ability.hogweed_paste.content"),
+        new AbilityEntry(new ItemStack(ModItems.RUSTED_MINER_KEY), "guide.caveborn.solar.ability.rusted_miner_key", "guide.caveborn.solar.ability.rusted_miner_key.content"),
+        new AbilityEntry(new ItemStack(ModItems.BRONZE_AXE), "guide.caveborn.solar.ability.bronze_axe", "guide.caveborn.solar.ability.bronze_axe.content")
     };
 
     private int selectedSection = 0;
@@ -69,6 +73,7 @@ public class SolarInfusionGuideScreen extends Screen {
     private final List<ButtonWidget> abilityButtons = new ArrayList<>();
     private ButtonWidget previousAbilityPageButton;
     private ButtonWidget nextAbilityPageButton;
+    private ScrollableTextPanel abilityTextPanel;
 
     public SolarInfusionGuideScreen() {
         super(Text.translatable("guide.caveborn.solar.title"));
@@ -79,6 +84,7 @@ public class SolarInfusionGuideScreen extends Screen {
         this.tabButtons.clear();
         int x = (this.width - PANEL_WIDTH) / 2;
         int y = (this.height - PANEL_HEIGHT) / 2;
+        this.abilityTextPanel = new ScrollableTextPanel(this.textRenderer);
 
         for (int i = 0; i < SECTIONS.length; i++) {
             final int sectionIndex = i;
@@ -102,6 +108,8 @@ public class SolarInfusionGuideScreen extends Screen {
                     int abilityIndex = this.abilityPage * ABILITIES_PER_PAGE + slotIndex;
                     if (abilityIndex < ABILITIES.length) {
                         this.selectedAbility = abilityIndex;
+                        this.abilityTextPanel.resetScroll();
+                        refreshTabButtons();
                     }
                 })
                 .dimensions(x + 120 + column * 30, y + 48 + row * 30, ABILITY_BUTTON_SIZE, ABILITY_BUTTON_SIZE)
@@ -113,6 +121,7 @@ public class SolarInfusionGuideScreen extends Screen {
         this.previousAbilityPageButton = ButtonWidget.builder(Text.literal("<"), widget -> {
                 this.abilityPage = Math.max(0, this.abilityPage - 1);
                 this.selectedAbility = this.abilityPage * ABILITIES_PER_PAGE;
+                this.abilityTextPanel.resetScroll();
                 refreshTabButtons();
             })
             .dimensions(x + 150, y + 196, 24, 18)
@@ -122,6 +131,7 @@ public class SolarInfusionGuideScreen extends Screen {
         this.nextAbilityPageButton = ButtonWidget.builder(Text.literal(">"), widget -> {
                 this.abilityPage = Math.min(getMaxAbilityPage(), this.abilityPage + 1);
                 this.selectedAbility = this.abilityPage * ABILITIES_PER_PAGE;
+                this.abilityTextPanel.resetScroll();
                 refreshTabButtons();
             })
             .dimensions(x + 190, y + 196, 24, 18)
@@ -172,6 +182,7 @@ public class SolarInfusionGuideScreen extends Screen {
             this.previousAbilityPageButton.active = showAbilities && this.abilityPage > 0;
             this.nextAbilityPageButton.active = showAbilities && this.abilityPage < getMaxAbilityPage();
         }
+
     }
 
     @Override
@@ -217,7 +228,9 @@ public class SolarInfusionGuideScreen extends Screen {
         context.fill(pageX - 8, pageY - 8, x + PANEL_WIDTH - 18, y + PANEL_HEIGHT - 43, 0x22ffffff);
         context.drawItem(ability.icon(), pageX, pageY - 2);
         drawWrappedContent(context, translateForBook(ability.titleKey()), pageX + 22, pageY, 123, 0xff3b372d);
-        drawWrappedContent(context, translateForBook(ability.contentKey()), pageX, pageY + 28, 145, 0xff3b372d);
+        this.abilityTextPanel.setBounds(pageX, pageY + 28, 148, 102);
+        this.abilityTextPanel.setText(translateForBook(ability.contentKey()));
+        this.abilityTextPanel.render(context, 0xff3b372d);
     }
 
     private void renderEventAltarPage(DrawContext context, int x, int y, Section section) {
@@ -262,23 +275,64 @@ public class SolarInfusionGuideScreen extends Screen {
 
     private void drawWrappedContent(DrawContext context, String text, int x, int y, int width, int color) {
         int lineY = y;
+        for (OrderedText line : wrapContentLines(text, width)) {
+            context.drawText(this.textRenderer, line, x, lineY, color, false);
+            lineY += 10;
+        }
+    }
+
+    private List<OrderedText> wrapContentLines(String text, int width) {
+        List<OrderedText> lines = new ArrayList<>();
         for (String paragraph : text.split("\\\\n|\\n")) {
             if (paragraph.isBlank()) {
-                lineY += 8;
+                lines.add(OrderedText.EMPTY);
                 continue;
             }
 
-            for (OrderedText line : this.textRenderer.wrapLines(Text.literal(paragraph), width)) {
-                context.drawText(this.textRenderer, line, x, lineY, color, false);
-                lineY += 10;
-            }
-            lineY += 4;
+            lines.addAll(this.textRenderer.wrapLines(Text.literal(paragraph), width));
+            lines.add(OrderedText.EMPTY);
         }
+        return lines;
     }
 
     @Override
     public boolean shouldPause() {
         return false;
+    }
+
+    @Override
+    public boolean mouseScrolled(double mouseX, double mouseY, double horizontalAmount, double verticalAmount) {
+        if (this.selectedSection == ABILITIES_SECTION && this.abilityTextPanel != null &&
+            this.abilityTextPanel.mouseScrolled(mouseX, mouseY, verticalAmount)) {
+            return true;
+        }
+        return super.mouseScrolled(mouseX, mouseY, horizontalAmount, verticalAmount);
+    }
+
+    @Override
+    public boolean mouseClicked(Click click, boolean doubleClick) {
+        if (this.selectedSection == ABILITIES_SECTION && this.abilityTextPanel != null &&
+            this.abilityTextPanel.mouseClicked(click)) {
+            return true;
+        }
+        return super.mouseClicked(click, doubleClick);
+    }
+
+    @Override
+    public boolean mouseDragged(Click click, double offsetX, double offsetY) {
+        if (this.selectedSection == ABILITIES_SECTION && this.abilityTextPanel != null &&
+            this.abilityTextPanel.mouseDragged(click, offsetY)) {
+            return true;
+        }
+        return super.mouseDragged(click, offsetX, offsetY);
+    }
+
+    @Override
+    public boolean mouseReleased(Click click) {
+        if (this.abilityTextPanel != null && this.abilityTextPanel.mouseReleased(click)) {
+            return true;
+        }
+        return super.mouseReleased(click);
     }
 
     private record Section(String titleKey, String contentKey) {

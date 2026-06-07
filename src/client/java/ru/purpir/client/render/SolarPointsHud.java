@@ -48,6 +48,6 @@ public class SolarPointsHud {
     }
 
     private static boolean hasSolarIndicator(ItemStack stack) {
-        return stack.isOf(ModItems.VACUUMITE_SWORD) && SolarInfusionSystem.isInfused(stack);
+        return (stack.isOf(ModItems.VACUUMITE_SWORD) || stack.isOf(ModItems.BRONZE_AXE)) && SolarInfusionSystem.isInfused(stack);
     }
 }

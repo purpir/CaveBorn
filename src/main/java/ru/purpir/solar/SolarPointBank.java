@@ -34,12 +34,27 @@ public class SolarPointBank {
     }
 
     public static void addVoidWoundPoints(ServerPlayerEntity player) {
+        addPoints(player, VOID_WOUND_GAIN);
+    }
+
+    public static void addPoints(ServerPlayerEntity player, int amount) {
         int previous = getPoints(player);
-        int updated = Math.min(MAX_POINTS, previous + VOID_WOUND_GAIN);
+        int updated = Math.min(MAX_POINTS, previous + Math.max(0, amount));
         if (updated != previous) {
             POINTS.put(player.getUuid(), updated);
             sync(player);
         }
+    }
+
+    public static boolean trySpendPoints(ServerPlayerEntity player, int amount) {
+        int points = getPoints(player);
+        if (points < amount) {
+            sync(player);
+            return false;
+        }
+        POINTS.put(player.getUuid(), points - amount);
+        sync(player);
+        return true;
     }
 
     public static boolean tryActivateVacuumiteSword(ServerPlayerEntity player, ServerWorld world) {

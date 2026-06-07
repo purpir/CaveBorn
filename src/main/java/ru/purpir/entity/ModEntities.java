@@ -22,6 +22,12 @@ public class ModEntities {
             .maxTrackingRange(8)
             .trackingTickInterval(3));
 
+    public static final EntityType<SolarSoulEntity> SOLAR_SOUL = register("solar_soul",
+        EntityType.Builder.<SolarSoulEntity>create(SolarSoulEntity::new, SpawnGroup.MISC)
+            .dimensions(0.25f, 0.25f)
+            .maxTrackingRange(32)
+            .trackingTickInterval(2));
+
     private static <T extends net.minecraft.entity.Entity> EntityType<T> register(String name, EntityType.Builder<T> builder) {
         Identifier id = Identifier.of(Caveborn.MOD_ID, name);
         RegistryKey<EntityType<?>> key = RegistryKey.of(RegistryKeys.ENTITY_TYPE, id);

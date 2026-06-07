@@ -1,6 +1,7 @@
 package ru.purpir.client;
 
 import net.fabricmc.api.ClientModInitializer;
+import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
 import net.fabricmc.fabric.api.client.rendering.v1.EntityRendererRegistry;
 import net.fabricmc.fabric.api.event.player.UseItemCallback;
@@ -28,6 +29,11 @@ import ru.purpir.network.ModPackets;
 import ru.purpir.screen.ModScreenHandlers;
 
 public class CavebornClient implements ClientModInitializer {
+    private static final int BRONZE_AXE_DOUBLE_JUMP_MIN_AIR_TICKS = 3;
+
+    private boolean caveborn$bronzeAxeAirJumpUsed;
+    private boolean caveborn$jumpWasDown;
+    private int caveborn$bronzeAxeAirTicks;
 
     @Override
     public void onInitializeClient() {
@@ -59,6 +65,8 @@ public class CavebornClient implements ClientModInitializer {
         HandledScreens.register(ModScreenHandlers.BAG_SCREEN_HANDLER, BagScreen::new);
         HandledScreens.register(ModScreenHandlers.CRUSHER_SCREEN_HANDLER, CrusherScreen::new);
         EntityRendererRegistry.register(ModEntities.CAVE_FIREFLY, EmptyEntityRenderer::new);
+        EntityRendererRegistry.register(ModEntities.SOLAR_SOUL, EmptyEntityRenderer::new);
+        ClientTickEvents.END_CLIENT_TICK.register(this::tickBronzeAxeDoubleJump);
 
         UseItemCallback.EVENT.register((player, world, hand) -> {
             if (!world.isClient()) {
@@ -88,5 +96,38 @@ public class CavebornClient implements ClientModInitializer {
         BlockRenderLayerMap.putBlock(ModBlocks.TITANIUM_BARS, BlockRenderLayer.CUTOUT);
         BlockRenderLayerMap.putBlock(ModBlocks.TITANIUM_DOOR, BlockRenderLayer.CUTOUT);
         BlockRenderLayerMap.putBlock(ModBlocks.TITANIUM_TRAPDOOR, BlockRenderLayer.CUTOUT);
+    }
+
+    private void tickBronzeAxeDoubleJump(MinecraftClient client) {
+        if (client.player == null || client.world == null) {
+            caveborn$bronzeAxeAirJumpUsed = false;
+            caveborn$jumpWasDown = false;
+            caveborn$bronzeAxeAirTicks = 0;
+            return;
+        }
+
+        boolean jumpDown = client.options.jumpKey.isPressed();
+        if (client.player.isOnGround()) {
+            caveborn$bronzeAxeAirJumpUsed = false;
+            caveborn$jumpWasDown = jumpDown;
+            caveborn$bronzeAxeAirTicks = 0;
+            return;
+        }
+
+        caveborn$bronzeAxeAirTicks++;
+        if (caveborn$bronzeAxeAirTicks >= BRONZE_AXE_DOUBLE_JUMP_MIN_AIR_TICKS &&
+            jumpDown && !caveborn$jumpWasDown && !caveborn$bronzeAxeAirJumpUsed && isHoldingInfusedBronzeAxe(client)) {
+            caveborn$bronzeAxeAirJumpUsed = true;
+            ClientPlayNetworking.send(new ModPackets.BronzeAxeDoubleJumpPayload());
+        }
+        caveborn$jumpWasDown = jumpDown;
+    }
+
+    private boolean isHoldingInfusedBronzeAxe(MinecraftClient client) {
+        return isInfusedBronzeAxe(client.player.getMainHandStack()) || isInfusedBronzeAxe(client.player.getOffHandStack());
+    }
+
+    private boolean isInfusedBronzeAxe(net.minecraft.item.ItemStack stack) {
+        return stack.isOf(ModItems.BRONZE_AXE) && ru.purpir.enchantment.SolarInfusionSystem.isInfused(stack);
     }
 }

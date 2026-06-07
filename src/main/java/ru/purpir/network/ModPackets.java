@@ -16,6 +16,7 @@ public class ModPackets {
     public static final Identifier ALTAR_ACTION = Identifier.of(Caveborn.MOD_ID, "altar_action");
     public static final Identifier ALTAR_SCENE = Identifier.of(Caveborn.MOD_ID, "altar_scene");
     public static final Identifier SOLAR_POINTS = Identifier.of(Caveborn.MOD_ID, "solar_points");
+    public static final Identifier BRONZE_AXE_DOUBLE_JUMP = Identifier.of(Caveborn.MOD_ID, "bronze_axe_double_jump");
     
     public record OpenAltarScreenPayload(String data) implements CustomPayload {
         public static final Id<OpenAltarScreenPayload> ID = new Id<>(OPEN_ALTAR_SCREEN);
@@ -36,6 +37,16 @@ public class ModPackets {
             PacketCodecs.INTEGER, SolarPointsPayload::points,
             SolarPointsPayload::new
         );
+
+        @Override
+        public Id<? extends CustomPayload> getId() {
+            return ID;
+        }
+    }
+
+    public record BronzeAxeDoubleJumpPayload() implements CustomPayload {
+        public static final Id<BronzeAxeDoubleJumpPayload> ID = new Id<>(BRONZE_AXE_DOUBLE_JUMP);
+        public static final PacketCodec<RegistryByteBuf, BronzeAxeDoubleJumpPayload> CODEC = PacketCodec.unit(new BronzeAxeDoubleJumpPayload());
 
         @Override
         public Id<? extends CustomPayload> getId() {
@@ -90,5 +101,6 @@ public class ModPackets {
         PayloadTypeRegistry.playC2S().register(AltarActionPayload.ID, AltarActionPayload.CODEC);
         PayloadTypeRegistry.playS2C().register(AltarScenePayload.ID, AltarScenePayload.CODEC);
         PayloadTypeRegistry.playS2C().register(SolarPointsPayload.ID, SolarPointsPayload.CODEC);
+        PayloadTypeRegistry.playC2S().register(BronzeAxeDoubleJumpPayload.ID, BronzeAxeDoubleJumpPayload.CODEC);
     }
 }

@@ -2,6 +2,7 @@ package ru.purpir.enchantment;
 
 import net.minecraft.component.type.AttributeModifierSlot;
 import net.minecraft.component.type.AttributeModifiersComponent;
+import net.minecraft.component.DataComponentTypes;
 import net.minecraft.entity.attribute.EntityAttributeModifier;
 import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.item.ItemStack;
@@ -27,9 +28,11 @@ public class SolarInfusionSystem {
         boolean isTotem = item.isOf(net.minecraft.item.Items.TOTEM_OF_UNDYING);
         boolean isEnderPearl = item.isOf(net.minecraft.item.Items.ENDER_PEARL);
         boolean isHogweedPaste = item.isOf(ru.purpir.block.ModBlocks.HOGWEED_PASTE.asItem());
+        boolean isRustedMinerKey = item.isOf(ModItems.RUSTED_MINER_KEY);
+        boolean isBronzeAxe = item.isOf(ModItems.BRONZE_AXE);
         boolean isApiRegistered = SolarInfusionApi.isRegisteredInfusable(item);
         
-        return (isSword || isWindCharge || isVacuumiteMagnet || isShield || isBow || isSolarArrow || isTrident || isCrystalDust || isTotem || isEnderPearl || isHogweedPaste || isApiRegistered) &&
+        return (isSword || isWindCharge || isVacuumiteMagnet || isShield || isBow || isSolarArrow || isTrident || isCrystalDust || isTotem || isEnderPearl || isHogweedPaste || isRustedMinerKey || isBronzeAxe || isApiRegistered) &&
                crystal.isOf(ModItems.SOLAR_CRYSTAL) &&
                !isInfused(item);
     }
@@ -45,7 +48,15 @@ public class SolarInfusionSystem {
         
         ItemStack result = item.copy();
         result.set(ModComponents.SOLAR_INFUSED, true);
-        result.set(net.minecraft.component.DataComponentTypes.ENCHANTMENT_GLINT_OVERRIDE, true);
+        result.set(DataComponentTypes.ENCHANTMENT_GLINT_OVERRIDE, true);
+
+        if (result.isOf(ModItems.RUSTED_MINER_KEY)) {
+            result.setCount(1);
+            result.set(DataComponentTypes.MAX_STACK_SIZE, 1);
+            result.set(DataComponentTypes.MAX_DAMAGE, 20);
+            result.set(DataComponentTypes.DAMAGE, 0);
+            return result;
+        }
         
         // Для зарядов ветра не добавляем модификатор урона
         if (SolarInfusionApi.isRegisteredInfusable(result) ||
@@ -54,13 +65,14 @@ public class SolarInfusionSystem {
             result.isOf(net.minecraft.item.Items.ARROW) || result.isOf(net.minecraft.item.Items.SPECTRAL_ARROW) ||
             result.isOf(net.minecraft.item.Items.TRIDENT) || result.isOf(ModItems.CRYSTAL_DUST) ||
             result.isOf(net.minecraft.item.Items.TOTEM_OF_UNDYING) || result.isOf(ModItems.VACUUMITE_SWORD) ||
-            result.isOf(net.minecraft.item.Items.ENDER_PEARL) || result.isOf(ru.purpir.block.ModBlocks.HOGWEED_PASTE.asItem())) {
+            result.isOf(net.minecraft.item.Items.ENDER_PEARL) || result.isOf(ru.purpir.block.ModBlocks.HOGWEED_PASTE.asItem()) ||
+            result.isOf(ModItems.BRONZE_AXE)) {
             return result;
         }
         
         // Добавляем модификатор урона только для мечей
         AttributeModifiersComponent modifiers = result.getOrDefault(
-            net.minecraft.component.DataComponentTypes.ATTRIBUTE_MODIFIERS, 
+            DataComponentTypes.ATTRIBUTE_MODIFIERS, 
             AttributeModifiersComponent.DEFAULT
         );
         
@@ -86,14 +98,15 @@ public class SolarInfusionSystem {
             AttributeModifierSlot.MAINHAND
         );
         
-        result.set(net.minecraft.component.DataComponentTypes.ATTRIBUTE_MODIFIERS, builder.build());
+        result.set(DataComponentTypes.ATTRIBUTE_MODIFIERS, builder.build());
         
         return result;
     }
     
     public static float getAdditionalDamage(ItemStack stack) {
         if (stack.isOf(net.minecraft.item.Items.BOW) || stack.isOf(net.minecraft.item.Items.ARROW) ||
-            stack.isOf(net.minecraft.item.Items.SPECTRAL_ARROW) || stack.isOf(net.minecraft.item.Items.TRIDENT)) {
+            stack.isOf(net.minecraft.item.Items.SPECTRAL_ARROW) || stack.isOf(net.minecraft.item.Items.TRIDENT) ||
+            stack.isOf(ModItems.RUSTED_MINER_KEY) || stack.isOf(ModItems.BRONZE_AXE)) {
             return 0.0f;
         }
 
