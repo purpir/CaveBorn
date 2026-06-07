@@ -6,6 +6,7 @@ import net.minecraft.entity.attribute.EntityAttributeModifier;
 import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.Identifier;
+import ru.purpir.api.SolarInfusionApi;
 import ru.purpir.component.ModComponents;
 import ru.purpir.item.ModItems;
 
@@ -26,8 +27,9 @@ public class SolarInfusionSystem {
         boolean isTotem = item.isOf(net.minecraft.item.Items.TOTEM_OF_UNDYING);
         boolean isEnderPearl = item.isOf(net.minecraft.item.Items.ENDER_PEARL);
         boolean isHogweedPaste = item.isOf(ru.purpir.block.ModBlocks.HOGWEED_PASTE.asItem());
+        boolean isApiRegistered = SolarInfusionApi.isRegisteredInfusable(item);
         
-        return (isSword || isWindCharge || isVacuumiteMagnet || isShield || isBow || isSolarArrow || isTrident || isCrystalDust || isTotem || isEnderPearl || isHogweedPaste) &&
+        return (isSword || isWindCharge || isVacuumiteMagnet || isShield || isBow || isSolarArrow || isTrident || isCrystalDust || isTotem || isEnderPearl || isHogweedPaste || isApiRegistered) &&
                crystal.isOf(ModItems.SOLAR_CRYSTAL) &&
                !isInfused(item);
     }
@@ -46,7 +48,8 @@ public class SolarInfusionSystem {
         result.set(net.minecraft.component.DataComponentTypes.ENCHANTMENT_GLINT_OVERRIDE, true);
         
         // Для зарядов ветра не добавляем модификатор урона
-        if (result.isOf(net.minecraft.item.Items.WIND_CHARGE) || result.isOf(ModItems.VACUUMITE_MAGNET) ||
+        if (SolarInfusionApi.isRegisteredInfusable(result) ||
+            result.isOf(net.minecraft.item.Items.WIND_CHARGE) || result.isOf(ModItems.VACUUMITE_MAGNET) ||
             result.isOf(net.minecraft.item.Items.SHIELD) || result.isOf(net.minecraft.item.Items.BOW) ||
             result.isOf(net.minecraft.item.Items.ARROW) || result.isOf(net.minecraft.item.Items.SPECTRAL_ARROW) ||
             result.isOf(net.minecraft.item.Items.TRIDENT) || result.isOf(ModItems.CRYSTAL_DUST) ||
@@ -92,6 +95,11 @@ public class SolarInfusionSystem {
         if (stack.isOf(net.minecraft.item.Items.BOW) || stack.isOf(net.minecraft.item.Items.ARROW) ||
             stack.isOf(net.minecraft.item.Items.SPECTRAL_ARROW) || stack.isOf(net.minecraft.item.Items.TRIDENT)) {
             return 0.0f;
+        }
+
+        float apiBonus = SolarInfusionApi.getRegisteredAttackDamageBonus(stack);
+        if (apiBonus > 0.0F) {
+            return isInfused(stack) ? apiBonus : 0.0F;
         }
 
         return isInfused(stack) ? 2.0f : 0.0f;
