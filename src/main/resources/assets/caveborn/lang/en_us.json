@@ -51,6 +51,7 @@
   "item.caveborn.raw_cobalt": "Raw Cobalt",
   "item.caveborn.zinc_ingot": "Zinc Ingot",
   "item.caveborn.raw_zinc": "Raw Zinc",
+  "item.caveborn.zinc_knife": "Zinc Knife",
   
   "item.caveborn.netherite_titanium_ingot": "Netherite Titanium Ingot",
   "item.caveborn.netherite_titanium_sword": "Netherite Titanium Sword",
@@ -188,6 +189,8 @@
   "guide.caveborn.solar.ability.rusted_miner_key.content": "Right click to use the call of the sun and show the distance to the nearest locked miner's crate in the actionbar.\\nIt only finds locked crates, has a 5 second cooldown, and spends 1 durability. The key has 20 durability; when the last durability breaks, lightning strikes the player.",
   "guide.caveborn.solar.ability.bronze_axe": "Bronze Axe",
   "guide.caveborn.solar.ability.bronze_axe.content": "Kills with an infused Bronze Axe release souls. A soul flies to the player like experience and grants +5 shared solar points.\\nWith at least 10 points, pressing jump again in midair performs a higher double jump. Landing prevents fall damage, costs 50 axe durability, deals 8 area damage, knocks enemies away, and leaves a ring of fire.",
+  "guide.caveborn.solar.ability.zinc_knife": "Zinc Knife",
+  "guide.caveborn.solar.ability.zinc_knife.content": "Passive knife abilities:\\nInfusion gives +1 damage and raises attack speed to 2.8. The knife has two modes: solo and duo.\\nSolo - with one infused Zinc Knife in hand, right click spends 10 solar points and dashes 2 blocks.\\nDuo - with infused Zinc Knives in both hands, attacks cycle through main hand, offhand, then both knives together. The third hit deals damage with both knives, ignites the target, and grants +10 solar points. Right click spends 10 points, dashes 4 blocks, deals 2 damage to mobs in the path, and ignites them.",
   "event_altar.caveborn.title": "Event Altar",
   "event_altar.caveborn.stage": "Stage %s",
   "event_altar.caveborn.completed": "Tasks completed: %s",

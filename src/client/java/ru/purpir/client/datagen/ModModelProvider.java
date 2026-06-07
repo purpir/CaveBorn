@@ -73,6 +73,7 @@ public class ModModelProvider extends FabricModelProvider {
         itemModelGenerator.register(ModItems.RAW_COBALT, Models.GENERATED);
         itemModelGenerator.register(ModItems.ZINC_INGOT, Models.GENERATED);
         itemModelGenerator.register(ModItems.RAW_ZINC, Models.GENERATED);
+        itemModelGenerator.register(ModItems.ZINC_KNIFE, Models.HANDHELD);
 
         itemModelGenerator.register(ModItems.VACUUMITE_INGOT, Models.GENERATED);
         itemModelGenerator.register(ModItems.RAW_VACUUMITE, Models.GENERATED);

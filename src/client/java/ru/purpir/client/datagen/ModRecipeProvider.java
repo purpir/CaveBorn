@@ -91,6 +91,14 @@ public class ModRecipeProvider extends FabricRecipeProvider {
                 // Zinc block
                 offerReversibleCompactingRecipes(RecipeCategory.BUILDING_BLOCKS,
                     ModItems.ZINC_INGOT, RecipeCategory.DECORATIONS, ModBlocks.ZINC_BLOCK);
+
+                createShaped(RecipeCategory.COMBAT, ModItems.ZINC_KNIFE)
+                    .pattern("Z")
+                    .pattern("S")
+                    .input('Z', ModItems.ZINC_INGOT)
+                    .input('S', Items.STICK)
+                    .criterion(hasItem(ModItems.ZINC_INGOT), conditionsFromItem(ModItems.ZINC_INGOT))
+                    .offerTo(exporter);
                 
                 // Netherite Titanium block
                 offerReversibleCompactingRecipes(RecipeCategory.BUILDING_BLOCKS, 

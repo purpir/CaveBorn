@@ -6,7 +6,8 @@
   "client": [
     "WorldRendererMixin",
     "BlockColorsMixin",
-    "CameraMixin"
+    "CameraMixin",
+    "MinecraftClientMixin"
   ],
   "injectors": {
     "defaultRequire": 1

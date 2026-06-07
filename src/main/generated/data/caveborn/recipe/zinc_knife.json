@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "combat",
+  "key": {
+    "S": "minecraft:stick",
+    "Z": "caveborn:zinc_ingot"
+  },
+  "pattern": [
+    "Z",
+    "S"
+  ],
+  "result": {
+    "count": 1,
+    "id": "caveborn:zinc_knife"
+  }
+}

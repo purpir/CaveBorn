@@ -18,4 +18,7 @@ public class ModToolMaterials {
 
     public static final ToolMaterial CRACK_HAMMER = new ToolMaterial(
         BlockTags.INCORRECT_FOR_DIAMOND_TOOL, 768, 6.0f, 2.0f, 8, ModTags.Items.CRACK_HAMMER_REPAIR);
+
+    public static final ToolMaterial ZINC = new ToolMaterial(
+        BlockTags.INCORRECT_FOR_STONE_TOOL, 180, 5.0f, 1.0f, 12, ModTags.Items.ZINC_INGOTS);
 }

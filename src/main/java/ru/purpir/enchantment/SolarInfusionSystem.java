@@ -14,6 +14,8 @@ import ru.purpir.item.ModItems;
 public class SolarInfusionSystem {
     
     private static final Identifier SOLAR_DAMAGE_MODIFIER_ID = Identifier.of("caveborn", "solar_infusion_damage");
+    private static final Identifier SOLAR_ZINC_KNIFE_DAMAGE_ID = Identifier.of("caveborn", "solar_zinc_knife_damage");
+    private static final Identifier SOLAR_ZINC_KNIFE_SPEED_ID = Identifier.of("caveborn", "solar_zinc_knife_speed");
     
     public static boolean canInfuse(ItemStack item, ItemStack crystal) {
         // Проверяем что это меч (имеет TOOL компонент) или заряд ветра, и солнечный кристалл
@@ -55,6 +57,11 @@ public class SolarInfusionSystem {
             result.set(DataComponentTypes.MAX_STACK_SIZE, 1);
             result.set(DataComponentTypes.MAX_DAMAGE, 20);
             result.set(DataComponentTypes.DAMAGE, 0);
+            return result;
+        }
+
+        if (result.isOf(ModItems.ZINC_KNIFE)) {
+            applyZincKnifeModifiers(result);
             return result;
         }
         
@@ -102,11 +109,44 @@ public class SolarInfusionSystem {
         
         return result;
     }
+
+    private static void applyZincKnifeModifiers(ItemStack result) {
+        AttributeModifiersComponent modifiers = result.getOrDefault(
+            DataComponentTypes.ATTRIBUTE_MODIFIERS,
+            AttributeModifiersComponent.DEFAULT
+        );
+
+        AttributeModifiersComponent.Builder builder = AttributeModifiersComponent.builder();
+        for (var entry : modifiers.modifiers()) {
+            builder.add(entry.attribute(), entry.modifier(), entry.slot());
+        }
+
+        builder.add(
+            EntityAttributes.ATTACK_DAMAGE,
+            new EntityAttributeModifier(
+                SOLAR_ZINC_KNIFE_DAMAGE_ID,
+                1.0,
+                EntityAttributeModifier.Operation.ADD_VALUE
+            ),
+            AttributeModifierSlot.MAINHAND
+        );
+        builder.add(
+            EntityAttributes.ATTACK_SPEED,
+            new EntityAttributeModifier(
+                SOLAR_ZINC_KNIFE_SPEED_ID,
+                0.4,
+                EntityAttributeModifier.Operation.ADD_VALUE
+            ),
+            AttributeModifierSlot.MAINHAND
+        );
+
+        result.set(DataComponentTypes.ATTRIBUTE_MODIFIERS, builder.build());
+    }
     
     public static float getAdditionalDamage(ItemStack stack) {
         if (stack.isOf(net.minecraft.item.Items.BOW) || stack.isOf(net.minecraft.item.Items.ARROW) ||
             stack.isOf(net.minecraft.item.Items.SPECTRAL_ARROW) || stack.isOf(net.minecraft.item.Items.TRIDENT) ||
-            stack.isOf(ModItems.RUSTED_MINER_KEY) || stack.isOf(ModItems.BRONZE_AXE)) {
+            stack.isOf(ModItems.RUSTED_MINER_KEY) || stack.isOf(ModItems.BRONZE_AXE) || stack.isOf(ModItems.ZINC_KNIFE)) {
             return 0.0f;
         }
 

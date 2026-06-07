@@ -65,6 +65,8 @@ public class ModItems {
     // Zinc Items
     public static final Item ZINC_INGOT = registerItem("zinc_ingot", Item::new, new Item.Settings());
     public static final Item RAW_ZINC = registerItem("raw_zinc", Item::new, new Item.Settings());
+    public static final Item ZINC_KNIFE = registerItem("zinc_knife", Item::new,
+        new Item.Settings().sword(ModToolMaterials.ZINC, 4, -1.6f));
     
     // Vacuumite Items
     public static final Item VACUUMITE_INGOT = registerItem("vacuumite_ingot", Item::new, new Item.Settings());
@@ -165,6 +167,7 @@ public class ModItems {
                     entries.add(ModBlocks.ZINC_BLOCK);
                     entries.add(ZINC_INGOT);
                     entries.add(RAW_ZINC);
+                    entries.add(ZINC_KNIFE);
                     // Vacuumite
                     entries.add(ModBlocks.VACUUMITE_ORE);
                     entries.add(ModBlocks.VACUUMITE_BLOCK);

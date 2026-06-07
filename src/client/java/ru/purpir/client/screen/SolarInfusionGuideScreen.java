@@ -63,7 +63,8 @@ public class SolarInfusionGuideScreen extends Screen {
         new AbilityEntry(new ItemStack(Items.ENDER_PEARL), "guide.caveborn.solar.ability.ender_pearl", "guide.caveborn.solar.ability.ender_pearl.content"),
         new AbilityEntry(new ItemStack(ModBlocks.HOGWEED_PASTE), "guide.caveborn.solar.ability.hogweed_paste", "guide.caveborn.solar.ability.hogweed_paste.content"),
         new AbilityEntry(new ItemStack(ModItems.RUSTED_MINER_KEY), "guide.caveborn.solar.ability.rusted_miner_key", "guide.caveborn.solar.ability.rusted_miner_key.content"),
-        new AbilityEntry(new ItemStack(ModItems.BRONZE_AXE), "guide.caveborn.solar.ability.bronze_axe", "guide.caveborn.solar.ability.bronze_axe.content")
+        new AbilityEntry(new ItemStack(ModItems.BRONZE_AXE), "guide.caveborn.solar.ability.bronze_axe", "guide.caveborn.solar.ability.bronze_axe.content"),
+        new AbilityEntry(new ItemStack(ModItems.ZINC_KNIFE), "guide.caveborn.solar.ability.zinc_knife", "guide.caveborn.solar.ability.zinc_knife.content")
     };
 
     private int selectedSection = 0;
