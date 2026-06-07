@@ -25,6 +25,9 @@ public class ModItemTagProvider extends FabricTagProvider.ItemTagProvider {
         valueLookupBuilder(ModTags.Items.COBALT_INGOTS)
             .add(ModItems.COBALT_INGOT);
 
+        valueLookupBuilder(ModTags.Items.ZINC_INGOTS)
+            .add(ModItems.ZINC_INGOT);
+
         valueLookupBuilder(ModTags.Items.BRONZE_REPAIR)
             .add(ModItems.BRONZE_INGOT);
 

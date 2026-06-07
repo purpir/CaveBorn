@@ -22,12 +22,17 @@ public class ModModelProvider extends FabricModelProvider {
         blockStateModelGenerator.registerSimpleCubeAll(ModBlocks.COBALT_ORE);
         blockStateModelGenerator.registerSimpleCubeAll(ModBlocks.DEEPSLATE_COBALT_ORE);
         blockStateModelGenerator.registerSimpleCubeAll(ModBlocks.COBALT_BLOCK);
+        blockStateModelGenerator.registerSimpleCubeAll(ModBlocks.ZINC_ORE);
+        blockStateModelGenerator.registerSimpleCubeAll(ModBlocks.DEEPSLATE_ZINC_ORE);
+        blockStateModelGenerator.registerSimpleCubeAll(ModBlocks.ZINC_BLOCK);
         blockStateModelGenerator.registerSimpleCubeAll(ModBlocks.NETHERITE_TITANIUM_BLOCK);
         blockStateModelGenerator.registerSimpleCubeAll(ModBlocks.VACUUMITE_ORE);
         blockStateModelGenerator.registerSimpleCubeAll(ModBlocks.VACUUMITE_BLOCK);
         blockStateModelGenerator.registerSimpleCubeAll(ModBlocks.DEEP_GRANITE);
         blockStateModelGenerator.registerSimpleCubeAll(ModBlocks.ASHEN_LIMESTONE);
         blockStateModelGenerator.registerSimpleCubeAll(ModBlocks.IRON_CASING);
+        blockStateModelGenerator.registerSimpleCubeAll(ModBlocks.COBALT_CASING);
+        blockStateModelGenerator.registerSimpleCubeAll(ModBlocks.CHAOS_CORE);
         
         // Titanium building blocks - используем pool для titanium_block чтобы избежать дубликата
         BlockStateModelGenerator.BlockTexturePool titaniumPool = blockStateModelGenerator.registerCubeAllModelTexturePool(ModBlocks.TITANIUM_BLOCK);
@@ -66,6 +71,8 @@ public class ModModelProvider extends FabricModelProvider {
         itemModelGenerator.register(ModItems.RAW_TITANIUM, Models.GENERATED);
         itemModelGenerator.register(ModItems.COBALT_INGOT, Models.GENERATED);
         itemModelGenerator.register(ModItems.RAW_COBALT, Models.GENERATED);
+        itemModelGenerator.register(ModItems.ZINC_INGOT, Models.GENERATED);
+        itemModelGenerator.register(ModItems.RAW_ZINC, Models.GENERATED);
 
         itemModelGenerator.register(ModItems.VACUUMITE_INGOT, Models.GENERATED);
         itemModelGenerator.register(ModItems.RAW_VACUUMITE, Models.GENERATED);

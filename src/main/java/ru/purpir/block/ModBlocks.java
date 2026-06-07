@@ -77,6 +77,28 @@ public class ModBlocks {
             .requiresTool()
             .sounds(BlockSoundGroup.METAL));
 
+    // Zinc - common technical material for basic machinery
+    public static final Block ZINC_ORE = registerBlock("zinc_ore",
+        settings -> new ExperienceDroppingBlock(UniformIntProvider.create(1, 3), settings),
+        AbstractBlock.Settings.create()
+            .strength(3.0f, 3.0f)
+            .requiresTool()
+            .sounds(BlockSoundGroup.STONE));
+
+    public static final Block DEEPSLATE_ZINC_ORE = registerBlock("deepslate_zinc_ore",
+        settings -> new ExperienceDroppingBlock(UniformIntProvider.create(1, 3), settings),
+        AbstractBlock.Settings.create()
+            .strength(4.5f, 3.0f)
+            .requiresTool()
+            .sounds(BlockSoundGroup.DEEPSLATE));
+
+    public static final Block ZINC_BLOCK = registerBlock("zinc_block",
+        Block::new,
+        AbstractBlock.Settings.create()
+            .strength(4.5f, 6.0f)
+            .requiresTool()
+            .sounds(BlockSoundGroup.METAL));
+
     // Netherite Titanium Block
     public static final Block NETHERITE_TITANIUM_BLOCK = registerBlock("netherite_titanium_block",
         Block::new,
@@ -122,6 +144,14 @@ public class ModBlocks {
         AbstractBlock.Settings.create()
             .mapColor(MapColor.IRON_GRAY)
             .strength(5.0f, 6.0f)
+            .requiresTool()
+            .sounds(BlockSoundGroup.METAL));
+
+    public static final Block COBALT_CASING = registerBlock("cobalt_casing",
+        Block::new,
+        AbstractBlock.Settings.create()
+            .mapColor(MapColor.LIGHT_BLUE)
+            .strength(5.5f, 6.5f)
             .requiresTool()
             .sounds(BlockSoundGroup.METAL));
 
@@ -219,6 +249,15 @@ public class ModBlocks {
             .mapColor(MapColor.BROWN)
             .strength(3.0f, 6.0f)
             .sounds(BlockSoundGroup.WOOD));
+
+    public static final Block CHAOS_CORE = registerBlock("chaos_core",
+        ChaosCoreBlock::new,
+        AbstractBlock.Settings.create()
+            .mapColor(MapColor.PURPLE)
+            .strength(80.0f, 1800.0f)
+            .requiresTool()
+            .sounds(BlockSoundGroup.NETHERITE)
+            .luminance(state -> 6));
 
     // Titanium building blocks
     public static final Block TITANIUM_GRATE = registerBlock("titanium_grate",

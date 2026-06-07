@@ -19,6 +19,8 @@ public class ModPlacedFeatures {
     public static final RegistryKey<PlacedFeature> TITANIUM_ORE_PLACED_KEY = registerKey("titanium_ore");
     public static final RegistryKey<PlacedFeature> DEEPSLATE_TITANIUM_ORE_PLACED_KEY = registerKey("deepslate_titanium_ore");
     public static final RegistryKey<PlacedFeature> DEEPSLATE_COBALT_ORE_PLACED_KEY = registerKey("deepslate_cobalt_ore");
+    public static final RegistryKey<PlacedFeature> ZINC_ORE_PLACED_KEY = registerKey("zinc_ore");
+    public static final RegistryKey<PlacedFeature> DEEPSLATE_ZINC_ORE_PLACED_KEY = registerKey("deepslate_zinc_ore");
     public static final RegistryKey<PlacedFeature> VACUUMITE_ORE_PLACED_KEY = registerKey("vacuumite_ore");
     public static final RegistryKey<PlacedFeature> DEEP_GRANITE_PLACED_KEY = registerKey("deep_granite");
     public static final RegistryKey<PlacedFeature> ASHEN_LIMESTONE_PLACED_KEY = registerKey("ashen_limestone");
@@ -30,6 +32,7 @@ public class ModPlacedFeatures {
     public static final RegistryKey<PlacedFeature> CRYSTAL_GROWTH_PATCH_PLACED_KEY = registerKey("crystal_growth_patch");
     public static final RegistryKey<PlacedFeature> MINERS_CAMP_PLACED_KEY = registerKey("miners_camp");
     public static final RegistryKey<PlacedFeature> HANGING_MINERS_CACHE_PLACED_KEY = registerKey("hanging_miners_cache");
+    public static final RegistryKey<PlacedFeature> BROKEN_ALTAR_PLACED_KEY = registerKey("broken_altar");
 
     public static void bootstrap(Registerable<PlacedFeature> context) {
         var configuredFeatures = context.getRegistryLookup(RegistryKeys.CONFIGURED_FEATURE);
@@ -53,6 +56,15 @@ public class ModPlacedFeatures {
         register(context, DEEPSLATE_COBALT_ORE_PLACED_KEY,
             configuredFeatures.getOrThrow(ModConfiguredFeatures.DEEPSLATE_COBALT_ORE_KEY),
             modifiersWithCount(4, HeightRangePlacementModifier.uniform(YOffset.fixed(-64), YOffset.fixed(-16))));
+
+        // Zinc ore - common across most overworld mining levels
+        register(context, ZINC_ORE_PLACED_KEY,
+            configuredFeatures.getOrThrow(ModConfiguredFeatures.ZINC_ORE_KEY),
+            modifiersWithCount(12, HeightRangePlacementModifier.uniform(YOffset.fixed(-32), YOffset.fixed(112))));
+
+        register(context, DEEPSLATE_ZINC_ORE_PLACED_KEY,
+            configuredFeatures.getOrThrow(ModConfiguredFeatures.DEEPSLATE_ZINC_ORE_KEY),
+            modifiersWithCount(10, HeightRangePlacementModifier.uniform(YOffset.fixed(-64), YOffset.fixed(16))));
 
         // Vacuumite ore in End - rare (3 veins per chunk)
         register(context, VACUUMITE_ORE_PLACED_KEY, 
@@ -140,6 +152,15 @@ public class ModPlacedFeatures {
                 RarityFilterPlacementModifier.of(42),
                 SquarePlacementModifier.of(),
                 HeightRangePlacementModifier.uniform(YOffset.fixed(-58), YOffset.fixed(-12)),
+                BiomePlacementModifier.of()
+            ));
+
+        register(context, BROKEN_ALTAR_PLACED_KEY,
+            configuredFeatures.getOrThrow(ModConfiguredFeatures.BROKEN_ALTAR_KEY),
+            List.of(
+                RarityFilterPlacementModifier.of(96),
+                SquarePlacementModifier.of(),
+                PlacedFeatures.WORLD_SURFACE_WG_HEIGHTMAP,
                 BiomePlacementModifier.of()
             ));
     }

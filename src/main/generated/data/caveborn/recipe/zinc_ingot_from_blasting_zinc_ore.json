@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:blasting",
+  "category": "misc",
+  "cookingtime": 100,
+  "experience": 0.6,
+  "group": "zinc",
+  "ingredient": "caveborn:zinc_ore",
+  "result": {
+    "id": "caveborn:zinc_ingot"
+  }
+}

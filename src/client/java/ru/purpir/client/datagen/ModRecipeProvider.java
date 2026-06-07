@@ -52,6 +52,20 @@ public class ModRecipeProvider extends FabricRecipeProvider {
                 offerBlasting(java.util.List.of(ModBlocks.DEEPSLATE_COBALT_ORE), RecipeCategory.MISC,
                     ModItems.COBALT_INGOT, 0.8f, 100, "cobalt");
 
+                // Zinc smelting
+                offerSmelting(java.util.List.of(ModItems.RAW_ZINC), RecipeCategory.MISC,
+                    ModItems.ZINC_INGOT, 0.6f, 200, "zinc");
+                offerBlasting(java.util.List.of(ModItems.RAW_ZINC), RecipeCategory.MISC,
+                    ModItems.ZINC_INGOT, 0.6f, 100, "zinc");
+                offerSmelting(java.util.List.of(ModBlocks.ZINC_ORE), RecipeCategory.MISC,
+                    ModItems.ZINC_INGOT, 0.6f, 200, "zinc");
+                offerBlasting(java.util.List.of(ModBlocks.ZINC_ORE), RecipeCategory.MISC,
+                    ModItems.ZINC_INGOT, 0.6f, 100, "zinc");
+                offerSmelting(java.util.List.of(ModBlocks.DEEPSLATE_ZINC_ORE), RecipeCategory.MISC,
+                    ModItems.ZINC_INGOT, 0.6f, 200, "zinc");
+                offerBlasting(java.util.List.of(ModBlocks.DEEPSLATE_ZINC_ORE), RecipeCategory.MISC,
+                    ModItems.ZINC_INGOT, 0.6f, 100, "zinc");
+
                 // Vacuumite smelting
                 offerSmelting(java.util.List.of(ModItems.RAW_VACUUMITE), RecipeCategory.MISC,
                     ModItems.VACUUMITE_INGOT, 1.0f, 200, "vacuumite");
@@ -73,6 +87,10 @@ public class ModRecipeProvider extends FabricRecipeProvider {
                 // Cobalt block
                 offerReversibleCompactingRecipes(RecipeCategory.BUILDING_BLOCKS,
                     ModItems.COBALT_INGOT, RecipeCategory.DECORATIONS, ModBlocks.COBALT_BLOCK);
+
+                // Zinc block
+                offerReversibleCompactingRecipes(RecipeCategory.BUILDING_BLOCKS,
+                    ModItems.ZINC_INGOT, RecipeCategory.DECORATIONS, ModBlocks.ZINC_BLOCK);
                 
                 // Netherite Titanium block
                 offerReversibleCompactingRecipes(RecipeCategory.BUILDING_BLOCKS, 
@@ -313,6 +331,16 @@ public class ModRecipeProvider extends FabricRecipeProvider {
                     .input('I', Items.IRON_INGOT)
                     .criterion(hasItem(Items.IRON_BLOCK), conditionsFromItem(Items.IRON_BLOCK))
                     .criterion(hasItem(Items.IRON_INGOT), conditionsFromItem(Items.IRON_INGOT))
+                    .offerTo(exporter);
+
+                createShaped(RecipeCategory.BUILDING_BLOCKS, ModBlocks.COBALT_CASING)
+                    .pattern("BIB")
+                    .pattern("I I")
+                    .pattern("BIB")
+                    .input('B', ModBlocks.COBALT_BLOCK)
+                    .input('I', ModItems.COBALT_INGOT)
+                    .criterion(hasItem(ModBlocks.COBALT_BLOCK), conditionsFromItem(ModBlocks.COBALT_BLOCK))
+                    .criterion(hasItem(ModItems.COBALT_INGOT), conditionsFromItem(ModItems.COBALT_INGOT))
                     .offerTo(exporter);
 
                 createShaped(RecipeCategory.REDSTONE, ModBlocks.CRUSHER)

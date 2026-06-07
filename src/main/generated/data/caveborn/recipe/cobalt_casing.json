@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "key": {
+    "B": "caveborn:cobalt_block",
+    "I": "caveborn:cobalt_ingot"
+  },
+  "pattern": [
+    "BIB",
+    "I I",
+    "BIB"
+  ],
+  "result": {
+    "count": 1,
+    "id": "caveborn:cobalt_casing"
+  }
+}

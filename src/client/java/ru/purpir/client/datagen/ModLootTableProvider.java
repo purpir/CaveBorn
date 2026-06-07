@@ -32,6 +32,9 @@ public class ModLootTableProvider extends FabricBlockLootTableProvider {
         addDrop(ModBlocks.COBALT_ORE, oreDrops(ModBlocks.COBALT_ORE, ModItems.RAW_COBALT));
         addDrop(ModBlocks.DEEPSLATE_COBALT_ORE, oreDrops(ModBlocks.DEEPSLATE_COBALT_ORE, ModItems.RAW_COBALT));
         addDrop(ModBlocks.COBALT_BLOCK);
+        addDrop(ModBlocks.ZINC_ORE, oreDrops(ModBlocks.ZINC_ORE, ModItems.RAW_ZINC));
+        addDrop(ModBlocks.DEEPSLATE_ZINC_ORE, oreDrops(ModBlocks.DEEPSLATE_ZINC_ORE, ModItems.RAW_ZINC));
+        addDrop(ModBlocks.ZINC_BLOCK);
 
         addDrop(ModBlocks.NETHERITE_TITANIUM_BLOCK);
 
@@ -41,6 +44,7 @@ public class ModLootTableProvider extends FabricBlockLootTableProvider {
         addDrop(ModBlocks.DEEP_GRANITE);
         addDrop(ModBlocks.ASHEN_LIMESTONE);
         addDrop(ModBlocks.IRON_CASING);
+        addDrop(ModBlocks.COBALT_CASING);
         addDrop(ModBlocks.CRUSHER);
         addDrop(ModBlocks.CRYSTAL_GROWTH);
         addDrop(ModBlocks.SOLAR_IRIS);

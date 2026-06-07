@@ -21,6 +21,12 @@ public class ModBlockEntities {
         FabricBlockEntityTypeBuilder.create(LockedMinerCrateBlockEntity::new, ModBlocks.LOCKED_MINER_CRATE).build()
     );
 
+    public static final BlockEntityType<ChaosCoreBlockEntity> CHAOS_CORE = Registry.register(
+        Registries.BLOCK_ENTITY_TYPE,
+        Identifier.of(Caveborn.MOD_ID, "chaos_core"),
+        FabricBlockEntityTypeBuilder.create(ChaosCoreBlockEntity::new, ModBlocks.CHAOS_CORE).build()
+    );
+
     public static void register() {
         Caveborn.LOGGER.info("Registering Block Entities for " + Caveborn.MOD_ID);
     }

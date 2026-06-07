@@ -35,6 +35,19 @@ public class ModOreGeneration {
             ModPlacedFeatures.DEEPSLATE_COBALT_ORE_PLACED_KEY
         );
 
+        // Zinc ore in Overworld - common
+        BiomeModifications.addFeature(
+            BiomeSelectors.foundInOverworld(),
+            GenerationStep.Feature.UNDERGROUND_ORES,
+            ModPlacedFeatures.ZINC_ORE_PLACED_KEY
+        );
+
+        BiomeModifications.addFeature(
+            BiomeSelectors.foundInOverworld(),
+            GenerationStep.Feature.UNDERGROUND_ORES,
+            ModPlacedFeatures.DEEPSLATE_ZINC_ORE_PLACED_KEY
+        );
+
         // Vacuumite ore in End - rare
         BiomeModifications.addFeature(
             BiomeSelectors.foundInTheEnd(),
@@ -77,6 +90,12 @@ public class ModOreGeneration {
             BiomeSelectors.foundInOverworld(),
             GenerationStep.Feature.UNDERGROUND_DECORATION,
             ModPlacedFeatures.HANGING_MINERS_CACHE_PLACED_KEY
+        );
+
+        BiomeModifications.addFeature(
+            BiomeSelectors.foundInOverworld(),
+            GenerationStep.Feature.SURFACE_STRUCTURES,
+            ModPlacedFeatures.BROKEN_ALTAR_PLACED_KEY
         );
 
         // Weed patches - only in plains biome

@@ -21,6 +21,8 @@ public class ModConfiguredFeatures {
     public static final RegistryKey<ConfiguredFeature<?, ?>> TITANIUM_ORE_KEY = registerKey("titanium_ore");
     public static final RegistryKey<ConfiguredFeature<?, ?>> DEEPSLATE_TITANIUM_ORE_KEY = registerKey("deepslate_titanium_ore");
     public static final RegistryKey<ConfiguredFeature<?, ?>> DEEPSLATE_COBALT_ORE_KEY = registerKey("deepslate_cobalt_ore");
+    public static final RegistryKey<ConfiguredFeature<?, ?>> ZINC_ORE_KEY = registerKey("zinc_ore");
+    public static final RegistryKey<ConfiguredFeature<?, ?>> DEEPSLATE_ZINC_ORE_KEY = registerKey("deepslate_zinc_ore");
     public static final RegistryKey<ConfiguredFeature<?, ?>> VACUUMITE_ORE_KEY = registerKey("vacuumite_ore");
     public static final RegistryKey<ConfiguredFeature<?, ?>> DEEP_GRANITE_KEY = registerKey("deep_granite");
     public static final RegistryKey<ConfiguredFeature<?, ?>> ASHEN_LIMESTONE_KEY = registerKey("ashen_limestone");
@@ -32,6 +34,7 @@ public class ModConfiguredFeatures {
     public static final RegistryKey<ConfiguredFeature<?, ?>> CRYSTAL_GROWTH_PATCH_KEY = registerKey("crystal_growth_patch");
     public static final RegistryKey<ConfiguredFeature<?, ?>> MINERS_CAMP_KEY = registerKey("miners_camp");
     public static final RegistryKey<ConfiguredFeature<?, ?>> HANGING_MINERS_CACHE_KEY = registerKey("hanging_miners_cache");
+    public static final RegistryKey<ConfiguredFeature<?, ?>> BROKEN_ALTAR_KEY = registerKey("broken_altar");
 
     public static void bootstrap(Registerable<ConfiguredFeature<?, ?>> context) {
         RuleTest endStoneReplaceable = new BlockMatchRuleTest(Blocks.END_STONE);
@@ -57,6 +60,15 @@ public class ModConfiguredFeatures {
         register(context, DEEPSLATE_COBALT_ORE_KEY, Feature.ORE, new OreFeatureConfig(
             List.of(OreFeatureConfig.createTarget(deepslateReplaceable, ModBlocks.DEEPSLATE_COBALT_ORE.getDefaultState())),
             5));
+
+        // Zinc ore - common technical material
+        register(context, ZINC_ORE_KEY, Feature.ORE, new OreFeatureConfig(
+            List.of(OreFeatureConfig.createTarget(stoneReplaceable, ModBlocks.ZINC_ORE.getDefaultState())),
+            9));
+
+        register(context, DEEPSLATE_ZINC_ORE_KEY, Feature.ORE, new OreFeatureConfig(
+            List.of(OreFeatureConfig.createTarget(deepslateReplaceable, ModBlocks.DEEPSLATE_ZINC_ORE.getDefaultState())),
+            9));
 
         // Vacuumite ore in End - rare, vein size 4
         register(context, VACUUMITE_ORE_KEY, Feature.ORE, new OreFeatureConfig(
@@ -106,6 +118,7 @@ public class ModConfiguredFeatures {
         register(context, CRYSTAL_GROWTH_PATCH_KEY, ModFeatures.CRYSTAL_GROWTH, DefaultFeatureConfig.INSTANCE);
         register(context, MINERS_CAMP_KEY, ModFeatures.MINERS_CAMP, DefaultFeatureConfig.INSTANCE);
         register(context, HANGING_MINERS_CACHE_KEY, ModFeatures.HANGING_MINERS_CACHE, DefaultFeatureConfig.INSTANCE);
+        register(context, BROKEN_ALTAR_KEY, ModFeatures.BROKEN_ALTAR, DefaultFeatureConfig.INSTANCE);
     }
 
     public static RegistryKey<ConfiguredFeature<?, ?>> registerKey(String name) {

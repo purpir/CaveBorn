@@ -61,6 +61,10 @@ public class ModItems {
     // Cobalt Items
     public static final Item COBALT_INGOT = registerItem("cobalt_ingot", Item::new, new Item.Settings());
     public static final Item RAW_COBALT = registerItem("raw_cobalt", Item::new, new Item.Settings());
+
+    // Zinc Items
+    public static final Item ZINC_INGOT = registerItem("zinc_ingot", Item::new, new Item.Settings());
+    public static final Item RAW_ZINC = registerItem("raw_zinc", Item::new, new Item.Settings());
     
     // Vacuumite Items
     public static final Item VACUUMITE_INGOT = registerItem("vacuumite_ingot", Item::new, new Item.Settings());
@@ -155,6 +159,12 @@ public class ModItems {
                     entries.add(ModBlocks.COBALT_BLOCK);
                     entries.add(COBALT_INGOT);
                     entries.add(RAW_COBALT);
+                    // Zinc
+                    entries.add(ModBlocks.ZINC_ORE);
+                    entries.add(ModBlocks.DEEPSLATE_ZINC_ORE);
+                    entries.add(ModBlocks.ZINC_BLOCK);
+                    entries.add(ZINC_INGOT);
+                    entries.add(RAW_ZINC);
                     // Vacuumite
                     entries.add(ModBlocks.VACUUMITE_ORE);
                     entries.add(ModBlocks.VACUUMITE_BLOCK);
@@ -169,11 +179,13 @@ public class ModItems {
                     entries.add(CRYSTAL_DUST);
                     entries.add(ENDER_PEARL_SHARD);
                     entries.add(ModBlocks.IRON_CASING);
+                    entries.add(ModBlocks.COBALT_CASING);
                     entries.add(ModBlocks.CRUSHER);
                     entries.add(ModBlocks.CRYSTAL_GROWTH);
                     entries.add(ModBlocks.VOID_EYE_PLANT);
                     entries.add(ModBlocks.VOID_LANTERN);
                     entries.add(ModBlocks.LOCKED_MINER_CRATE);
+                    entries.add(ModBlocks.CHAOS_CORE);
                     // Netherite Titanium
                     entries.add(ModBlocks.NETHERITE_TITANIUM_BLOCK);
                     entries.add(NETHERITE_TITANIUM_INGOT);

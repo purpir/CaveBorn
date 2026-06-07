@@ -16,6 +16,7 @@ import net.minecraft.util.Identifier;
 import ru.purpir.Caveborn;
 import ru.purpir.block.ModBlocks;
 import ru.purpir.client.render.BlockTintSource;
+import ru.purpir.client.render.ChaosRiftEntityRenderer;
 import ru.purpir.client.render.SolarBurnOverlay;
 import ru.purpir.client.render.SolarPointsHud;
 import ru.purpir.client.screen.BagScreen;
@@ -66,6 +67,7 @@ public class CavebornClient implements ClientModInitializer {
         HandledScreens.register(ModScreenHandlers.CRUSHER_SCREEN_HANDLER, CrusherScreen::new);
         EntityRendererRegistry.register(ModEntities.CAVE_FIREFLY, EmptyEntityRenderer::new);
         EntityRendererRegistry.register(ModEntities.SOLAR_SOUL, EmptyEntityRenderer::new);
+        EntityRendererRegistry.register(ModEntities.CHAOS_RIFT, ChaosRiftEntityRenderer::new);
         ClientTickEvents.END_CLIENT_TICK.register(this::tickBronzeAxeDoubleJump);
 
         UseItemCallback.EVENT.register((player, world, hand) -> {

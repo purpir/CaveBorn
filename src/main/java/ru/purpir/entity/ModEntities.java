@@ -28,6 +28,12 @@ public class ModEntities {
             .maxTrackingRange(32)
             .trackingTickInterval(2));
 
+    public static final EntityType<ChaosRiftEntity> CHAOS_RIFT = register("chaos_rift",
+        EntityType.Builder.<ChaosRiftEntity>create(ChaosRiftEntity::new, SpawnGroup.MISC)
+            .dimensions(3.0f, 3.0f)
+            .maxTrackingRange(64)
+            .trackingTickInterval(1));
+
     private static <T extends net.minecraft.entity.Entity> EntityType<T> register(String name, EntityType.Builder<T> builder) {
         Identifier id = Identifier.of(Caveborn.MOD_ID, name);
         RegistryKey<EntityType<?>> key = RegistryKey.of(RegistryKeys.ENTITY_TYPE, id);
