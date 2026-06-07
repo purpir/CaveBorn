@@ -13,6 +13,7 @@ import java.util.UUID;
 
 public class EventAltarSavedData extends PersistentState {
     private static final String NAME = "caveborn_event_altar_global";
+    private static final long BOARD_REFRESH_INTERVAL_MS = 1_800_000L;
     public static final int MAX_LEVEL = 10;
     public static final int QUEST_COUNT = 5;
 
@@ -118,6 +119,13 @@ public class EventAltarSavedData extends PersistentState {
         return totalCompleted;
     }
 
+    public int getBoardRefreshRemainingSeconds() {
+        long now = System.currentTimeMillis();
+        long currentSlot = now / BOARD_REFRESH_INTERVAL_MS;
+        long nextRefresh = (currentSlot + 1L) * BOARD_REFRESH_INTERVAL_MS;
+        return (int) Math.max(0L, (nextRefresh - now + 999L) / 1000L);
+    }
+
     public int getXpForNextLevel() {
         return Math.min(MAX_LEVEL, altarLevel) * 100;
     }
@@ -171,13 +179,13 @@ public class EventAltarSavedData extends PersistentState {
     }
 
     public void refreshBoardIfNeeded() {
-        long currentHour = System.currentTimeMillis() / 3_600_000L;
-        if (boardHour == currentHour && quests.size() == QUEST_COUNT) {
+        long currentSlot = System.currentTimeMillis() / BOARD_REFRESH_INTERVAL_MS;
+        if (boardHour == currentSlot && quests.size() == QUEST_COUNT) {
             return;
         }
 
-        boardHour = currentHour;
-        quests = EventAltarQuestPool.generate(currentHour, altarLevel);
+        boardHour = currentSlot;
+        quests = EventAltarQuestPool.generate(currentSlot, altarLevel);
         markDirty();
     }
 }

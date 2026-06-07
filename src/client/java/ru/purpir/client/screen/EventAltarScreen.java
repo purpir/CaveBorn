@@ -22,6 +22,7 @@ public class EventAltarScreen extends Screen {
 
     private final State state;
     private final List<ClickArea> clickAreas = new ArrayList<>();
+    private final long openedAtMillis = System.currentTimeMillis();
     private int tab;
     private QuestView selectedQuest;
 
@@ -104,6 +105,7 @@ public class EventAltarScreen extends Screen {
 
     private void drawQuestList(DrawContext context, int x, int y, int mouseX, int mouseY) {
         context.drawText(textRenderer, Text.translatable("event_altar.caveborn.available_quests"), x + 146, y + 74, 0xff2f2415, false);
+        context.drawText(textRenderer, Text.translatable("event_altar.caveborn.refresh_in", formatDuration(currentSeconds(state.boardRefreshSeconds))), x + 300, y + 74, 0xff5d4528, false);
         int row = 0;
         for (QuestView quest : state.quests) {
             if (quest.completed) {
@@ -159,17 +161,29 @@ public class EventAltarScreen extends Screen {
 
     private void drawChallenges(DrawContext context, int x, int y, int mouseX, int mouseY) {
         drawChallengeCard(context, x + 146, y + 82, Text.translatable("event_altar.caveborn.challenge.wave"),
-            Text.translatable("event_altar.caveborn.challenge.wave.desc"), "wave", mouseX, mouseY);
+            Text.translatable("event_altar.caveborn.challenge.wave.desc"), "wave", currentSeconds(state.waveCooldownSeconds), mouseX, mouseY);
         drawChallengeCard(context, x + 146, y + 158, Text.translatable("event_altar.caveborn.challenge.defend"),
-            Text.translatable("event_altar.caveborn.challenge.defend.desc"), "defend", mouseX, mouseY);
+            Text.translatable("event_altar.caveborn.challenge.defend.desc"), "defend", currentSeconds(state.defendCooldownSeconds), mouseX, mouseY);
     }
 
-    private void drawChallengeCard(DrawContext context, int x, int y, Text title, Text desc, String action, int mouseX, int mouseY) {
+    private void drawChallengeCard(DrawContext context, int x, int y, Text title, Text desc, String action, int cooldownSeconds, int mouseX, int mouseY) {
+        boolean locked = state.altarChallengeActive || cooldownSeconds > 0;
         context.fill(x, y, x + 282, y + 62, 0xffdcc28a);
         context.fill(x, y, x + 6, y + 62, 0xff8b5a2b);
         context.drawText(textRenderer, title, x + 14, y + 8, 0xff2f2415, false);
         drawWrapped(context, desc, x + 14, y + 24, 158, 0xff4a3821, 3);
-        drawActionButton(context, x + 190, y + 22, 74, 22, Text.translatable("event_altar.caveborn.start"), mouseX, mouseY, () -> send(action, 0));
+        drawActionButton(context, x + 190, y + 22, 74, 22, Text.translatable("event_altar.caveborn.start"), mouseX, mouseY, () -> {
+            if (!locked) {
+                send(action, 0);
+            }
+        });
+        if (locked) {
+            context.fill(x, y, x + 282, y + 62, 0x99000000);
+            Text label = state.altarChallengeActive
+                ? Text.translatable("event_altar.caveborn.challenge.active_short")
+                : Text.translatable("event_altar.caveborn.challenge.cooldown_short", formatDuration(cooldownSeconds));
+            drawCenteredPlain(context, label, x + 141, y + 27, 0xffffffff);
+        }
     }
 
     private void drawRewardIcons(DrawContext context, QuestView quest, int x, int y, int columns) {
@@ -233,6 +247,16 @@ public class EventAltarScreen extends Screen {
         return Text.literal(trimmed.toString().stripTrailing() + suffix);
     }
 
+    private static String formatDuration(int seconds) {
+        int safeSeconds = Math.max(0, seconds);
+        return String.format("%02d:%02d", safeSeconds / 60, safeSeconds % 60);
+    }
+
+    private int currentSeconds(int initialSeconds) {
+        int elapsedSeconds = (int) ((System.currentTimeMillis() - openedAtMillis) / 1000L);
+        return Math.max(0, initialSeconds - elapsedSeconds);
+    }
+
     private void drawWrapped(DrawContext context, Text text, int x, int y, int width, int color, int maxLines) {
         List<OrderedText> lines = textRenderer.wrapLines(text, width);
         for (int i = 0; i < lines.size() && i < maxLines; i++) {
@@ -270,7 +294,7 @@ public class EventAltarScreen extends Screen {
     private record ClickArea(int x, int y, int w, int h, Runnable action) {
     }
 
-    private record State(BlockPos origin, int level, int xp, int xpNeed, int totalCompleted, List<QuestView> quests) {
+    private record State(BlockPos origin, int level, int xp, int xpNeed, int totalCompleted, int boardRefreshSeconds, int waveCooldownSeconds, int defendCooldownSeconds, boolean altarChallengeActive, List<QuestView> quests) {
         private static State parse(String raw) {
             String[] sections = raw.split(";", -1);
             int x = parseInt(sections, 0);
@@ -280,6 +304,10 @@ public class EventAltarScreen extends Screen {
             int xp = parseInt(sections, 4);
             int xpNeed = parseInt(sections, 5);
             int total = parseInt(sections, 6);
+            int refreshSeconds = parseInt(sections, 8);
+            int waveCooldownSeconds = parseInt(sections, 9);
+            int defendCooldownSeconds = parseInt(sections, 10);
+            boolean altarChallengeActive = parseInt(sections, 11) == 1;
             List<QuestView> quests = new ArrayList<>();
             if (sections.length > 7) {
                 for (String encoded : sections[7].split("\\|")) {
@@ -288,7 +316,7 @@ public class EventAltarScreen extends Screen {
                     }
                 }
             }
-            return new State(new BlockPos(x, y, z), level, xp, xpNeed, total, quests);
+            return new State(new BlockPos(x, y, z), level, xp, xpNeed, total, refreshSeconds, waveCooldownSeconds, defendCooldownSeconds, altarChallengeActive, quests);
         }
 
         private static int parseInt(String[] values, int index) {

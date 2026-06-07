@@ -235,6 +235,10 @@ public final class EventAltarHandler {
     }
 
     private static void startWaveChallenge(ServerPlayerEntity player, ServerWorld world, BlockPos origin, EventAltarSavedData data) {
+        if (isChallengeActiveAt(world, origin)) {
+            player.sendMessage(net.minecraft.text.Text.translatable("event_altar.caveborn.challenge.active"), true);
+            return;
+        }
         if (isOnChallengeCooldown(player, world, 0)) {
             player.sendMessage(net.minecraft.text.Text.translatable("event_altar.caveborn.challenge.cooldown"), true);
             return;
@@ -245,6 +249,10 @@ public final class EventAltarHandler {
     }
 
     private static void startDefendChallenge(ServerPlayerEntity player, ServerWorld world, BlockPos origin, EventAltarSavedData data) {
+        if (isChallengeActiveAt(world, origin)) {
+            player.sendMessage(net.minecraft.text.Text.translatable("event_altar.caveborn.challenge.active"), true);
+            return;
+        }
         if (isOnChallengeCooldown(player, world, 1)) {
             player.sendMessage(net.minecraft.text.Text.translatable("event_altar.caveborn.challenge.cooldown"), true);
             return;
@@ -256,6 +264,20 @@ public final class EventAltarHandler {
 
     private static boolean isOnChallengeCooldown(ServerPlayerEntity player, ServerWorld world, int challengeType) {
         return CHALLENGE_COOLDOWNS.getOrDefault(new ChallengeCooldownKey(player.getUuid(), challengeType), 0L) > world.getTime();
+    }
+
+    private static int getChallengeCooldownSeconds(ServerPlayerEntity player, ServerWorld world, int challengeType) {
+        long until = CHALLENGE_COOLDOWNS.getOrDefault(new ChallengeCooldownKey(player.getUuid(), challengeType), 0L);
+        return (int) Math.max(0L, (until - world.getTime() + 19L) / 20L);
+    }
+
+    private static boolean isChallengeActiveAt(ServerWorld world, BlockPos origin) {
+        for (ActiveChallenge challenge : ACTIVE_CHALLENGES) {
+            if (challenge.worldKey.equals(world.getRegistryKey()) && challenge.origin.equals(origin)) {
+                return true;
+            }
+        }
+        return false;
     }
 
     private static void tickChallenges(ServerWorld world) {
@@ -484,11 +506,12 @@ public final class EventAltarHandler {
     }
 
     public static void openScreen(ServerPlayerEntity player, BlockPos origin) {
-        EventAltarSavedData data = EventAltarSavedData.get(((ServerWorld) player.getEntityWorld()).getServer());
-        ServerPlayNetworking.send(player, new ModPackets.OpenAltarScreenPayload(encodeScreenData(origin, data, player.getUuid())));
+        ServerWorld world = (ServerWorld) player.getEntityWorld();
+        EventAltarSavedData data = EventAltarSavedData.get(world.getServer());
+        ServerPlayNetworking.send(player, new ModPackets.OpenAltarScreenPayload(encodeScreenData(world, origin, data, player)));
     }
 
-    private static String encodeScreenData(BlockPos origin, EventAltarSavedData data, UUID viewer) {
+    private static String encodeScreenData(ServerWorld world, BlockPos origin, EventAltarSavedData data, ServerPlayerEntity viewer) {
         StringBuilder builder = new StringBuilder();
         builder.append(origin.getX()).append(';')
             .append(origin.getY()).append(';')
@@ -507,9 +530,14 @@ public final class EventAltarHandler {
                 .append(quest.target()).append(',')
                 .append(quest.progress()).append(',')
                 .append(quest.isClaimed() ? 1 : 0).append(',')
-                .append(quest.isClaimedBy(viewer) ? 1 : 0).append(',')
+                .append(quest.isClaimedBy(viewer.getUuid()) ? 1 : 0).append(',')
                 .append(quest.rewardReady() ? 1 : 0).append('|');
         }
+        builder.append(';')
+            .append(data.getBoardRefreshRemainingSeconds()).append(';')
+            .append(getChallengeCooldownSeconds(viewer, world, 0)).append(';')
+            .append(getChallengeCooldownSeconds(viewer, world, 1)).append(';')
+            .append(isChallengeActiveAt(world, origin) ? 1 : 0);
         return builder.toString();
     }
 
