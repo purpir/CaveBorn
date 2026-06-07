@@ -3,11 +3,14 @@ package ru.purpir.client.screen;
 import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.gui.widget.ButtonWidget;
+import net.minecraft.client.gl.RenderPipelines;
 import net.minecraft.client.resource.language.I18n;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.text.OrderedText;
 import net.minecraft.text.Text;
+import net.minecraft.util.Identifier;
+import ru.purpir.Caveborn;
 import ru.purpir.block.ModBlocks;
 import ru.purpir.item.ModItems;
 
@@ -20,6 +23,8 @@ public class SolarInfusionGuideScreen extends Screen {
     private static final int TAB_WIDTH = 92;
     private static final int ABILITY_BUTTON_SIZE = 24;
     private static final int ABILITIES_SECTION = 4;
+    private static final int EVENT_ALTAR_SECTION = 5;
+    private static final Identifier EVENT_ALTAR_PREVIEW = Identifier.of(Caveborn.MOD_ID, "textures/gui/event_altar_preview.png");
     private static final int ABILITY_COLUMNS = 4;
     private static final int ABILITY_ROWS = 5;
     private static final int ABILITIES_PER_PAGE = ABILITY_COLUMNS * ABILITY_ROWS;
@@ -29,6 +34,7 @@ public class SolarInfusionGuideScreen extends Screen {
         new Section("guide.caveborn.solar.section.infusion", "guide.caveborn.solar.content.infusion"),
         new Section("guide.caveborn.solar.section.indicator", "guide.caveborn.solar.content.indicator"),
         new Section("guide.caveborn.solar.section.abilities", "guide.caveborn.solar.content.abilities"),
+        new Section("guide.caveborn.solar.section.event_altar", "guide.caveborn.solar.content.event_altar"),
         new Section("guide.caveborn.solar.section.cooldowns", "guide.caveborn.solar.content.cooldowns")
     };
     private static final AbilityEntry[] ABILITIES = new AbilityEntry[] {
@@ -182,6 +188,8 @@ public class SolarInfusionGuideScreen extends Screen {
 
         if (this.selectedSection == ABILITIES_SECTION) {
             renderAbilitiesPage(context, x, y, mouseX, mouseY);
+        } else if (this.selectedSection == EVENT_ALTAR_SECTION) {
+            renderEventAltarPage(context, x, y, section);
         } else {
             drawWrappedContent(context, translateForBook(section.contentKey()), x + 120, y + 54, 282, 0xff3b372d);
         }
@@ -210,6 +218,16 @@ public class SolarInfusionGuideScreen extends Screen {
         context.drawItem(ability.icon(), pageX, pageY - 2);
         drawWrappedContent(context, translateForBook(ability.titleKey()), pageX + 22, pageY, 123, 0xff3b372d);
         drawWrappedContent(context, translateForBook(ability.contentKey()), pageX, pageY + 28, 145, 0xff3b372d);
+    }
+
+    private void renderEventAltarPage(DrawContext context, int x, int y, Section section) {
+        int imageX = x + 120;
+        int imageY = y + 54;
+        int imageW = 140;
+        int imageH = 79;
+        context.fill(imageX - 2, imageY - 2, imageX + imageW + 2, imageY + imageH + 2, 0xff6b5b3b);
+        context.drawTexture(RenderPipelines.GUI_TEXTURED, EVENT_ALTAR_PREVIEW, imageX, imageY, 0.0f, 0.0f, imageW, imageH, 220, 124, 220, 124);
+        drawWrappedContent(context, translateForBook(section.contentKey()), x + 120, y + 140, 282, 0xff3b372d);
     }
 
     private void renderAbilityIcons(DrawContext context, int x, int y, int mouseX, int mouseY) {
