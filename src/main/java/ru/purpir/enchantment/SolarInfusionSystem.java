@@ -40,7 +40,15 @@ public class SolarInfusionSystem {
     }
     
     public static boolean isInfused(ItemStack stack) {
-        return stack.getOrDefault(ModComponents.SOLAR_INFUSED, false);
+        boolean infused = stack.getOrDefault(ModComponents.SOLAR_INFUSED, false);
+        if (infused && stack.isOf(ModItems.ZINC_KNIFE)) {
+            applyZincKnifeModifiers(stack);
+        }
+        return infused;
+    }
+
+    public static boolean hasDedicatedInfusionContent(ItemStack stack) {
+        return SolarInfusionContentRegistry.hasContent(stack);
     }
     
     public static ItemStack infuseSword(ItemStack item, ItemStack crystal) {
@@ -73,7 +81,7 @@ public class SolarInfusionSystem {
             result.isOf(net.minecraft.item.Items.TRIDENT) || result.isOf(ModItems.CRYSTAL_DUST) ||
             result.isOf(net.minecraft.item.Items.TOTEM_OF_UNDYING) || result.isOf(ModItems.VACUUMITE_SWORD) ||
             result.isOf(net.minecraft.item.Items.ENDER_PEARL) || result.isOf(ru.purpir.block.ModBlocks.HOGWEED_PASTE.asItem()) ||
-            result.isOf(ModItems.BRONZE_AXE)) {
+            result.isOf(ModItems.BRONZE_AXE) || result.isOf(ModItems.CRACK_HAMMER)) {
             return result;
         }
         
@@ -118,6 +126,10 @@ public class SolarInfusionSystem {
 
         AttributeModifiersComponent.Builder builder = AttributeModifiersComponent.builder();
         for (var entry : modifiers.modifiers()) {
+            if (entry.modifier().idMatches(SOLAR_ZINC_KNIFE_DAMAGE_ID) ||
+                entry.modifier().idMatches(SOLAR_ZINC_KNIFE_SPEED_ID)) {
+                continue;
+            }
             builder.add(entry.attribute(), entry.modifier(), entry.slot());
         }
 
@@ -137,7 +149,8 @@ public class SolarInfusionSystem {
                 0.4,
                 EntityAttributeModifier.Operation.ADD_VALUE
             ),
-            AttributeModifierSlot.MAINHAND
+            AttributeModifierSlot.MAINHAND,
+            AttributeModifiersComponent.Display.getHidden()
         );
 
         result.set(DataComponentTypes.ATTRIBUTE_MODIFIERS, builder.build());
@@ -146,7 +159,8 @@ public class SolarInfusionSystem {
     public static float getAdditionalDamage(ItemStack stack) {
         if (stack.isOf(net.minecraft.item.Items.BOW) || stack.isOf(net.minecraft.item.Items.ARROW) ||
             stack.isOf(net.minecraft.item.Items.SPECTRAL_ARROW) || stack.isOf(net.minecraft.item.Items.TRIDENT) ||
-            stack.isOf(ModItems.RUSTED_MINER_KEY) || stack.isOf(ModItems.BRONZE_AXE) || stack.isOf(ModItems.ZINC_KNIFE)) {
+            stack.isOf(ModItems.RUSTED_MINER_KEY) || stack.isOf(ModItems.BRONZE_AXE) || stack.isOf(ModItems.ZINC_KNIFE) ||
+            stack.isOf(ModItems.CRACK_HAMMER)) {
             return 0.0f;
         }
 

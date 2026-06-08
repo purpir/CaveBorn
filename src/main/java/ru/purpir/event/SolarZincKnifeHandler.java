@@ -29,7 +29,8 @@ import java.util.Map;
 import java.util.UUID;
 
 public final class SolarZincKnifeHandler {
-    private static final int DASH_COST = 10;
+    private static final int SOLO_DASH_COST = 5;
+    private static final int DUO_DASH_COST = 10;
     private static final int DUO_POINTS_GAIN = 10;
     private static final int ATTACK_COOLDOWN_TICKS = 7;
     private static final int COMBO_RESET_TICKS = 45;
@@ -98,7 +99,8 @@ public final class SolarZincKnifeHandler {
         }
 
         boolean duo = hasDuoInfusedKnives(player);
-        if (!SolarPointBank.trySpendPoints(serverPlayer, DASH_COST)) {
+        int cost = duo ? DUO_DASH_COST : SOLO_DASH_COST;
+        if (!SolarPointBank.trySpendPoints(serverPlayer, cost)) {
             serverWorld.playSound(null, player.getBlockPos(), SoundEvents.BLOCK_NOTE_BLOCK_BASS.value(), SoundCategory.PLAYERS, 0.6F, 0.7F);
             return ActionResult.FAIL;
         }

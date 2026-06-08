@@ -5,6 +5,7 @@ import net.minecraft.item.HoeItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
 import net.minecraft.item.equipment.EquipmentType;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
@@ -14,6 +15,8 @@ import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 import ru.purpir.Caveborn;
 import ru.purpir.block.ModBlocks;
+import ru.purpir.enchantment.SolarInfusionContentRegistry;
+import ru.purpir.enchantment.SolarInfusionSystem;
 
 import java.util.function.Function;
 
@@ -105,6 +108,8 @@ public class ModItems {
 
     public static final RegistryKey<ItemGroup> CAVEBORN_GROUP = RegistryKey.of(RegistryKeys.ITEM_GROUP, 
         Identifier.of(Caveborn.MOD_ID, "caveborn_group"));
+    public static final RegistryKey<ItemGroup> INFUSED_ITEMS_GROUP = RegistryKey.of(RegistryKeys.ITEM_GROUP,
+        Identifier.of(Caveborn.MOD_ID, "infused_items_group"));
 
     private static Item registerItem(String name, Function<Item.Settings, Item> factory, Item.Settings settings) {
         RegistryKey<Item> key = RegistryKey.of(RegistryKeys.ITEM, Identifier.of(Caveborn.MOD_ID, name));
@@ -203,5 +208,29 @@ public class ModItems {
                     entries.add(NETHERITE_TITANIUM_BOOTS);
                 })
                 .build());
+
+        Registry.register(Registries.ITEM_GROUP, INFUSED_ITEMS_GROUP,
+            FabricItemGroup.builder()
+                .icon(() -> createInfusedStack(new ItemStack(Items.STONE_SWORD)))
+                .displayName(Text.translatable("itemGroup.caveborn.infused_items_group"))
+                .entries((context, entries) -> {
+                    ItemStack crystal = new ItemStack(SOLAR_CRYSTAL);
+                    for (Item item : Registries.ITEM) {
+                        ItemStack baseStack = new ItemStack(item);
+                        if (SolarInfusionContentRegistry.hasContent(baseStack) &&
+                            SolarInfusionSystem.canInfuse(baseStack, crystal)) {
+                            ItemStack infusedStack = SolarInfusionSystem.infuseSword(baseStack, crystal);
+                            if (!infusedStack.isEmpty()) {
+                                entries.add(infusedStack);
+                            }
+                        }
+                    }
+                })
+                .build());
+    }
+
+    private static ItemStack createInfusedStack(ItemStack stack) {
+        ItemStack infusedStack = SolarInfusionSystem.infuseSword(stack, new ItemStack(SOLAR_CRYSTAL));
+        return infusedStack.isEmpty() ? stack : infusedStack;
     }
 }

@@ -16,15 +16,21 @@ import net.minecraft.util.ActionResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.world.World;
+import ru.purpir.enchantment.SolarInfusionSystem;
+import ru.purpir.util.WallManager;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 public class CrackHammerItem extends Item {
-    private static final int MAX_CRACK_LENGTH = 5;
+    private static final int BASE_CRACK_LENGTH = 5;
+    private static final int INFUSED_CRACK_LENGTH = 7;
+    private static final int INFUSED_BULK_RADIUS = 7;
     private static final int CRACK_STAGE = 7;
     private static final int CRACK_LIFETIME_TICKS = 200;
     private static final int USE_COOLDOWN_TICKS = 8;
@@ -54,15 +60,20 @@ public class CrackHammerItem extends Item {
         BlockPos clickedPos = context.getBlockPos();
         Map<BlockPos, CrackLine> worldCracks = CRACKS.computeIfAbsent(world.getRegistryKey(), key -> new HashMap<>());
         CrackLine existingLine = worldCracks.get(clickedPos);
+        boolean infused = SolarInfusionSystem.isInfused(stack);
         if (existingLine != null && existingLine.expiresAt >= world.getTime()) {
-            collapseLine(world, player, stack, worldCracks, existingLine);
+            if (infused && player.isSneaking()) {
+                collapseNearbyLines(world, player, stack, worldCracks, clickedPos);
+            } else {
+                collapseLine(world, player, stack, worldCracks, existingLine, 1);
+            }
             player.getItemCooldownManager().set(stack, USE_COOLDOWN_TICKS);
             return ActionResult.SUCCESS;
         }
 
         clearExpired(world, worldCracks);
-        Direction direction = getCrackDirection(context, player);
-        List<BlockPos> positions = collectCrackLine(world, stack, clickedPos, direction);
+        Direction direction = getCrackDirection(context, player, infused);
+        List<BlockPos> positions = collectCrackLine(world, stack, clickedPos, direction, infused ? INFUSED_CRACK_LENGTH : BASE_CRACK_LENGTH);
         if (positions.isEmpty()) {
             world.playSound(null, clickedPos, SoundEvents.BLOCK_STONE_HIT, SoundCategory.BLOCKS, 0.45F, 0.7F);
             return ActionResult.FAIL;
@@ -82,17 +93,17 @@ public class CrackHammerItem extends Item {
         return ActionResult.SUCCESS;
     }
 
-    private static Direction getCrackDirection(ItemUsageContext context, PlayerEntity player) {
+    private static Direction getCrackDirection(ItemUsageContext context, PlayerEntity player, boolean infused) {
         Direction direction = context.getSide().getOpposite();
-        if (direction.getAxis() == Direction.Axis.Y) {
+        if (!infused && direction.getAxis() == Direction.Axis.Y) {
             return player.getHorizontalFacing();
         }
         return direction;
     }
 
-    private static List<BlockPos> collectCrackLine(ServerWorld world, ItemStack stack, BlockPos start, Direction direction) {
+    private static List<BlockPos> collectCrackLine(ServerWorld world, ItemStack stack, BlockPos start, Direction direction, int maxLength) {
         List<BlockPos> positions = new ArrayList<>();
-        for (int i = 0; i < MAX_CRACK_LENGTH; i++) {
+        for (int i = 0; i < maxLength; i++) {
             BlockPos pos = start.offset(direction, i);
             BlockState state = world.getBlockState(pos);
             if (!canCrack(world, stack, pos, state)) {
@@ -104,11 +115,11 @@ public class CrackHammerItem extends Item {
     }
 
     private static boolean canCrack(ServerWorld world, ItemStack stack, BlockPos pos, BlockState state) {
-        return !state.isAir() && state.getHardness(world, pos) >= 0.0F && stack.isSuitableFor(state);
+        return WallManager.canBreak(world, pos) && !state.isAir() && state.getHardness(world, pos) >= 0.0F && stack.isSuitableFor(state);
     }
 
     private static void collapseLine(ServerWorld world, PlayerEntity player, ItemStack stack,
-                                     Map<BlockPos, CrackLine> worldCracks, CrackLine line) {
+                                     Map<BlockPos, CrackLine> worldCracks, CrackLine line, int durabilityCostPerBlock) {
         int broken = 0;
         for (BlockPos pos : line.positions) {
             clearOverlay(world, pos);
@@ -121,7 +132,7 @@ public class CrackHammerItem extends Item {
 
             spawnCrackParticles(world, pos, state, 18);
             if (world.breakBlock(pos, true, player)) {
-                stack.damage(1, player, player.getPreferredEquipmentSlot(stack));
+                stack.damage(durabilityCostPerBlock, player, player.getPreferredEquipmentSlot(stack));
                 broken++;
             }
         }
@@ -130,6 +141,23 @@ public class CrackHammerItem extends Item {
             BlockPos soundPos = line.positions.getFirst();
             world.playSound(null, soundPos, SoundEvents.BLOCK_STONE_BREAK, SoundCategory.BLOCKS, 0.9F, 0.7F);
             world.playSound(null, soundPos, SoundEvents.ENTITY_ZOMBIE_ATTACK_IRON_DOOR, SoundCategory.BLOCKS, 0.35F, 1.4F);
+        }
+    }
+
+    private static void collapseNearbyLines(ServerWorld world, PlayerEntity player, ItemStack stack,
+                                            Map<BlockPos, CrackLine> worldCracks, BlockPos clickedPos) {
+        long time = world.getTime();
+        Set<CrackLine> lines = new HashSet<>();
+        int radiusSquared = INFUSED_BULK_RADIUS * INFUSED_BULK_RADIUS;
+        for (Map.Entry<BlockPos, CrackLine> entry : worldCracks.entrySet()) {
+            if (entry.getValue().expiresAt < time || entry.getKey().getSquaredDistance(clickedPos) > radiusSquared) {
+                continue;
+            }
+            lines.add(entry.getValue());
+        }
+
+        for (CrackLine line : lines) {
+            collapseLine(world, player, stack, worldCracks, line, 2);
         }
     }
 
