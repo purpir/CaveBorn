@@ -1,5 +1,8 @@
 .gradle/
 build/
 run/
+.codex/jdk25/
+.jdk25/
+.loom-local/
 
 .idea

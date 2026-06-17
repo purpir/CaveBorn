@@ -7,6 +7,16 @@ import org.slf4j.LoggerFactory;
 import ru.purpir.block.ModBlocks;
 import ru.purpir.block.entity.ModBlockEntities;
 import ru.purpir.command.CavebornCommand;
+import ru.purpir.element.Element;
+import ru.purpir.element.ElementCommand;
+import ru.purpir.element.ElementTickHandler;
+import ru.purpir.element.elements.FireElement;
+import ru.purpir.element.elements.WaterElement;
+import ru.purpir.element.elements.IceElement;
+import ru.purpir.element.elements.GrassElement;
+import ru.purpir.element.elements.MoonElement;
+import ru.purpir.element.reactions.ReactionManager;
+import ru.purpir.element.reactions.RootBindingReaction;
 import ru.purpir.entity.ModEntities;
 import ru.purpir.item.ModArmorMaterials;
 import ru.purpir.item.ModItems;
@@ -23,9 +33,20 @@ public class Caveborn implements ModInitializer {
         // Загружаем конфигурацию
         ru.purpir.config.SolarAbilityConfig.getInstance();
         
+        // Регистрируем элементы
+        Element.register(FireElement.INSTANCE);
+        Element.register(WaterElement.INSTANCE);
+        Element.register(IceElement.INSTANCE);
+        Element.register(GrassElement.INSTANCE);
+        Element.register(MoonElement.INSTANCE);
+
+        // Регистрируем реакции
+        ReactionManager.register(RootBindingReaction.INSTANCE);
+
         // Регистрируем команды
         CommandRegistrationCallback.EVENT.register((dispatcher, registryAccess, environment) -> {
             CavebornCommand.register(dispatcher);
+            ElementCommand.register(dispatcher);
         });
         
         ModArmorMaterials.initialize();
@@ -58,6 +79,9 @@ public class Caveborn implements ModInitializer {
         ru.purpir.event.VacuumiteSwordHandler.register();
         ru.purpir.eventaltar.EventAltarHandler.register();
         ru.purpir.item.CrackHammerItem.registerTicker();
+        ElementTickHandler.register();
+        ReactionManager.registerEvents();
+        
         ru.purpir.solar.SolarPointBank.register();
         ru.purpir.util.WallManager.register();
         

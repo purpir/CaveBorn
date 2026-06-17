@@ -185,6 +185,21 @@
   "guide.caveborn.solar.ability.ender_pearl.content": "Инфузированный эндер-жемчуг бросается на 75%% сильнее обычного.\\nТелепортация от него не наносит урон жемчугом, а после перемещения выпускает маленькую пустотную вспышку, отталкивающую мобов рядом.",
   "block.caveborn.hogweed_paste": "Борщевичная паста",
   "effect.caveborn.solar_burn": "Солнечный ожог",
+
+  "element.caveborn.fire": "Огонь",
+  "element.caveborn.water": "Вода",
+  "element.caveborn.ice": "Лёд",
+  "element.caveborn.grass": "Трава",
+  "element.caveborn.moon": "Луна",
+
+  "command.caveborn.element.given": "Выдан элемент %s для %s на %s секунд",
+  "command.caveborn.element.given.self": "Выдан элемент %s себе на %s секунд",
+  "command.caveborn.element.given.multiple": "Выдан элемент %s для %s существ на %s секунд",
+  "command.caveborn.element.invalid": "Неверный элемент: %s. Допустимые: fire, water, ice, grass, moon",
+  "command.caveborn.element.info.header": "Элементы:",
+  "command.caveborn.element.info.none": "Нет элементов",
+
+  "reaction.caveborn.root_binding": "Корневая связь",
   "guide.caveborn.solar.ability.hogweed_paste": "Борщевичная паста",
   "guide.caveborn.solar.ability.hogweed_paste.content": "Инфузированная борщевичная паста становится более жесткой ловушкой.\\nПри касании она сильнее замедляет, постоянно поджигает цель и оставляет Солнечный ожог на 10 секунд после выхода.",
   "guide.caveborn.solar.ability.rusted_miner_key": "Ржавый шахтёрский ключ",

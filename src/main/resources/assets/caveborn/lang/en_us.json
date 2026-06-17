@@ -108,6 +108,21 @@
   "item.caveborn.ender_pearl_shard": "Ender Pearl Shard",
   "entity.caveborn.cave_firefly": "Cave Firefly",
   "effect.caveborn.solar_burn": "Solar Burn",
+
+  "element.caveborn.fire": "Fire",
+  "element.caveborn.water": "Water",
+  "element.caveborn.ice": "Ice",
+  "element.caveborn.grass": "Grass",
+  "element.caveborn.moon": "Moon",
+
+  "command.caveborn.element.given": "Given %s element to %s for %s seconds",
+  "command.caveborn.element.given.self": "Given %s element to yourself for %s seconds",
+  "command.caveborn.element.given.multiple": "Given %s element to %s entities for %s seconds",
+  "command.caveborn.element.invalid": "Invalid element: %s. Valid: fire, water, ice, grass, moon",
+  "command.caveborn.element.info.header": "Elements:",
+  "command.caveborn.element.info.none": "No elements",
+
+  "reaction.caveborn.root_binding": "Root Binding",
   "block.caveborn.example_multiblock": "Example Multiblock",
   "block.caveborn.test_colored_block": "Test Colored Block",
   "item.caveborn.vacuumite_magnet": "Vacuumite Magnet",
