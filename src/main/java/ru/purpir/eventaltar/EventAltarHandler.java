@@ -2,7 +2,6 @@ package ru.purpir.eventaltar;
 
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents;
 import net.fabricmc.fabric.api.event.player.UseBlockCallback;
-import net.fabricmc.fabric.api.event.player.UseItemCallback;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
@@ -32,7 +31,6 @@ import net.minecraft.util.math.random.Random;
 import net.minecraft.registry.RegistryKey;
 import net.minecraft.world.World;
 import ru.purpir.block.ModBlocks;
-import ru.purpir.enchantment.SolarInfusionSystem;
 import ru.purpir.eventaltar.util.AltarMobAiUtil;
 import ru.purpir.multiblock.MultiblockManager;
 import ru.purpir.multiblock.MultiblockStructure;
@@ -60,13 +58,6 @@ public final class EventAltarHandler {
     public static void register() {
         ServerTickEvents.END_WORLD_TICK.register(EventAltarHandler::tickWorld);
         UseBlockCallback.EVENT.register(EventAltarHandler::onUseBlock);
-        UseItemCallback.EVENT.register((player, world, hand) -> {
-            if (!world.isClient() && player instanceof ServerPlayerEntity serverPlayer &&
-                SolarInfusionSystem.isInfused(player.getStackInHand(hand))) {
-                progressQuest(serverPlayer, EventAltarQuestPool.TYPE_USE_SOLAR_ITEM, 1);
-            }
-            return ActionResult.PASS;
-        });
         ServerPlayNetworking.registerGlobalReceiver(ModPackets.SubmitAltarTaskPayload.ID, (payload, context) ->
             context.server().execute(() -> openScreen(context.player(), new BlockPos(payload.x(), payload.y(), payload.z()))));
         ServerPlayNetworking.registerGlobalReceiver(ModPackets.AltarActionPayload.ID, (payload, context) ->
@@ -223,11 +214,33 @@ public final class EventAltarHandler {
         }
     }
 
+    public static void onSolarItemUsed(ServerPlayerEntity player, ItemStack stack) {
+        if (!stack.isEmpty()) {
+            progressSolarItemQuest(player, stack, 1);
+        }
+    }
+
     private static void progressQuest(ServerPlayerEntity player, int type, int amount) {
         EventAltarSavedData data = EventAltarSavedData.get(((ServerWorld) player.getEntityWorld()).getServer());
         UUID uuid = player.getUuid();
         for (EventAltarSavedData.QuestState quest : new ArrayList<>(data.getQuests())) {
             if (!quest.completed() && quest.type() == type && quest.isClaimedBy(uuid) && !quest.rewardReady()) {
+                data.replaceQuest(quest.advance(amount));
+                return;
+            }
+        }
+    }
+
+    private static void progressSolarItemQuest(ServerPlayerEntity player, ItemStack stack, int amount) {
+        EventAltarSavedData data = EventAltarSavedData.get(((ServerWorld) player.getEntityWorld()).getServer());
+        UUID uuid = player.getUuid();
+        for (EventAltarSavedData.QuestState rawQuest : new ArrayList<>(data.getQuests())) {
+            EventAltarSavedData.QuestState quest = EventAltarQuestPool.ensureSolarUseTarget(rawQuest);
+            if (quest != rawQuest) {
+                data.replaceQuest(quest);
+            }
+            if (!quest.completed() && quest.type() == EventAltarQuestPool.TYPE_USE_SOLAR_ITEM &&
+                quest.isClaimedBy(uuid) && !quest.rewardReady() && stack.isOf(EventAltarQuestPool.solarUseTarget(quest))) {
                 data.replaceQuest(quest.advance(amount));
                 return;
             }
@@ -529,6 +542,7 @@ public final class EventAltarHandler {
                 .append(quest.rarity()).append(',')
                 .append(quest.target()).append(',')
                 .append(quest.progress()).append(',')
+                .append(quest.targetItem()).append(',')
                 .append(quest.isClaimed() ? 1 : 0).append(',')
                 .append(quest.isClaimedBy(viewer.getUuid()) ? 1 : 0).append(',')
                 .append(quest.rewardReady() ? 1 : 0).append('|');

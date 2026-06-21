@@ -29,6 +29,7 @@ public class EventAltarSavedData extends PersistentState {
         int rarity,
         int target,
         int progress,
+        String targetItem,
         String claimedBy,
         boolean rewardReady,
         boolean completed
@@ -40,6 +41,7 @@ public class EventAltarSavedData extends PersistentState {
                 Codec.INT.fieldOf("rarity").forGetter(QuestState::rarity),
                 Codec.INT.fieldOf("target").forGetter(QuestState::target),
                 Codec.INT.fieldOf("progress").forGetter(QuestState::progress),
+                Codec.STRING.optionalFieldOf("target_item", "").forGetter(QuestState::targetItem),
                 Codec.STRING.fieldOf("claimed_by").forGetter(QuestState::claimedBy),
                 Codec.BOOL.fieldOf("reward_ready").forGetter(QuestState::rewardReady),
                 Codec.BOOL.fieldOf("completed").forGetter(QuestState::completed)
@@ -55,20 +57,24 @@ public class EventAltarSavedData extends PersistentState {
         }
 
         public QuestState claim(UUID uuid) {
-            return new QuestState(id, type, rarity, target, progress, uuid.toString(), rewardReady, completed);
+            return new QuestState(id, type, rarity, target, progress, targetItem, uuid.toString(), rewardReady, completed);
         }
 
         public QuestState cancel() {
-            return new QuestState(id, type, rarity, target, progress, "", false, completed);
+            return new QuestState(id, type, rarity, target, progress, targetItem, "", false, completed);
         }
 
         public QuestState advance(int amount) {
             int updated = Math.min(target, progress + amount);
-            return new QuestState(id, type, rarity, target, updated, claimedBy, updated >= target, completed);
+            return new QuestState(id, type, rarity, target, updated, targetItem, claimedBy, updated >= target, completed);
+        }
+
+        public QuestState withTargetItem(String itemId) {
+            return new QuestState(id, type, rarity, target, progress, itemId, claimedBy, rewardReady, completed);
         }
 
         public QuestState finish() {
-            return new QuestState(id, type, rarity, target, target, claimedBy, false, true);
+            return new QuestState(id, type, rarity, target, target, targetItem, claimedBy, false, true);
         }
     }
 

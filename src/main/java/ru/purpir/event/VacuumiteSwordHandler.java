@@ -72,7 +72,8 @@ public class VacuumiteSwordHandler {
         }
 
         if (player instanceof ServerPlayerEntity serverPlayer && world instanceof ServerWorld serverWorld) {
-            return SolarPointBank.tryActivateVacuumiteSword(serverPlayer, serverWorld) ? ActionResult.SUCCESS : ActionResult.FAIL;
+            boolean success = SolarPointBank.tryActivateVacuumiteSword(serverPlayer, serverWorld);
+            return success ? ActionResult.SUCCESS : ActionResult.FAIL;
         }
 
         return ActionResult.PASS;

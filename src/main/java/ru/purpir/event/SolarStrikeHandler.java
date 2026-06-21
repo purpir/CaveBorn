@@ -2,8 +2,10 @@ package ru.purpir.event;
 
 import net.fabricmc.fabric.api.event.player.UseItemCallback;
 import net.minecraft.item.ItemStack;
+import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.util.ActionResult;
 import ru.purpir.ability.*;
+import ru.purpir.eventaltar.EventAltarHandler;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -36,6 +38,9 @@ public class SolarStrikeHandler {
                     // Если способность успешно использована, наносим урон прочности
                     if (success && !world.isClient()) {
                         stack.damage(10, player, player.getPreferredEquipmentSlot(stack));
+                        if (player instanceof ServerPlayerEntity serverPlayer) {
+                            EventAltarHandler.onSolarItemUsed(serverPlayer, stack);
+                        }
                     }
                     
                     return ActionResult.SUCCESS;

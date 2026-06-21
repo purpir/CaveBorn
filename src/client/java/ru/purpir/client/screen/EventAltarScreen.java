@@ -347,7 +347,7 @@ public class EventAltarScreen extends Screen {
         }
     }
 
-    private record QuestView(int id, int type, int rarity, int target, int progress, boolean claimed, boolean mine, boolean rewardReady, boolean completed) {
+    private record QuestView(int id, int type, int rarity, int target, int progress, String targetItem, boolean claimed, boolean mine, boolean rewardReady, boolean completed) {
         private static QuestView parse(String raw) {
             String[] values = raw.split(",");
             return new QuestView(
@@ -356,9 +356,10 @@ public class EventAltarScreen extends Screen {
                 parseInt(values, 2),
                 parseInt(values, 3),
                 parseInt(values, 4),
-                parseInt(values, 5) == 1,
+                values.length > 5 ? values[5] : "",
                 parseInt(values, 6) == 1,
                 parseInt(values, 7) == 1,
+                parseInt(values, 8) == 1,
                 false
             );
         }
@@ -375,7 +376,7 @@ public class EventAltarScreen extends Screen {
         }
 
         private EventAltarSavedData.QuestState toState() {
-            return new EventAltarSavedData.QuestState(id, type, rarity, target, progress, "", rewardReady, completed);
+            return new EventAltarSavedData.QuestState(id, type, rarity, target, progress, targetItem, "", rewardReady, completed);
         }
 
         private Text listStatusText() {

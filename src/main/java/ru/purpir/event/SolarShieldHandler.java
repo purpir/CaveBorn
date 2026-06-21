@@ -131,6 +131,7 @@ public class SolarShieldHandler {
         if (hits > 0) {
             player.sendMessage(Text.translatable("ability.caveborn.solar_shield", hits).formatted(Formatting.GOLD), true);
         }
+
     }
 
     private static class ShieldCharge {

@@ -3,7 +3,9 @@ package ru.purpir.eventaltar;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
+import net.minecraft.registry.Registries;
 import net.minecraft.text.Text;
+import net.minecraft.util.Identifier;
 import ru.purpir.api.SolarInfusionApi;
 import ru.purpir.item.ModItems;
 
@@ -22,6 +24,17 @@ public final class EventAltarQuestPool {
     public static final int TYPE_BREAK_DEEPSLATE = 3;
     public static final int TYPE_BREAK_AMETHYST = 4;
     public static final int TYPE_USE_SOLAR_ITEM = 5;
+    private static final Item[] SOLAR_USE_TARGETS = new Item[] {
+        Items.WOODEN_SWORD,
+        Items.STONE_SWORD,
+        Items.GOLDEN_SWORD,
+        Items.IRON_SWORD,
+        Items.DIAMOND_SWORD,
+        Items.NETHERITE_SWORD,
+        ModItems.BRONZE_SWORD,
+        ModItems.VACUUMITE_SWORD,
+        ModItems.NETHERITE_TITANIUM_SWORD
+    };
 
     private EventAltarQuestPool() {
     }
@@ -56,7 +69,38 @@ public final class EventAltarQuestPool {
             default -> 1;
         };
         int target = base * multiplier + Math.max(0, altarLevel - 1) * multiplier * 2;
-        return new EventAltarSavedData.QuestState(id, type, rarity, target, 0, "", false, false);
+        String targetItem = type == TYPE_USE_SOLAR_ITEM ? pickSolarUseTarget(id, rarity, random) : "";
+        return new EventAltarSavedData.QuestState(id, type, rarity, target, 0, targetItem, "", false, false);
+    }
+
+    private static String pickSolarUseTarget(int id, int rarity, Random random) {
+        Item item = SOLAR_USE_TARGETS[Math.floorMod(random.nextInt(SOLAR_USE_TARGETS.length) + id * 3 + rarity * 5, SOLAR_USE_TARGETS.length)];
+        return Registries.ITEM.getId(item).toString();
+    }
+
+    public static Item solarUseTarget(EventAltarSavedData.QuestState quest) {
+        if (quest.type() != TYPE_USE_SOLAR_ITEM) {
+            return Items.AIR;
+        }
+
+        if (quest.targetItem() != null && !quest.targetItem().isBlank()) {
+            try {
+                Item item = Registries.ITEM.get(Identifier.of(quest.targetItem()));
+                if (item != Items.AIR) {
+                    return item;
+                }
+            } catch (RuntimeException ignored) {
+            }
+        }
+
+        return SOLAR_USE_TARGETS[Math.floorMod(quest.id() * 7 + quest.rarity() * 11, SOLAR_USE_TARGETS.length)];
+    }
+
+    public static EventAltarSavedData.QuestState ensureSolarUseTarget(EventAltarSavedData.QuestState quest) {
+        if (quest.type() != TYPE_USE_SOLAR_ITEM || (quest.targetItem() != null && !quest.targetItem().isBlank())) {
+            return quest;
+        }
+        return quest.withTargetItem(Registries.ITEM.getId(solarUseTarget(quest)).toString());
     }
 
     public static int xp(EventAltarSavedData.QuestState quest) {
@@ -183,6 +227,9 @@ public final class EventAltarQuestPool {
     }
 
     public static Text description(EventAltarSavedData.QuestState quest) {
+        if (quest.type() == TYPE_USE_SOLAR_ITEM) {
+            return Text.translatable("event_altar.caveborn.quest.5.description", solarUseTarget(quest).getName(), quest.target());
+        }
         return Text.translatable("event_altar.caveborn.quest." + quest.type() + ".description", quest.target());
     }
 

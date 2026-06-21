@@ -264,5 +264,5 @@
   "event_altar.caveborn.quest.4.title": "Аметистовый сбор",
   "event_altar.caveborn.quest.4.description": "Сломай %s аметистовых блоков или кластеров.",
   "event_altar.caveborn.quest.5.title": "Солнечная практика",
-  "event_altar.caveborn.quest.5.description": "Используй предмет с солнечной инфузией %s раз."
+  "event_altar.caveborn.quest.5.description": "Используй инфузированный меч %s %s раз."
 }
