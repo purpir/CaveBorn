@@ -17,6 +17,7 @@ import ru.purpir.Caveborn;
 import ru.purpir.block.ModBlocks;
 import ru.purpir.client.render.BlockTintSource;
 import ru.purpir.client.render.ChaosRiftEntityRenderer;
+import ru.purpir.client.render.RootBindingChainRenderer;
 import ru.purpir.client.render.SolarBurnOverlay;
 import ru.purpir.client.render.SolarPointsHud;
 import ru.purpir.client.screen.BagScreen;
@@ -61,6 +62,8 @@ public class CavebornClient implements ClientModInitializer {
                 context.client().setScreen(null);
                 SceneFadeOverlay.start(payload.data());
             });
+        ClientPlayNetworking.registerGlobalReceiver(ModPackets.RootBindingChainsPayload.ID,
+            (payload, context) -> RootBindingClientState.setLinks(payload.entityLinks()));
         
         // Регистрируем экран сумки
         HandledScreens.register(ModScreenHandlers.BAG_SCREEN_HANDLER, BagScreen::new);
@@ -68,6 +71,7 @@ public class CavebornClient implements ClientModInitializer {
         EntityRendererRegistry.register(ModEntities.CAVE_FIREFLY, EmptyEntityRenderer::new);
         EntityRendererRegistry.register(ModEntities.SOLAR_SOUL, EmptyEntityRenderer::new);
         EntityRendererRegistry.register(ModEntities.CHAOS_RIFT, ChaosRiftEntityRenderer::new);
+        RootBindingChainRenderer.register();
         ClientTickEvents.END_CLIENT_TICK.register(this::tickBronzeAxeDoubleJump);
 
         UseItemCallback.EVENT.register((player, world, hand) -> {

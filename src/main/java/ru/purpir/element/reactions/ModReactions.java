@@ -8,6 +8,7 @@ public final class ModReactions {
 
     public static void register() {
         ReactionManager.register(RootBindingReaction.INSTANCE);
+        ReactionManager.register(SteamExplosionReaction.INSTANCE);
 
         Caveborn.LOGGER.info("Registering CaveBorn element reactions");
     }

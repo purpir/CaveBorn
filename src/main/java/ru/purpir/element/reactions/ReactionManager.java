@@ -2,15 +2,18 @@ package ru.purpir.element.reactions;
 
 import net.fabricmc.fabric.api.entity.event.v1.ServerLivingEntityEvents;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents;
+import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.damage.DamageSource;
+import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.entity.EntityType;
 import ru.purpir.element.Element;
 import ru.purpir.element.ElementInstance;
 import ru.purpir.element.ElementSavedData;
+import ru.purpir.network.ModPackets;
 
 import java.util.*;
 
@@ -76,6 +79,11 @@ public class ReactionManager {
             } else if (!hasAll && active.contains(reaction.getId())) {
                 active.remove(reaction.getId());
                 reaction.onDeactivate(entity);
+            } else if (hasAll && active.contains(reaction.getId())) {
+                // Если реакция активна, тикаем её (для SteamExplosion)
+                if (reaction instanceof SteamExplosionReaction steamReaction) {
+                    steamReaction.tick(entity);
+                }
             }
         }
     }
@@ -123,6 +131,8 @@ public class ReactionManager {
                 }
             }
         }
+
+        syncChains(server);
     }
 
     private static void shareDamage(LivingEntity entity, DamageSource source, float amount) {
@@ -183,6 +193,29 @@ public class ReactionManager {
     private static void clearAllChains() {
         chains.clear();
         entityToChain.clear();
+    }
+
+    private static void syncChains(MinecraftServer server) {
+        List<Integer> links = new ArrayList<>();
+
+        for (ReactionChain chain : chains.values()) {
+            List<UUID> members = chain.getEntityUuids();
+            for (int i = 0; i < members.size() - 1; i++) {
+                Entity first = findEntity(server, members.get(i));
+                Entity second = findEntity(server, members.get(i + 1));
+                if (first == null || second == null || first.getEntityWorld() != second.getEntityWorld()) {
+                    continue;
+                }
+
+                links.add(first.getId());
+                links.add(second.getId());
+            }
+        }
+
+        ModPackets.RootBindingChainsPayload payload = new ModPackets.RootBindingChainsPayload(links);
+        for (ServerPlayerEntity player : server.getPlayerManager().getPlayerList()) {
+            ServerPlayNetworking.send(player, payload);
+        }
     }
 
     private record CandidateEntity(Entity entity, ServerWorld world, UUID uuid) {

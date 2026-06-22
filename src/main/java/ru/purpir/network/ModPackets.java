@@ -1,7 +1,6 @@
 package ru.purpir.network;
 
 import net.fabricmc.fabric.api.networking.v1.PayloadTypeRegistry;
-import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
 import net.minecraft.network.RegistryByteBuf;
 import net.minecraft.network.codec.PacketCodec;
 import net.minecraft.network.codec.PacketCodecs;
@@ -17,6 +16,7 @@ public class ModPackets {
     public static final Identifier ALTAR_SCENE = Identifier.of(Caveborn.MOD_ID, "altar_scene");
     public static final Identifier SOLAR_POINTS = Identifier.of(Caveborn.MOD_ID, "solar_points");
     public static final Identifier BRONZE_AXE_DOUBLE_JUMP = Identifier.of(Caveborn.MOD_ID, "bronze_axe_double_jump");
+    public static final Identifier ROOT_BINDING_CHAINS = Identifier.of(Caveborn.MOD_ID, "root_binding_chains");
     
     public record OpenAltarScreenPayload(String data) implements CustomPayload {
         public static final Id<OpenAltarScreenPayload> ID = new Id<>(OPEN_ALTAR_SCREEN);
@@ -47,6 +47,19 @@ public class ModPackets {
     public record BronzeAxeDoubleJumpPayload() implements CustomPayload {
         public static final Id<BronzeAxeDoubleJumpPayload> ID = new Id<>(BRONZE_AXE_DOUBLE_JUMP);
         public static final PacketCodec<RegistryByteBuf, BronzeAxeDoubleJumpPayload> CODEC = PacketCodec.unit(new BronzeAxeDoubleJumpPayload());
+
+        @Override
+        public Id<? extends CustomPayload> getId() {
+            return ID;
+        }
+    }
+
+    public record RootBindingChainsPayload(java.util.List<Integer> entityLinks) implements CustomPayload {
+        public static final Id<RootBindingChainsPayload> ID = new Id<>(ROOT_BINDING_CHAINS);
+        public static final PacketCodec<RegistryByteBuf, RootBindingChainsPayload> CODEC = PacketCodec.tuple(
+            PacketCodecs.collection(java.util.ArrayList::new, PacketCodecs.INTEGER), RootBindingChainsPayload::entityLinks,
+            RootBindingChainsPayload::new
+        );
 
         @Override
         public Id<? extends CustomPayload> getId() {
@@ -101,6 +114,7 @@ public class ModPackets {
         PayloadTypeRegistry.playC2S().register(AltarActionPayload.ID, AltarActionPayload.CODEC);
         PayloadTypeRegistry.playS2C().register(AltarScenePayload.ID, AltarScenePayload.CODEC);
         PayloadTypeRegistry.playS2C().register(SolarPointsPayload.ID, SolarPointsPayload.CODEC);
+        PayloadTypeRegistry.playS2C().register(RootBindingChainsPayload.ID, RootBindingChainsPayload.CODEC);
         PayloadTypeRegistry.playC2S().register(BronzeAxeDoubleJumpPayload.ID, BronzeAxeDoubleJumpPayload.CODEC);
     }
 }

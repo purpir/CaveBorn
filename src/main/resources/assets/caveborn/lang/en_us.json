@@ -123,6 +123,7 @@
   "command.caveborn.element.info.none": "No elements",
 
   "reaction.caveborn.root_binding": "Root Binding",
+  "reaction.caveborn.steam_explosion": "Steam Explosion",
   "block.caveborn.example_multiblock": "Example Multiblock",
   "block.caveborn.test_colored_block": "Test Colored Block",
   "item.caveborn.vacuumite_magnet": "Vacuumite Magnet",
