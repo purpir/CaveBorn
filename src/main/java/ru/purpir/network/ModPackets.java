@@ -17,6 +17,8 @@ public class ModPackets {
     public static final Identifier SOLAR_POINTS = Identifier.of(Caveborn.MOD_ID, "solar_points");
     public static final Identifier BRONZE_AXE_DOUBLE_JUMP = Identifier.of(Caveborn.MOD_ID, "bronze_axe_double_jump");
     public static final Identifier ROOT_BINDING_CHAINS = Identifier.of(Caveborn.MOD_ID, "root_binding_chains");
+    public static final Identifier MINECART_SPEED_CONTROL = Identifier.of(Caveborn.MOD_ID, "minecart_speed_control");
+    public static final Identifier MINECART_CHAINS = Identifier.of(Caveborn.MOD_ID, "minecart_chains");
     
     public record OpenAltarScreenPayload(String data) implements CustomPayload {
         public static final Id<OpenAltarScreenPayload> ID = new Id<>(OPEN_ALTAR_SCREEN);
@@ -59,6 +61,33 @@ public class ModPackets {
         public static final PacketCodec<RegistryByteBuf, RootBindingChainsPayload> CODEC = PacketCodec.tuple(
             PacketCodecs.collection(java.util.ArrayList::new, PacketCodecs.INTEGER), RootBindingChainsPayload::entityLinks,
             RootBindingChainsPayload::new
+        );
+
+        @Override
+        public Id<? extends CustomPayload> getId() {
+            return ID;
+        }
+    }
+
+    public record MinecartChainsPayload(java.util.List<Integer> entityLinks) implements CustomPayload {
+        public static final Id<MinecartChainsPayload> ID = new Id<>(MINECART_CHAINS);
+        public static final PacketCodec<RegistryByteBuf, MinecartChainsPayload> CODEC = PacketCodec.tuple(
+            PacketCodecs.collection(java.util.ArrayList::new, PacketCodecs.INTEGER), MinecartChainsPayload::entityLinks,
+            MinecartChainsPayload::new
+        );
+
+        @Override
+        public Id<? extends CustomPayload> getId() {
+            return ID;
+        }
+    }
+
+    public record MinecartControlPayload(boolean forward, boolean back) implements CustomPayload {
+        public static final Id<MinecartControlPayload> ID = new Id<>(MINECART_SPEED_CONTROL);
+        public static final PacketCodec<RegistryByteBuf, MinecartControlPayload> CODEC = PacketCodec.tuple(
+            PacketCodecs.BOOLEAN, MinecartControlPayload::forward,
+            PacketCodecs.BOOLEAN, MinecartControlPayload::back,
+            MinecartControlPayload::new
         );
 
         @Override
@@ -116,5 +145,7 @@ public class ModPackets {
         PayloadTypeRegistry.playS2C().register(SolarPointsPayload.ID, SolarPointsPayload.CODEC);
         PayloadTypeRegistry.playS2C().register(RootBindingChainsPayload.ID, RootBindingChainsPayload.CODEC);
         PayloadTypeRegistry.playC2S().register(BronzeAxeDoubleJumpPayload.ID, BronzeAxeDoubleJumpPayload.CODEC);
+        PayloadTypeRegistry.playC2S().register(MinecartControlPayload.ID, MinecartControlPayload.CODEC);
+        PayloadTypeRegistry.playS2C().register(MinecartChainsPayload.ID, MinecartChainsPayload.CODEC);
     }
 }

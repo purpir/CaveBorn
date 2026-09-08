@@ -22,7 +22,8 @@
     "TridentEntityMixin",
     "RangedWeaponItemMixin",
     "PersistentProjectileEntityMixin",
-    "VanillaBiomeParametersMixin"
+    "VanillaBiomeParametersMixin",
+    "AbstractMinecartEntityMixin"
   ],
   "injectors": {
     "defaultRequire": 1

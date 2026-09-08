@@ -265,5 +265,11 @@
   "event_altar.caveborn.quest.4.title": "Аметистовый сбор",
   "event_altar.caveborn.quest.4.description": "Сломай %s аметистовых блоков или кластеров.",
   "event_altar.caveborn.quest.5.title": "Солнечная практика",
-  "event_altar.caveborn.quest.5.description": "Используй инфузированный меч %s %s раз."
+  "event_altar.caveborn.quest.5.description": "Используй инфузированный меч %s %s раз.",
+  "message.caveborn.minecart.chain.first": "Вагонетка выбрана. Нажми на другую вагонетку.",
+  "message.caveborn.minecart.chain.linked": "Вагонетки сцеплены.",
+  "message.caveborn.minecart.chain.too_far": "Вагонетки должны быть не дальше 3 блоков.",
+  "message.caveborn.minecart.chain.occupied": "Эта сторона уже занята.",
+  "message.caveborn.minecart.chain.invalid_pair": "Нужно нажать на противоположные стороны двух вагонеток.",
+  "message.caveborn.minecart.chain.not_facing": "Вагонетки должны смотреть друг на друга."
 }

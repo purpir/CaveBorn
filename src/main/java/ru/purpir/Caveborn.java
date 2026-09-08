@@ -49,6 +49,7 @@ public class Caveborn implements ModInitializer {
         ModItems.registerModItems();
         ModScreenHandlers.register();
         ru.purpir.network.ModPackets.registerServer();
+        ru.purpir.minecart.MinecartTransportHandler.register();
         ModFeatures.register();
         ModOreGeneration.generateOres();
         ru.purpir.enchantment.ModEnchantments.register();

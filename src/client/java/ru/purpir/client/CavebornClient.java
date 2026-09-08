@@ -17,6 +17,8 @@ import ru.purpir.Caveborn;
 import ru.purpir.block.ModBlocks;
 import ru.purpir.client.render.BlockTintSource;
 import ru.purpir.client.render.ChaosRiftEntityRenderer;
+import ru.purpir.client.render.MinecartSpeedHud;
+import ru.purpir.client.render.MinecartChainRenderer;
 import ru.purpir.client.render.RootBindingChainRenderer;
 import ru.purpir.client.render.SolarBurnOverlay;
 import ru.purpir.client.render.SolarPointsHud;
@@ -28,6 +30,7 @@ import ru.purpir.client.util.SceneFadeOverlay;
 import ru.purpir.entity.ModEntities;
 import ru.purpir.item.ModItems;
 import ru.purpir.network.ModPackets;
+import ru.purpir.minecart.MinecartTransportHandler;
 import ru.purpir.screen.ModScreenHandlers;
 
 public class CavebornClient implements ClientModInitializer {
@@ -52,6 +55,9 @@ public class CavebornClient implements ClientModInitializer {
         SolarInfusionTooltip.register();
         SolarPointsHud.register();
         SolarBurnOverlay.register();
+        if (MinecartTransportHandler.ENABLED) {
+            MinecartSpeedHud.register();
+        }
         SceneFadeOverlay.register();
         ClientPlayNetworking.registerGlobalReceiver(ModPackets.SolarPointsPayload.ID,
             (payload, context) -> SolarPointsClientState.setPoints(payload.points()));
@@ -64,6 +70,10 @@ public class CavebornClient implements ClientModInitializer {
             });
         ClientPlayNetworking.registerGlobalReceiver(ModPackets.RootBindingChainsPayload.ID,
             (payload, context) -> RootBindingClientState.setLinks(payload.entityLinks()));
+        if (MinecartTransportHandler.ENABLED) {
+            ClientPlayNetworking.registerGlobalReceiver(ModPackets.MinecartChainsPayload.ID,
+                (payload, context) -> MinecartChainClientState.setLinks(payload.entityLinks()));
+        }
         
         // Регистрируем экран сумки
         HandledScreens.register(ModScreenHandlers.BAG_SCREEN_HANDLER, BagScreen::new);
@@ -72,7 +82,10 @@ public class CavebornClient implements ClientModInitializer {
         EntityRendererRegistry.register(ModEntities.SOLAR_SOUL, EmptyEntityRenderer::new);
         EntityRendererRegistry.register(ModEntities.CHAOS_RIFT, ChaosRiftEntityRenderer::new);
         RootBindingChainRenderer.register();
-        ClientTickEvents.END_CLIENT_TICK.register(this::tickBronzeAxeDoubleJump);
+        if (MinecartTransportHandler.ENABLED) {
+            MinecartChainRenderer.register();
+        }
+        ClientTickEvents.END_CLIENT_TICK.register(this::tickClientSystems);
 
         UseItemCallback.EVENT.register((player, world, hand) -> {
             if (!world.isClient()) {
@@ -127,6 +140,26 @@ public class CavebornClient implements ClientModInitializer {
             ClientPlayNetworking.send(new ModPackets.BronzeAxeDoubleJumpPayload());
         }
         caveborn$jumpWasDown = jumpDown;
+    }
+
+    private void tickClientSystems(MinecraftClient client) {
+        tickBronzeAxeDoubleJump(client);
+        tickMinecartControls(client);
+    }
+
+    private void tickMinecartControls(MinecraftClient client) {
+        if (!MinecartTransportHandler.ENABLED) {
+            return;
+        }
+
+        if (client.player == null || !(client.player.getVehicle() instanceof net.minecraft.entity.vehicle.AbstractMinecartEntity)) {
+            return;
+        }
+
+        ClientPlayNetworking.send(new ModPackets.MinecartControlPayload(
+            client.options.forwardKey.isPressed(),
+            client.options.backKey.isPressed()
+        ));
     }
 
     private boolean isHoldingInfusedBronzeAxe(MinecraftClient client) {

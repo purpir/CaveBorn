@@ -7,7 +7,8 @@
     "WorldRendererMixin",
     "BlockColorsMixin",
     "CameraMixin",
-    "MinecraftClientMixin"
+    "MinecraftClientMixin",
+    "InGameHudMixin"
   ],
   "injectors": {
     "defaultRequire": 1
