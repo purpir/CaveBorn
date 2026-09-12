@@ -155,12 +155,37 @@ public class ModBlocks {
             .requiresTool()
             .sounds(BlockSoundGroup.METAL));
 
+    public static final Block REINFORCED_OBSIDIAN = registerBlock("reinforced_obsidian",
+        Block::new,
+        AbstractBlock.Settings.create()
+            .mapColor(MapColor.BLACK)
+            .strength(200.0f, 4800.0f)
+            .requiresTool()
+            .sounds(BlockSoundGroup.STONE));
+
+    public static final Block AUTOMATIC_PLAYBACK_BLOCK = registerBlock("automatic_playback_block",
+        Block::new,
+        AbstractBlock.Settings.create()
+            .mapColor(MapColor.DARK_RED)
+            .strength(8.0f, 1200.0f)
+            .requiresTool()
+            .sounds(BlockSoundGroup.METAL));
+
     public static final Block CRUSHER = registerBlock("crusher",
         CrusherBlock::new,
         AbstractBlock.Settings.create()
             .mapColor(MapColor.DEEPSLATE_GRAY)
             .strength(5.0f, 8.0f)
             .requiresTool()
+            .sounds(BlockSoundGroup.METAL));
+
+    public static final Block AUTOMATIC_SPAWNER = registerBlock("automatic_spawner",
+        AutomaticSpawnerBlock::new,
+        AbstractBlock.Settings.create()
+            .mapColor(MapColor.DEEPSLATE_GRAY)
+            .strength(5.0f, 1200.0f)
+            .requiresTool()
+            .nonOpaque()
             .sounds(BlockSoundGroup.METAL));
 
     public static final Block CRYSTAL_GROWTH = registerBlock("crystal_growth",

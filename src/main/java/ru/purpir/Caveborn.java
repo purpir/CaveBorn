@@ -6,6 +6,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import ru.purpir.block.ModBlocks;
 import ru.purpir.block.entity.ModBlockEntities;
+import ru.purpir.block.entity.AutoSpawnerSavedData;
 import ru.purpir.command.CavebornCommand;
 import ru.purpir.element.ElementCommand;
 import ru.purpir.element.ElementTickHandler;
@@ -45,6 +46,7 @@ public class Caveborn implements ModInitializer {
         ModBlocks.registerModBlocks();
         ru.purpir.effect.ModStatusEffects.register();
         ModBlockEntities.register();
+        AutoSpawnerSavedData.register();
         ModEntities.register();
         ModItems.registerModItems();
         ModScreenHandlers.register();

@@ -4,6 +4,7 @@ import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
 import net.fabricmc.fabric.api.client.rendering.v1.EntityRendererRegistry;
+import net.minecraft.client.render.block.entity.BlockEntityRendererFactories;
 import net.fabricmc.fabric.api.event.player.UseItemCallback;
 import net.fabricmc.fabric.api.client.rendering.v1.BlockRenderLayerMap;
 import net.minecraft.client.MinecraftClient;
@@ -15,8 +16,10 @@ import net.minecraft.util.ActionResult;
 import net.minecraft.util.Identifier;
 import ru.purpir.Caveborn;
 import ru.purpir.block.ModBlocks;
+import ru.purpir.block.entity.ModBlockEntities;
 import ru.purpir.client.render.BlockTintSource;
 import ru.purpir.client.render.ChaosRiftEntityRenderer;
+import ru.purpir.client.render.AutomaticSpawnerBlockEntityRenderer;
 import ru.purpir.client.render.MinecartSpeedHud;
 import ru.purpir.client.render.MinecartChainRenderer;
 import ru.purpir.client.render.RootBindingChainRenderer;
@@ -24,6 +27,8 @@ import ru.purpir.client.render.SolarBurnOverlay;
 import ru.purpir.client.render.SolarPointsHud;
 import ru.purpir.client.screen.BagScreen;
 import ru.purpir.client.screen.CrusherScreen;
+import ru.purpir.client.screen.AutoSpawnerScreen;
+import ru.purpir.client.screen.AutoSpawnerStorageScreen;
 import ru.purpir.client.screen.EventAltarScreen;
 import ru.purpir.client.screen.SolarInfusionGuideScreen;
 import ru.purpir.client.util.SceneFadeOverlay;
@@ -78,9 +83,12 @@ public class CavebornClient implements ClientModInitializer {
         // Регистрируем экран сумки
         HandledScreens.register(ModScreenHandlers.BAG_SCREEN_HANDLER, BagScreen::new);
         HandledScreens.register(ModScreenHandlers.CRUSHER_SCREEN_HANDLER, CrusherScreen::new);
+        HandledScreens.register(ModScreenHandlers.AUTO_SPAWNER_SCREEN_HANDLER, AutoSpawnerScreen::new);
+        HandledScreens.register(ModScreenHandlers.AUTO_SPAWNER_STORAGE_SCREEN_HANDLER, AutoSpawnerStorageScreen::new);
         EntityRendererRegistry.register(ModEntities.CAVE_FIREFLY, EmptyEntityRenderer::new);
         EntityRendererRegistry.register(ModEntities.SOLAR_SOUL, EmptyEntityRenderer::new);
         EntityRendererRegistry.register(ModEntities.CHAOS_RIFT, ChaosRiftEntityRenderer::new);
+        BlockEntityRendererFactories.register(ModBlockEntities.AUTOMATIC_SPAWNER, AutomaticSpawnerBlockEntityRenderer::new);
         RootBindingChainRenderer.register();
         if (MinecartTransportHandler.ENABLED) {
             MinecartChainRenderer.register();
@@ -109,6 +117,7 @@ public class CavebornClient implements ClientModInitializer {
         BlockRenderLayerMap.putBlock(ModBlocks.VOID_EYE_PLANT, BlockRenderLayer.CUTOUT);
         BlockRenderLayerMap.putBlock(ModBlocks.VOID_LANTERN, BlockRenderLayer.CUTOUT);
         BlockRenderLayerMap.putBlock(ModBlocks.CRYSTAL_GROWTH, BlockRenderLayer.CUTOUT);
+        BlockRenderLayerMap.putBlock(ModBlocks.AUTOMATIC_SPAWNER, BlockRenderLayer.CUTOUT);
         
         // Прозрачность для титановых блоков
         BlockRenderLayerMap.putBlock(ModBlocks.TITANIUM_GRATE, BlockRenderLayer.CUTOUT);

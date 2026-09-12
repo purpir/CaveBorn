@@ -304,6 +304,9 @@ public class CrusherBlockEntity extends BlockEntity implements Inventory, Extend
             if (stack.isOf(Items.SAND)) {
                 return new CrushingRecipe(Items.SAND, Items.FLINT, 0, 1, DEFAULT_PROCESS_TIME);
             }
+            if (stack.isOf(Items.OBSIDIAN)) {
+                return new CrushingRecipe(Items.OBSIDIAN, ModItems.OBSIDIAN_PLATE, 2, 3, DEFAULT_PROCESS_TIME);
+            }
             return null;
         }
 

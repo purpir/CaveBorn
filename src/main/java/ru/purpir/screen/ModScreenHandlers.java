@@ -24,6 +24,15 @@ public class ModScreenHandlers {
                 (syncId, playerInventory, pos) -> new CrusherScreenHandler(syncId, playerInventory, pos),
                 (PacketCodec) BlockPos.PACKET_CODEC));
 
+    @SuppressWarnings({"unchecked", "rawtypes"})
+    public static final ExtendedScreenHandlerType<AutoSpawnerScreenHandler, BlockPos> AUTO_SPAWNER_SCREEN_HANDLER =
+        Registry.register(Registries.SCREEN_HANDLER, Identifier.of(Caveborn.MOD_ID, "automatic_spawner"),
+            new ExtendedScreenHandlerType<AutoSpawnerScreenHandler, BlockPos>((syncId, inv, pos) -> new AutoSpawnerScreenHandler(syncId, inv, pos), (PacketCodec) BlockPos.PACKET_CODEC));
+    @SuppressWarnings({"unchecked", "rawtypes"})
+    public static final ExtendedScreenHandlerType<AutoSpawnerStorageScreenHandler, BlockPos> AUTO_SPAWNER_STORAGE_SCREEN_HANDLER =
+        Registry.register(Registries.SCREEN_HANDLER, Identifier.of(Caveborn.MOD_ID, "automatic_spawner_storage"),
+            new ExtendedScreenHandlerType<AutoSpawnerStorageScreenHandler, BlockPos>((syncId, inv, pos) -> new AutoSpawnerStorageScreenHandler(syncId, inv, pos), (PacketCodec) BlockPos.PACKET_CODEC));
+
     public static void register() {
         Caveborn.LOGGER.info("Registering Screen Handlers for " + Caveborn.MOD_ID);
     }

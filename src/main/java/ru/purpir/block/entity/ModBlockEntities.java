@@ -15,6 +15,12 @@ public class ModBlockEntities {
         FabricBlockEntityTypeBuilder.create(CrusherBlockEntity::new, ModBlocks.CRUSHER).build()
     );
 
+    public static final BlockEntityType<AutomaticSpawnerBlockEntity> AUTOMATIC_SPAWNER = Registry.register(
+        Registries.BLOCK_ENTITY_TYPE,
+        Identifier.of(Caveborn.MOD_ID, "automatic_spawner"),
+        FabricBlockEntityTypeBuilder.create(AutomaticSpawnerBlockEntity::new, ModBlocks.AUTOMATIC_SPAWNER).build()
+    );
+
     public static final BlockEntityType<LockedMinerCrateBlockEntity> LOCKED_MINER_CRATE = Registry.register(
         Registries.BLOCK_ENTITY_TYPE,
         Identifier.of(Caveborn.MOD_ID, "locked_miner_crate"),

@@ -1,4 +1,14 @@
 {
+  "block.caveborn.automatic_spawner": "Automatic Spawner",
+  "block.caveborn.reinforced_obsidian": "Reinforced Obsidian",
+  "block.caveborn.automatic_playback_block": "Automatic Playback Block",
+  "screen.caveborn.automatic_spawner.storage": "Open storage",
+  "screen.caveborn.automatic_spawner.collect_xp": "Collect XP",
+  "screen.caveborn.automatic_spawner.egg": "Egg",
+  "screen.caveborn.automatic_spawner.xp": "XP",
+  "screen.caveborn.automatic_spawner.xp_value": "XP: %s",
+  "screen.caveborn.automatic_spawner.collect": "Collect",
+  "screen.caveborn.automatic_spawner.stored_xp": "Stored experience: %s",
   "itemGroup.caveborn.caveborn_group": "Caveborn",
   "itemGroup.caveborn.infused_items_group": "Infused Items",
   
@@ -74,6 +84,7 @@
   "block.caveborn.deepslate_cobalt_ore": "Deepslate Cobalt Ore",
   "block.caveborn.cobalt_block": "Block of Cobalt",
   "block.caveborn.cobalt_casing": "Cobalt Casing",
+  "item.caveborn.obsidian_plate": "Obsidian Plate",
   "block.caveborn.zinc_ore": "Zinc Ore",
   "block.caveborn.deepslate_zinc_ore": "Deepslate Zinc Ore",
   "block.caveborn.zinc_block": "Block of Zinc",

@@ -32,6 +32,8 @@ public class ModModelProvider extends FabricModelProvider {
         blockStateModelGenerator.registerSimpleCubeAll(ModBlocks.ASHEN_LIMESTONE);
         blockStateModelGenerator.registerSimpleCubeAll(ModBlocks.IRON_CASING);
         blockStateModelGenerator.registerSimpleCubeAll(ModBlocks.COBALT_CASING);
+        blockStateModelGenerator.registerSimpleCubeAll(ModBlocks.REINFORCED_OBSIDIAN);
+        blockStateModelGenerator.registerSimpleCubeAll(ModBlocks.AUTOMATIC_PLAYBACK_BLOCK);
         blockStateModelGenerator.registerSimpleCubeAll(ModBlocks.CHAOS_CORE);
         
         // Titanium building blocks - используем pool для titanium_block чтобы избежать дубликата
@@ -82,6 +84,7 @@ public class ModModelProvider extends FabricModelProvider {
         itemModelGenerator.register(ModItems.LIMESTONE_DUST, Models.GENERATED);
         itemModelGenerator.register(ModItems.CRYSTAL_DUST, Models.GENERATED);
         itemModelGenerator.register(ModItems.ENDER_PEARL_SHARD, Models.GENERATED);
+        itemModelGenerator.register(ModItems.OBSIDIAN_PLATE, Models.GENERATED);
 
         itemModelGenerator.register(ModItems.NETHERITE_TITANIUM_INGOT, Models.GENERATED);
         itemModelGenerator.register(ModItems.NETHERITE_TITANIUM_SWORD, Models.HANDHELD);

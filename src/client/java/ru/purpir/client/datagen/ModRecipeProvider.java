@@ -351,6 +351,28 @@ public class ModRecipeProvider extends FabricRecipeProvider {
                     .criterion(hasItem(ModItems.COBALT_INGOT), conditionsFromItem(ModItems.COBALT_INGOT))
                     .offerTo(exporter);
 
+                createShaped(RecipeCategory.BUILDING_BLOCKS, ModBlocks.REINFORCED_OBSIDIAN)
+                    .pattern("OPO")
+                    .pattern("P P")
+                    .pattern("OPO")
+                    .input('O', Items.OBSIDIAN)
+                    .input('P', ModItems.OBSIDIAN_PLATE)
+                    .criterion(hasItem(Items.OBSIDIAN), conditionsFromItem(Items.OBSIDIAN))
+                    .criterion(hasItem(ModItems.OBSIDIAN_PLATE), conditionsFromItem(ModItems.OBSIDIAN_PLATE))
+                    .offerTo(exporter);
+
+                createShaped(RecipeCategory.REDSTONE, ModBlocks.AUTOMATIC_PLAYBACK_BLOCK)
+                    .pattern("KOK")
+                    .pattern("ORO")
+                    .pattern("KOK")
+                    .input('K', ModBlocks.COBALT_CASING)
+                    .input('R', Items.REDSTONE_BLOCK)
+                    .input('O', ModBlocks.REINFORCED_OBSIDIAN)
+                    .criterion(hasItem(ModBlocks.COBALT_CASING), conditionsFromItem(ModBlocks.COBALT_CASING))
+                    .criterion(hasItem(Items.REDSTONE_BLOCK), conditionsFromItem(Items.REDSTONE_BLOCK))
+                    .criterion(hasItem(ModBlocks.REINFORCED_OBSIDIAN), conditionsFromItem(ModBlocks.REINFORCED_OBSIDIAN))
+                    .offerTo(exporter);
+
                 createShaped(RecipeCategory.REDSTONE, ModBlocks.CRUSHER)
                     .pattern("CPC")
                     .pattern("GBG")

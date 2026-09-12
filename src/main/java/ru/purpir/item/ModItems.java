@@ -80,6 +80,7 @@ public class ModItems {
     public static final Item LIMESTONE_DUST = registerItem("limestone_dust", Item::new, new Item.Settings());
     public static final Item CRYSTAL_DUST = registerItem("crystal_dust", Item::new, new Item.Settings());
     public static final Item ENDER_PEARL_SHARD = registerItem("ender_pearl_shard", Item::new, new Item.Settings());
+    public static final Item OBSIDIAN_PLATE = registerItem("obsidian_plate", Item::new, new Item.Settings());
 
     // Netherite Titanium Items
     public static final Item NETHERITE_TITANIUM_INGOT = registerItem("netherite_titanium_ingot", 
@@ -188,12 +189,16 @@ public class ModItems {
                     entries.add(ENDER_PEARL_SHARD);
                     entries.add(ModBlocks.IRON_CASING);
                     entries.add(ModBlocks.COBALT_CASING);
+                    entries.add(ModBlocks.REINFORCED_OBSIDIAN);
+                    entries.add(ModBlocks.AUTOMATIC_PLAYBACK_BLOCK);
                     entries.add(ModBlocks.CRUSHER);
                     entries.add(ModBlocks.CRYSTAL_GROWTH);
                     entries.add(ModBlocks.VOID_EYE_PLANT);
                     entries.add(ModBlocks.VOID_LANTERN);
                     entries.add(ModBlocks.LOCKED_MINER_CRATE);
                     entries.add(ModBlocks.CHAOS_CORE);
+                    entries.add(ModBlocks.AUTOMATIC_SPAWNER);
+                    entries.add(OBSIDIAN_PLATE);
                     // Netherite Titanium
                     entries.add(ModBlocks.NETHERITE_TITANIUM_BLOCK);
                     entries.add(NETHERITE_TITANIUM_INGOT);

@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "": {
+      "model": "caveborn:block/automatic_playback_block"
+    }
+  }
+}

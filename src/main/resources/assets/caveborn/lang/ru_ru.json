@@ -1,4 +1,14 @@
 ﻿{
+  "block.caveborn.automatic_spawner": "Автоматический спавнер",
+  "block.caveborn.reinforced_obsidian": "Укреплённый обсидиан",
+  "block.caveborn.automatic_playback_block": "Автоматический блок воспроизведения",
+  "screen.caveborn.automatic_spawner.storage": "Открыть хранилище",
+  "screen.caveborn.automatic_spawner.collect_xp": "Забрать опыт",
+  "screen.caveborn.automatic_spawner.egg": "Яйцо",
+  "screen.caveborn.automatic_spawner.xp": "Опыт",
+  "screen.caveborn.automatic_spawner.xp_value": "Опыт: %s",
+  "screen.caveborn.automatic_spawner.collect": "Забрать",
+  "screen.caveborn.automatic_spawner.stored_xp": "Накоплено опыта: %s",
   "itemGroup.caveborn.caveborn_group": "Caveborn",
   "itemGroup.caveborn.infused_items_group": "Инфузированные вещи",
   
@@ -73,6 +83,7 @@
   "block.caveborn.deepslate_cobalt_ore": "Глубинносланцевая кобальтовая руда",
   "block.caveborn.cobalt_block": "Блок кобальта",
   "block.caveborn.cobalt_casing": "Кобальтовый корпус",
+  "item.caveborn.obsidian_plate": "Обсидиановая пластина",
   "block.caveborn.zinc_ore": "Цинковая руда",
   "block.caveborn.deepslate_zinc_ore": "Глубинносланцевая цинковая руда",
   "block.caveborn.zinc_block": "Блок цинка",
