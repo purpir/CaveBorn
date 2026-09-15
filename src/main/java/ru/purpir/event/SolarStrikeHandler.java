@@ -37,7 +37,9 @@ public class SolarStrikeHandler {
                     
                     // Если способность успешно использована, наносим урон прочности
                     if (success && !world.isClient()) {
-                        stack.damage(10, player, player.getPreferredEquipmentSlot(stack));
+                        int durabilityCost = ability instanceof MaceAbility
+                            && MaceAbility.hasInfusedWindCharge(player) ? 50 : 10;
+                        stack.damage(durabilityCost, player, player.getPreferredEquipmentSlot(stack));
                         if (player instanceof ServerPlayerEntity serverPlayer) {
                             EventAltarHandler.onSolarItemUsed(serverPlayer, stack);
                         }

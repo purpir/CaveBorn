@@ -16,6 +16,7 @@ import ru.purpir.element.reactions.ReactionManager;
 import ru.purpir.entity.ModEntities;
 import ru.purpir.item.ModArmorMaterials;
 import ru.purpir.item.ModItems;
+import ru.purpir.ability.MaceAbility;
 import ru.purpir.screen.ModScreenHandlers;
 import ru.purpir.world.ModFeatures;
 import ru.purpir.world.ModOreGeneration;
@@ -59,6 +60,7 @@ public class Caveborn implements ModInitializer {
         ru.purpir.event.SolarCrystalTransformationHandler.register();
         ru.purpir.event.SolarDamageHandler.register();
         ru.purpir.event.SolarStrikeHandler.register();
+        MaceAbility.registerTicker();
         ru.purpir.event.SolarShieldHandler.register();
         ru.purpir.event.SolarCrystalDustHandler.register();
         ru.purpir.event.SolarTotemHandler.register();
