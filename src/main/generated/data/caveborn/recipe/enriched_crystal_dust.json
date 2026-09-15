@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    "caveborn:crystal_dust",
+    "minecraft:diamond",
+    "minecraft:gold_ingot"
+  ],
+  "result": {
+    "count": 1,
+    "id": "caveborn:enriched_crystal_dust"
+  }
+}

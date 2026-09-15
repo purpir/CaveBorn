@@ -81,6 +81,9 @@ public class ModItems {
     public static final Item CRYSTAL_DUST = registerItem("crystal_dust", Item::new, new Item.Settings());
     public static final Item ENDER_PEARL_SHARD = registerItem("ender_pearl_shard", Item::new, new Item.Settings());
     public static final Item OBSIDIAN_PLATE = registerItem("obsidian_plate", Item::new, new Item.Settings());
+    public static final Item GLASS_EGG_SHELL = registerItem("glass_egg_shell", Item::new, new Item.Settings());
+    public static final Item ENRICHED_CRYSTAL_DUST = registerItem("enriched_crystal_dust", Item::new, new Item.Settings());
+    public static final Item EGG_SHELL = registerItem("egg_shell", Item::new, new Item.Settings());
 
     // Netherite Titanium Items
     public static final Item NETHERITE_TITANIUM_INGOT = registerItem("netherite_titanium_ingot", 
@@ -199,6 +202,9 @@ public class ModItems {
                     entries.add(ModBlocks.CHAOS_CORE);
                     entries.add(ModBlocks.AUTOMATIC_SPAWNER);
                     entries.add(OBSIDIAN_PLATE);
+                    entries.add(GLASS_EGG_SHELL);
+                    entries.add(ENRICHED_CRYSTAL_DUST);
+                    entries.add(EGG_SHELL);
                     // Netherite Titanium
                     entries.add(ModBlocks.NETHERITE_TITANIUM_BLOCK);
                     entries.add(NETHERITE_TITANIUM_INGOT);

@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "B": "minecraft:black_dye",
+    "O": "caveborn:enriched_crystal_dust",
+    "S": "caveborn:glass_egg_shell",
+    "T": "caveborn:titanium_ingot"
+  },
+  "pattern": [
+    " O ",
+    "BST",
+    " O "
+  ],
+  "result": {
+    "count": 1,
+    "id": "caveborn:egg_shell"
+  }
+}

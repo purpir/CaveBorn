@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "P": "minecraft:glass_pane",
+    "S": "minecraft:glass"
+  },
+  "pattern": [
+    "SPS",
+    "P P",
+    "SPS"
+  ],
+  "result": {
+    "count": 1,
+    "id": "caveborn:glass_egg_shell"
+  }
+}

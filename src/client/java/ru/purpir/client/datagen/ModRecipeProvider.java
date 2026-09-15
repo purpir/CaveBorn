@@ -361,6 +361,39 @@ public class ModRecipeProvider extends FabricRecipeProvider {
                     .criterion(hasItem(ModItems.OBSIDIAN_PLATE), conditionsFromItem(ModItems.OBSIDIAN_PLATE))
                     .offerTo(exporter);
 
+                createShaped(RecipeCategory.MISC, ModItems.GLASS_EGG_SHELL)
+                    .pattern("SPS")
+                    .pattern("P P")
+                    .pattern("SPS")
+                    .input('S', Items.GLASS)
+                    .input('P', Items.GLASS_PANE)
+                    .criterion(hasItem(Items.GLASS), conditionsFromItem(Items.GLASS))
+                    .criterion(hasItem(Items.GLASS_PANE), conditionsFromItem(Items.GLASS_PANE))
+                    .offerTo(exporter);
+
+                createShapeless(RecipeCategory.MISC, ModItems.ENRICHED_CRYSTAL_DUST)
+                    .input(ModItems.CRYSTAL_DUST)
+                    .input(Items.DIAMOND)
+                    .input(Items.GOLD_INGOT)
+                    .criterion(hasItem(ModItems.CRYSTAL_DUST), conditionsFromItem(ModItems.CRYSTAL_DUST))
+                    .criterion(hasItem(Items.DIAMOND), conditionsFromItem(Items.DIAMOND))
+                    .criterion(hasItem(Items.GOLD_INGOT), conditionsFromItem(Items.GOLD_INGOT))
+                    .offerTo(exporter);
+
+                createShaped(RecipeCategory.MISC, ModItems.EGG_SHELL)
+                    .pattern(" O ")
+                    .pattern("BST")
+                    .pattern(" O ")
+                    .input('O', ModItems.ENRICHED_CRYSTAL_DUST)
+                    .input('B', Items.BLACK_DYE)
+                    .input('S', ModItems.GLASS_EGG_SHELL)
+                    .input('T', ModItems.TITANIUM_INGOT)
+                    .criterion(hasItem(ModItems.ENRICHED_CRYSTAL_DUST), conditionsFromItem(ModItems.ENRICHED_CRYSTAL_DUST))
+                    .criterion(hasItem(Items.BLACK_DYE), conditionsFromItem(Items.BLACK_DYE))
+                    .criterion(hasItem(ModItems.GLASS_EGG_SHELL), conditionsFromItem(ModItems.GLASS_EGG_SHELL))
+                    .criterion(hasItem(ModItems.TITANIUM_INGOT), conditionsFromItem(ModItems.TITANIUM_INGOT))
+                    .offerTo(exporter);
+
                 createShaped(RecipeCategory.REDSTONE, ModBlocks.AUTOMATIC_PLAYBACK_BLOCK)
                     .pattern("KOK")
                     .pattern("ORO")
