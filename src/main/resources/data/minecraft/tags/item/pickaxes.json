@@ -1,6 +1,7 @@
 {
   "replace": false,
   "values": [
+    "caveborn:crack_hammer",
     "caveborn:bronze_pickaxe",
     "caveborn:netherite_titanium_pickaxe"
   ]

@@ -1,0 +1,9 @@
+{
+  "replace": false,
+  "values": [
+    "caveborn:bronze_sword",
+    "caveborn:zinc_knife",
+    "caveborn:vacuumite_sword",
+    "caveborn:netherite_titanium_sword"
+  ]
+}
