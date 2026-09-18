@@ -9,6 +9,7 @@ import net.minecraft.client.render.state.OutlineRenderState;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.shape.VoxelShape;
+import net.minecraft.util.shape.VoxelShapes;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
@@ -16,6 +17,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import ru.purpir.multiblock.IMultiblock;
 import ru.purpir.multiblock.MultiblockManager;
+import ru.purpir.eventaltar.EventAltarHandler;
 
 /**
  * Миксин для кастомного рендера outline мультиблоков.
@@ -40,10 +42,31 @@ public class WorldRendererMixin {
         
         BlockPos pos = state.pos();
         BlockState blockState = client.world.getBlockState(pos);
+
+        // Алтарь может быть заново активирован сервером после восстановления,
+        // пока клиентская карта мультиблоков ещё не обновилась. Для него
+        // достаточно проверить фактическую конструкцию в клиентском мире.
+        BlockPos altarOrigin = EventAltarHandler.findValidAltarOrigin(client.world, pos);
+        if (altarOrigin != null) {
+            if (altarOrigin.equals(lastMultiblockOrigin)) {
+                ci.cancel();
+                return;
+            }
+
+            lastMultiblockOrigin = altarOrigin;
+            VoxelShape altarShape = VoxelShapes.cuboid(-1, -2, -1, 2, 3, 2);
+            VertexRendering.drawOutline(matrices, vertexConsumer, altarShape,
+                (double) altarOrigin.getX() - x,
+                (double) altarOrigin.getY() - y,
+                (double) altarOrigin.getZ() - z,
+                color);
+            ci.cancel();
+            return;
+        }
         
         // Проверка через MultiblockManager
         MultiblockManager manager = MultiblockManager.getInstance();
-        if (manager.isPartOfStructure(pos)) {
+        if (manager.isPartOfStructure(pos) && manager.matchesRegisteredBlock(pos, blockState)) {
             BlockPos originPos = manager.getOriginPos(pos);
             
             // Если уже рисовали outline для этой структуры в этом кадре, пропускаем

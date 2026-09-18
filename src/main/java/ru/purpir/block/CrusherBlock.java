@@ -153,7 +153,26 @@ public class CrusherBlock extends BlockWithEntity implements IMultiblock {
     @Nullable
     public BlockPos getOriginPos(World world, BlockPos pos, BlockState state) {
         BlockPos registered = MultiblockManager.getInstance().getOriginPos(pos);
-        return registered != null ? registered : getOriginFromState(pos, state);
+        if (registered != null) {
+            return registered;
+        }
+
+        // После разрушения структуры менеджер больше не содержит origin.
+        // Не считаем одиночный блок частью мультиблока только по его
+        // свойствам: иначе поставленный на освободившееся место Crusher
+        // наследует старую обводку и снова ломает соседние блоки.
+        BlockPos origin = getOriginFromState(pos, state);
+        for (CrusherPart part : CrusherPart.values()) {
+            BlockPos partPos = getPartPos(origin, state.get(FACING), part);
+            BlockState partState = world.getBlockState(partPos);
+            if (!partState.isOf(this)
+                || partState.get(FACING) != state.get(FACING)
+                || partState.get(PART) != part) {
+                return null;
+            }
+        }
+
+        return origin;
     }
 
     @Override

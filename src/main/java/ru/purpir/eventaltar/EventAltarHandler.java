@@ -47,7 +47,7 @@ import java.util.UUID;
 public final class EventAltarHandler {
     private static final int SCAN_INTERVAL_TICKS = 20;
     private static final int SCAN_RADIUS = 6;
-    private static final Set<BlockPos> KNOWN_ALTARS = new HashSet<>();
+    private static final Set<AltarKey> KNOWN_ALTARS = new HashSet<>();
     private static final Map<ChallengeCooldownKey, Long> CHALLENGE_COOLDOWNS = new HashMap<>();
     private static final List<ActiveChallenge> ACTIVE_CHALLENGES = new ArrayList<>();
     private static int tickTimer;
@@ -66,6 +66,11 @@ public final class EventAltarHandler {
 
     private static void tickWorld(ServerWorld world) {
         tickChallenges(world);
+        // Если алтарь разобрали любым способом (не только обычным ударом
+        // игрока), забываем его активацию. После восстановления он сможет
+        // активироваться заново вместе со всеми эффектами.
+        KNOWN_ALTARS.removeIf(key -> key.worldKey.equals(world.getRegistryKey()) && !isValidAltar(world, key.origin));
+
         if (++tickTimer < SCAN_INTERVAL_TICKS) {
             return;
         }
@@ -97,11 +102,9 @@ public final class EventAltarHandler {
     }
 
     public static void activateAltar(ServerWorld world, BlockPos origin) {
-        if (KNOWN_ALTARS.contains(origin)) {
-            return;
-        }
-
+        AltarKey altarKey = new AltarKey(world.getRegistryKey(), origin.toImmutable());
         MultiblockManager manager = MultiblockManager.getInstance();
+        boolean structureCreated = false;
         if (manager.getStructureByOrigin(origin) == null) {
             MultiblockStructure structure = manager.createStructure(origin);
             addAltarLayer(world, structure, -2);
@@ -110,13 +113,29 @@ public final class EventAltarHandler {
             addIfPresent(world, structure, BlockPos.ORIGIN);
             addIfPresent(world, structure, new BlockPos(0, 1, 0));
             manager.registerStructure(structure);
+            structureCreated = true;
         }
 
-        KNOWN_ALTARS.add(origin);
+        // Старая отметка не должна блокировать повторную активацию после
+        // разрушения и восстановления алтаря. Если структура уже существует,
+        // повторный эффект не запускаем; если её нет — это новая активация.
+        if (!structureCreated && KNOWN_ALTARS.contains(altarKey)) {
+            return;
+        }
+
+        KNOWN_ALTARS.add(altarKey);
         strikeLightning(world, origin);
         world.spawnParticles(ParticleTypes.END_ROD, origin.getX() + 0.5, origin.getY() + 1.4, origin.getZ() + 0.5, 70, 1.1, 0.8, 1.1, 0.08);
         world.spawnParticles(ParticleTypes.FIREWORK, origin.getX() + 0.5, origin.getY() + 1.2, origin.getZ() + 0.5, 35, 0.9, 0.55, 0.9, 0.08);
         world.playSound(null, origin, SoundEvents.BLOCK_BEACON_ACTIVATE, SoundCategory.BLOCKS, 1.2F, 0.75F);
+    }
+
+    /**
+     * Разрешить повторную активацию алтаря после разрушения его мультиблока.
+     */
+    public static void forgetAltar(World world, BlockPos origin) {
+        RegistryKey<World> worldKey = world.getRegistryKey();
+        KNOWN_ALTARS.remove(new AltarKey(worldKey, origin.toImmutable()));
     }
 
     private static void addAltarLayer(ServerWorld world, MultiblockStructure structure, int y) {
@@ -471,6 +490,9 @@ public final class EventAltarHandler {
     private record ChallengeCooldownKey(UUID playerUuid, int challengeType) {
     }
 
+    private record AltarKey(RegistryKey<World> worldKey, BlockPos origin) {
+    }
+
     private static void playCompletion(ServerWorld world, BlockPos origin, List<ItemStack> rewards) {
         world.spawnParticles(ParticleTypes.END_ROD, origin.getX() + 0.5, origin.getY() + 1.2, origin.getZ() + 0.5, 90, 1.2, 1.0, 1.2, 0.12);
         world.spawnParticles(ParticleTypes.GLOW, origin.getX() + 0.5, origin.getY() + 1.0, origin.getZ() + 0.5, 55, 1.0, 0.7, 1.0, 0.08);
@@ -582,6 +604,19 @@ public final class EventAltarHandler {
 
     public static boolean isEventAltarOrigin(World world, BlockPos origin) {
         return origin != null && isValidAltar(world, origin);
+    }
+
+    /**
+     * Найти валидный алтарь рядом с указанной позицией без изменения состояния
+     * мира. Используется клиентом для отрисовки обводки.
+     */
+    public static BlockPos findValidAltarOrigin(World world, BlockPos partPos) {
+        for (BlockPos pos : BlockPos.iterate(partPos.add(-2, -2, -2), partPos.add(2, 2, 2))) {
+            if (world.getBlockState(pos).isOf(Blocks.RESPAWN_ANCHOR) && isValidAltar(world, pos)) {
+                return pos.toImmutable();
+            }
+        }
+        return null;
     }
 
     public static boolean isValidAltar(World world, BlockPos origin) {

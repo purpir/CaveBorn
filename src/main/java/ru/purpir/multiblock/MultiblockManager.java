@@ -146,6 +146,20 @@ public class MultiblockManager {
     public boolean isPartOfStructure(BlockPos pos) {
         return blockToStructure.containsKey(pos);
     }
+
+    /**
+     * Проверить, что блок на позиции всё ещё соответствует зарегистрированной
+     * части структуры. Это защищает от устаревших записей после замены блока.
+     */
+    public boolean matchesRegisteredBlock(BlockPos pos, BlockState state) {
+        MultiblockStructure structure = getStructureAt(pos);
+        if (structure == null) {
+            return false;
+        }
+
+        BlockState registeredState = structure.getBlockState(structure.getRelativePos(pos));
+        return registeredState != null && registeredState.getBlock() == state.getBlock();
+    }
     
     /**
      * Проверить, является ли блок origin'ом структуры.

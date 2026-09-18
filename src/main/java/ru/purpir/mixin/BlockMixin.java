@@ -41,6 +41,16 @@ public class BlockMixin {
             return;
         }
 
+        // Если структуру уже разобрали или её часть заменили другим блоком,
+        // старая запись не должна превращать новый блок в часть мультиблока.
+        if (!manager.matchesRegisteredBlock(pos, state)) {
+            MultiblockStructure staleStructure = manager.getStructureAt(pos);
+            if (staleStructure != null) {
+                manager.unregisterStructure(staleStructure.getOrigin());
+            }
+            return;
+        }
+
         isMultiblockBreaking.set(true);
         try {
             BlockPos origin = manager.getOriginPos(pos);
@@ -55,7 +65,14 @@ public class BlockMixin {
 
             boolean eventAltar = ru.purpir.eventaltar.EventAltarHandler.isEventAltarOrigin(world, origin);
             if (eventAltar) {
-                caveborn$suppressStructureDrops(world, structure);
+                // Алтарь не должен разрушаться целиком: после поломки одной
+                // детали остальные блоки остаются в мире обычными блоками.
+                // Возвращаем управление ванильному разрушению, чтобы выпал
+                // только блок, по которому ударил игрок.
+                manager.unregisterStructure(origin);
+                ru.purpir.eventaltar.EventAltarHandler.forgetAltar(world, origin);
+                cir.setReturnValue(state);
+                return;
             }
 
             for (BlockPos relativePos : structure.getBlocks().keySet()) {
